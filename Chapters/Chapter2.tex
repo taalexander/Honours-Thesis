@@ -90,11 +90,42 @@ Given that we are concerned with studying finite range scatters and that any obs
 Keeping in mind this result we can define 
 $$ r = \left| \mbox{\boldmath$x$} \right| $$
 $$r^{'}=\left|\mbox{\boldmath$x^{'}$}\right|$$
-$$\alpha = \langle(\mbox{\boldmath$x,x^{'}$})$$
+$$\alpha = \angle(\mbox{\boldmath$x,x^{'}$})$$
 $$\mbox{\boldmath$\hat{r}$} \equiv \frac{\mbox{\boldmath$x$}}{\left|\mbox{\boldmath$x$}\right|}$$
-$$\left|\mbox{\boldmath$x-x^{'}$}\right| \approx r-\mbox{\boldmath$\hat{r}\cdot x^{'}$}$$
-$$\mbox{\boldmath$k^{'}$} \equiv k\mbox{\boldmath$\hat{r}$}$$
 
+\begin{equation}
+\label{eq:toObservation}
+\left|\mbox{\boldmath$x-x^{'}$}\right| \approx r-\mbox{\boldmath$\hat{r}\cdot x^{'}$}
+\end{equation}
+\begin{equation}
+\label{eq:propogationVector}
+\mbox{\boldmath$k^{'}$} \equiv k\mbox{\boldmath$\hat{r}$}
+\end{equation}
+
+Utilizing equations (\ref{eq:toObservation},\ref{eq:propogationVector}) 
+\begin{equation}
+e^{\pm ik \left|\mbox{\boldmath$x-x^{'}$}\right|} \approx e^{\pm ikr}e^{\mp i \mbox{\boldmath$k^{'}\cdot x^{'}$}}
+\label{eq:waveSimplification}
+\end{equation}
+For the distant $r$ at the observation point it is a useful approximation to say that 
+\begin{equation}
+\frac{1}{\left|\mbox{\boldmath$x-x^{'}$}\right|} \approx \frac{1}{r}
+\end{equation}
+Now replacing our incident generic wave with an incident plane wave $\Ket{\Phi}\rightarrow \Ket{\mbox{\boldmath$p$}}$ and using \mbox{\boldmath$k$} $\equiv \mbox{\boldmath$p_i$}/ \hbar$ To remove the $\hbar$'s from the expression. We obtain for the first term in (\ref{eq:lippmannSchwingerLocal}) 
+\begin{equation}
+\Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k$}}=\int d^3k^{'} \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k^{'}$}}\Braket{\mbox{\boldmath$k^{'}$}|\mbox{\boldmath$k$}}=\int d^3k^{'}  \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k^{'}$}} \delta^{(3)}(\mbox{\boldmath$k^{'}-k$})=\frac{e^{i\mbox{\boldmath$k \cdot x$}}}{(2\pi)^{\frac{3}{2}}}
+\label{eq:PlaneWave}
+\end{equation}
+Using this result in (\ref{eq:lippmannSchwingerLocal}) gives an expression for the scattered wave function at a relatively distant observation point for the positive Lippmann-Schwinger wavefunction. 
+\begin{equation}
+\label{eq:scatteredEquation}
+\Braket{\mbox{\boldmath$x$}|\Psi^{+}} = \frac{1}{(2\pi)^{\frac{3}{2}}}\left(e^{i\mbox{\boldmath$k \cdot x$}} + \frac{e^{ikr}}{r}f(\mbox{\boldmath$k^{'},k$})\right)
+\end{equation}
+\begin{equation}
+\label{eq:f}
+f(\mbox{\boldmath$k^{'},k$})=-m\left(\frac{2\pi}{h}\right)^2\Braket{\mbox{\boldmath$k^{'}$}|\mathcal{V}|\Psi^{+}}
+\end{equation}
+It is very easy to see that the result wavefunction is a combination of the original incident plane-wave and an outgoing spherical wave with an amplitude described by (\ref{eq:f}). An obvious issue is that here scattering has only been treated for an incident plane-wave which is not a normalizable wavefunction. In reality to describe discrete particles such as neutrons wave packet solutions are used to describe the incident particles. However, provided the size of the wave packet is much larger than the range of the finite potential $\mathcal{V}$ it is sufficient to treat an incident packet as a plane-wave.  
 \subsection{Neutron-nucleus Scattering}
 Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows the structure of solids to probed. 
 
@@ -119,7 +150,7 @@ $b \in \mathbb{C}$ is the \textit{nuclear scattering length} of the nucleus and 
 \label{eq:latticeScatter}
 \end{equation}
 
-Where \boldmath$k_i,k_s$ are the wavevectors of the incoming and scattered waves respectively. 
+Where \mbox{\boldmath$k_i,k_s$}are the wavevectors of the incoming and scattered waves respectively. 
 
 \subsection{Neutron Wave Guides}
 
