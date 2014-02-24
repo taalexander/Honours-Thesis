@@ -9,6 +9,7 @@
 \subsection{Particle Description of Neutrons}
 The neutron is a subatomic hadron particle that is present in the nucleus of every atom except $^1H$. The neutron is composed of two down quarks and a single up quarks. This composition gives a neutral electric charge for the neutron making it an ideal candidate for sensitive experiments, however the downside is that neutrons are much more difficult to manipulate. The neutron is also therefore a fermion and by the Pauli exclusion principle only a single neutron is allowed in each quantum state. The free neutron is unstable and undergoes beta decay with a lifetime of just $881.5 \pm 1.5 s$. The neutron has a rest mass of approximately $939.56Mev$. Free neutrons are produced using either neutral fission or fusion although in practical experiments fission is almost always used. At the NIST Research Reactor free neutrons are produced from the fission of $^{235}U$. 
 \subsection{Thermal Neutrons}
+\label{sec:thermal}
 Neutron interferometry utilizes thermal neutrons which are free neutrons that follow a Boltzmann distribution. The neutrons at NIST are found in the kinetic energy range of $4$-$20meV$ around room temperature of $T=293.15K$. This gives gives neutron velocities of $875-1956\frac{m}{s}$ which gives $v<<c$ and therefore relativistic affects do not play a role. Therefore thermal neutrons are in near thermal equilibrium with their surroundings. Neutrons are decelerated to a thermal state in the reactor by collisions with neutron moderators in the reactor. From de Broglie relations the wavelength of thermal neutrons is approximately $\lambda = \frac{h}{p}= 2.0$-$4.5\AA$. After being emitted form the NIST reactor the neutrons follow a wave-guide and using a wave splitter are sent into individual labs. As the strongest known phase space density of a neutron source is around $10^-14$ it can be safely assumed that the probability of two neutrons interacting inside the wave-guide or interferometer is sufficiently low that it can be disregarded and therefore detected neutrons have no correlation between each-other.
 
 \section{Neutron Interferometry}
@@ -37,4 +38,88 @@ n\lambda = 2d sin(\theta_{b})
 \end{equation} 
 Where $n$ is a positive integer, $d$ is the distance between the atomic planes of the crystal lattice and $\theta_{b}$ is the angle between the incident beam and the atomic plane of the crystal. The amplitudes of the transmitted and the reflected beams are given by the coefficients $t$ (transmitted) and $r$ reflected.\cite{dimaThesis} 
 
+\subsection{Quantum Scattering Theory}
+\label{sec:scatteringTheory}
+ Starting with the assumption the Hamiltonian has the form of 
+ \begin{equation}
+ \mathcal{H} = \mathcal{H}_0+\mathcal{V} \,\,\,\,\, \mathcal{H}_0= \frac{\textbf{p}^2}{2m}
+ \label{eq:hamiltonian}
+ \end{equation}
+The presence of the potential $\mathcal{V}$ causes the solution to be different than the free particle state 
+$$\mathcal{H}_0\Ket{\Phi}=E\Ket{Phi}$$
+
+Therefore we are looking for solutions to the Schrödinger equation of the form 
+\begin{equation}
+\label{eq:schrodinger}
+\mathcal{H}_0+\mathcal{V}\Ket{\Psi} = E\Ket{\Psi} 
+\end{equation} 
+ A valid solution should have that $\Ket{\Psi}\rightarrow\Ket{\Phi}$ as $\mathcal{V}\rightarrow 0$. A solution that satisfies these requirements is known as the Lippmann-Schwinger equation. 
+ \begin{equation}
+ 	\label{lippmanSchwinger}
+ 	\Ket{\Psi^{\pm}}=\Ket{\Phi}+\frac{1}{E-\mathcal{H}_0\pm i\epsilon}\mathcal{V}\Ket{\Psi^{\pm}} 
+ \end{equation}
+ Here the energy $E$ was made slightly complex with the addition of $\pm \epsilon$ to deal with the singular nature of the operator $1/(E-\mathcal{H}_0)$. It can easily be seen that the application of the operator $E-\mathcal{H}_0$ reduces (\ref{lippmanSchwinger}) to the desired solution (\ref{eq:schrodinger}) when neglecting the imaginary component. By taking the Lipmann-Schwinger equation to the position basis explicitly it can be represented as 
+ \begin{equation}
+ \label{eq:positionBasis}
+ \Braket{\mbox{\boldmath$x$}|\Psi^{\pm}}=\Braket{\mbox{\boldmath$x$}|\Phi} -\frac{2m}{\hbar^2} \int d^3x^{'} \frac{e^{\pm ik\left|\mbox{\boldmath$x-x^{'}$}\right|}}{ 4\pi \left| \mbox{\boldmath$x-x^{'}$} \right|} \Braket{\mbox{\boldmath$x^{'}$}|\mathcal{V}|\Psi^{\pm}}
+ \end{equation}
+As our scattering potentials are a function of position only the assumption can be made that the potential is \textit{local} such that it is diagonal in the position representation. Specifically the potential satisfies the requirement that 
+\begin{equation}
+\label{eq:localPotential}
+\braket{\mbox{\boldmath$x^{'}$}|\mathcal{V}|\mbox{\boldmath$x^{''}$}}=\mathcal{V}(\mbox{\boldmath$x$}^{'})\delta^{(3)}(\mbox{\boldmath$x^{'}$}-\mbox{\boldmath$x^{''}$})
+\end{equation}
+
+Utilizing this potential we obtain 
+\begin{equation}
+\label{eq:localPotentialResult}
+\Braket{\mbox{\boldmath$x$}|\mathcal{V}|\Psi^{\pm}}=\int d^3x^{''} \braket{\mbox{\boldmath$x^{'}$}|\mathcal{V}|\mbox{\boldmath$x^{''}$}} \braket{\mbox{\boldmath$x^{''}$}|\Psi^{\pm}}=\mathcal{V}(\mbox{\boldmath$x^{'}$})\braket{\mbox{\boldmath$x^{'}$}|\Psi^{\pm}}
+\end{equation}
+With this result the Lippmann-Schwinger equation can be reduced to
+\begin{equation}
+\label{eq:lippmannSchwingerLocal}
+ \Braket{\mbox{\boldmath$x$}|\Psi^{\pm}}=\Braket{\mbox{\boldmath$x$}|\Phi} -\frac{2m}{\hbar^2} \int d^3x^{'} \frac{e^{\pm ik\left|\mbox{\boldmath$x-x^{'}$}\right|}}{ 4\pi \left| \mbox{\boldmath$x-x^{'}$} \right|} \mathcal{V}(\mbox{\boldmath$x{'}$})\Braket{\mbox{\boldmath$x^{'}$}|\Psi^{\pm}}
+\end{equation}
+Given that we are concerned with studying finite range scatters and that any observations that will be made will be made outside the range of the potential due to the macroscopic nature of neutron detectors the assumption can be made that $\left|\mbox{\boldmath$x$}\right| >>\left|\mbox{\boldmath$x^{'}$}\right|$. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.5]{Figures/scatteringObservation.png}
+\caption{The finite range scattering potential. Any observations via detectors will be outside the range of the potential and therefore approximations can be made when evaluating (\ref{eq:lippmannSchwingerLocal}).}
+\label{finiteRangePotential}
+\end{figure}
+
+Keeping in mind this result we can define 
+$$ r = \left| \mbox{\boldmath$x$} \right| $$
+$$r^{'}=\left|\mbox{\boldmath$x^{'}$}\right|$$
+$$\alpha = \langle(\mbox{\boldmath$x,x^{'}$})$$
+$$\mbox{\boldmath$\hat{r}$} \equiv \frac{\mbox{\boldmath$x$}}{\left|\mbox{\boldmath$x$}\right|}$$
+$$\left|\mbox{\boldmath$x-x^{'}$}\right| \approx r-\mbox{\boldmath$\hat{r}\cdot x^{'}$}$$
+$$\mbox{\boldmath$k^{'}$} \equiv k\mbox{\boldmath$\hat{r}$}$$
+
+\subsection{Neutron-nucleus Scattering}
+Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows the structure of solids to probed. 
+
+Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\textbf{r})$ between the nucleus and neutron. As this is interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\textbf{r}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave with the wave-function
+
+\begin{equation}
+\Psi_i = e^{ikz}
+\label{eq:neutronBeam}
+\end{equation}
+
+As the nucleus is a point scatterer as in section(\ref{sec:scattering_theory}) the outgoing scattered wavefunction will be spherically symmetric of the form 
+
+\begin{equation}
+\Psi_s = -\frac{b}{r}e^{ikr}
+\label{eq:scatteredWave}
+\end{equation}
+
+$b \in \mathbb{C}$ is the \textit{nuclear scattering length} of the nucleus and is dependent on the composition of the nucleus. The imaginary component of $b$ only plays a role for nuclei that have a high absorption coefficient. For a three dimensional group of nuclei the resultant outgoing scattered wave will be of the form 
+
+\begin{equation}
+\Psi_s = -\sum \limits_i \frac{b_i}{r} e^{ikr} e^{i \textbf{q} \cdot \textbf{r}} \,\,\,\,\,  \textbf{q}= \mbox{\boldmath$k_i-k_s$}
+\label{eq:latticeScatter}
+\end{equation}
+
+Where \boldmath$k_i,k_s$ are the wavevectors of the incoming and scattered waves respectively. 
+
+\subsection{Neutron Wave Guides}
 
