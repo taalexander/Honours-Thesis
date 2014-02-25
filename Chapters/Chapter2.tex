@@ -84,7 +84,7 @@ Given that we are concerned with studying finite range scatters and that any obs
 \centering
 \includegraphics[scale=0.5]{Figures/scatteringObservation.png}
 \caption{The finite range scattering potential. Any observations via detectors will be outside the range of the potential and therefore approximations can be made when evaluating (\ref{eq:lippmannSchwingerLocal}).}
-\label{finiteRangePotential}
+\label{fig:finiteRangePotential}
 \end{figure}
 
 Keeping in mind this result we can define 
@@ -126,6 +126,40 @@ Using this result in (\ref{eq:lippmannSchwingerLocal}) gives an expression for t
 f(\mbox{\boldmath$k^{'},k$})=-m\left(\frac{2\pi}{h}\right)^2\Braket{\mbox{\boldmath$k^{'}$}|\mathcal{V}|\Psi^{+}}
 \end{equation}
 It is very easy to see that the result wavefunction is a combination of the original incident plane-wave and an outgoing spherical wave with an amplitude described by (\ref{eq:f}). An obvious issue is that here scattering has only been treated for an incident plane-wave which is not a normalizable wavefunction. In reality to describe discrete particles such as neutrons wave packet solutions are used to describe the incident particles. However, provided the size of the wave packet is much larger than the range of the finite potential $\mathcal{V}$ it is sufficient to treat an incident packet as a plane-wave.  
+\subsection{Differential Cross-Section}
+The scattering cross section is an important parameter for experimental scattering physics. It relates the number of particles scattering into the solid angle $d\Omega$ per unit time to the number of incident particles into an infinitesimal element $d\sigma$ of area per unit time. We search for a relation between $d\Omega$ and $d\sigma$ which we term the differential cross section given by $d\sigma/d\Omega$.
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/scatteringCrossSection.png}
+\caption{The differential cross section is the relationship between incident particles travelling through area $d\sigma$ to scattered particles crossing through the solid angle $d\Omega$}
+\label{fig:scatteringCrossSection}
+\end{figure}
+Evidently the probability of an incident particle being within an area $d\sigma$ in time $dt$ while travelling with velocity $v$ is just 
+\begin{equation}
+dP = \left|\Psi_i\right|^2 dV  = \frac{1}{2\pi}^3 (vdt)d\sigma
+\label{eq:incidentCross}
+\end{equation}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{Figures/incidentBeam.png}
+\caption{The volume element $dV$ that a beam occupies passing through an area $d\sigma$ in time $dt$}
+\label{fig:incidentBeam}
+\end{figure}
+
+Relating this probability to the probability of a particle being scattered into solid angle $d\Omega$ with equal velocity $v$ per unit time $dt$. 
+\begin{equation}
+\label{eq:scatteredCross}
+dP=\left|\Psi_s\right|^2dV = \frac{1}{2\pi}^3 \frac{\left|f(\mbox{\boldmath$k^{'},k$})\right|^2}{r^2}(vdt)r^2 d\Omega
+\end{equation}
+Equations (\ref{eq:incidentCross}) and (\ref{eq:scatteredCross}) can be solved for the differential cross section 
+\begin{equation}
+\label{eq:differentialCrossSection}
+\frac{d\sigma}{d\Omega}= \left|f(\mbox{\boldmath$k^{'},k$})\right|^2
+\end{equation}
+
+\subsection{Scattering Amplitude}
+While equation (\ref{eq:f}) defines the magnitude of the outgoing spherical wave, it is defined implicitly in terms of the unkown ket 
 \subsection{Neutron-nucleus Scattering}
 Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows the structure of solids to probed. 
 
