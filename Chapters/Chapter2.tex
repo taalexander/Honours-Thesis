@@ -159,11 +159,28 @@ Equations (\ref{eq:incidentCross}) and (\ref{eq:scatteredCross}) can be solved f
 \end{equation}
 
 \subsection{Scattering Amplitude}
-While equation (\ref{eq:f}) defines the magnitude of the outgoing spherical wave, it is defined implicitly in terms of the unkown ket $\Ket{\Psi^{+}}$. The solution to this problem in the case of sufficently weak scatterers is to use the first Born approximation 
+While equation (\ref{eq:f}) defines the magnitude of the outgoing spherical wave, it is defined implicitly in terms of the unknown ket $\Ket{\Psi^{+}}$. The solution to this problem in the case of sufficiently weak scatterers is to use the first Born approximation 
 \begin{equation}
 \label{eq:born}
-\Braket{\mbox{\boldmath$x^{'}}$}|\Psi^{+}}} \rightarrow \Braket{\mbox{\boldmath$x^{'}}$}|\Phi}} = \frac{e^{i\mbox{\boldmath$x^{'}}}}
+\Braket{\mbox{\boldmath$x^{'}$}|\Psi^{+}} \rightarrow \Braket{\mbox{\boldmath$x^{'}$}| \Phi} = \frac{e^{i\mbox{\boldmath$x^{'}$}}}{(2\pi)^{3/2}}
 \end{equation}
+Combining (\ref{eq:born}) and (\ref{eq:f}) results in the first-order Born amplitude 
+\begin{equation}
+\label{eq:firstOrderBorn}
+f^{(1)}(\mbox{\boldmath$k^{'},k$}) = -\frac{m}{2\pi\hbar^2}\int d^3x^{'}e^{i(\mbox{\boldmath$k-k^{'}$})\cdot \mbox{\boldmath$x^{'}$}}\mathcal{V}(\mbox{\boldmath$x^{'}$})
+\end{equation}
+As the potentials that will be dealt with are spherically symmetrical, further approximations can be made utilizing $\mbox{\boldmath$q$} \equiv \mbox{\boldmath$k-k^{'}$}$ and $$\left|\mbox{\boldmath$k-k^{'}$}\right| \equiv = q = 2ksin \left( \frac{\theta}{2}\right)$$. The spherical symmetry can be used to integrate explicitly the angular component of the scattering magnitude. 
+
+\begin{equation*}
+f^{(1)}(\theta) = -\frac{m}{2\pi\hbar^2} \int d^3x^{'}e^{i(\mbox{\boldmath$k-k^{'}$})\cdot \mbox{\boldmath$x^{'}$}}\mathcal{V}(\mbox{\boldmath$x^{'}$})= -\frac{m}{2\pi\hbar^2} \int_{r=0}^{\infty} \int_{\phi=0}^{2\pi} \int_{\theta^{'}=0}^{\pi} e^{i \left|q\right|\left|r\right|cos(\theta^{'})}sin(\theta^{'})r^2 \mathcal{V}(r)d\theta^{'}d\phi dr
+
+\end{equation*}
+
+\begin{equation}
+\label{eq:bornAngular}
+= -\frac{1}{2i}\frac{2m}{\hbar^2q} \int_0^\inf r\mathcal{V}(r)(e^{iqr}-e^{-iqr})dr = -\frac{2m}{\hbar^2}\frac{1}{q}\int_0^\infty r\mathcal{V}(r)sin(qr)dr
+\end{equation}
+
 \subsection{Neutron-nucleus Scattering}
 Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows the structure of solids to probed. 
 
