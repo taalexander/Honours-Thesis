@@ -179,7 +179,6 @@ As the potentials that will be dealt with are spherically symmetrical, further a
 $$
 f^{(1)}(\theta) =  -\frac{m}{2\pi\hbar^2} \int_{r=0}^{\infty} \int_{\phi=0}^{2\pi} \int_{\theta^{'}=0}^{\pi} e^{i \left| q \right| \left| r \right|cos(\theta^{'})}sin(\theta^{'})r^2 \mathcal{V}(r) d\theta^{'} d\phi dr
 $$
-
 \begin{equation}
 \label{eq:bornAngular}
 = -\frac{1}{2i}\frac{2m}{\hbar^2q} \int_{0}^{\infty} r\mathcal{V}(r)(e^{iqr}-e^{-iqr})dr = -\frac{2m}{\hbar^2}\frac{1}{q}\int_{0}^{\infty} r\mathcal{V}(r)sin(qr)dr
@@ -188,7 +187,7 @@ Given a potential that has spherical symmetry it is now much more simple to calc
 \subsection{Neutron-nucleus Scattering}
 Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows the structure of solids to probed. 
 
-Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\textbf{r})$ between the nucleus and neutron. As this is interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\textbf{r}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave a wave function described by (\ref{eq:PlaneWave}) and the scattered wavefunction will take the form of (\ref{eq:scatteredEquation},\ref{eq:f}).
+Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\mbox{\boldmath$r$})$ between the nucleus and neutron. As this is interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\mbox{\boldmath$r$}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave a wave function described by (\ref{eq:PlaneWave}) and the scattered wavefunction will take the form of (\ref{eq:scatteredEquation},\ref{eq:f}).
 
 Due to the magnitude of the difference between the wavelength of the incident neutrons and the effective acting distance of the strong-force neutron-nucleus interaction and its approximate spherical symmetry it is an acceptable approximation to use the Fermi pseudo-potential
 \begin{equation}
@@ -223,15 +222,16 @@ From this approximate solution it is evident that the only difference between in
 \centering
 \includegraphics[scale=0.5]{Figures/neutronScatteringLength.png}
 \caption{Neutron scattering lengths $b$ for the elements of the periodic table }
-\label{fig:scatteringAngle}
+\label{fig:scatteringLength}
 \end{figure}
 
 Inside a sufficiently large homogeneous material the Fermi pseudo-potential can be approximated to be 
+
 \begin{equation}
- \mathcal{V}(\mbox{\boldmath$x^{'}$})  = \frac{2\pi\hbar^2}{m}\sum\limits_{j} b_j \delta(\mbox{\boldmath$x^{'}-x_{j}$}) \approx \frac{2\pi\hbar^2}{m}bN
- 
- \label{eq:approxFermiPseudopotential}
+ \mathcal{V}(\mbox{\boldmath$x^{'}$})  = \frac{2\pi\hbar^2}{m}\sum\limits_{j} b_j \delta(\mbox{\boldmath$x^{'}-x_{j}$}) \approx \frac{2\pi\hbar^2}{m}bN 
+\label{eq:approxFermiPseudopotential}
 \end{equation}
+
 Where $N$ is the atom number density. 
 \subsection{Neutron Optics}
 As the neutron beam is a wavefunction many analogies from classical optics hold. The index of refraction is defined as the ratio of the speed of neutrons experiencing no potential to the speed of neutrons affected by a potential. Compared to light the form is familiar 
@@ -243,8 +243,8 @@ $$\Delta^2\Psi(\mbox{\boldmath$x$}) + \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\bo
 K^2 = \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\boldmath$x$}))
 \end{equation}
 \begin{equation}
-\label{eq:nofr}
-n(\mbox{\boldmath$x$}) = \frac{K}{k} = \sqrt{\frac{E-\mathcal{V}(\mbox{\boldmath$x$})}{E}=\sqrt{1-\frac{\mathcal{V}(\mbox{\boldmath$x$})}{E}}
+\label{eq:NinPotential}
+n(\mbox{\boldmath$x$}) = \frac{K}{k} = \sqrt{\frac{E-\mathcal{V}(\mbox{\boldmath$x$})}{E}}=\sqrt{1-\frac{\mathcal{V}(\mbox{\boldmath$x$})}{E}}
 \end{equation}
 Given that the neutron scattering potentials are described by (\ref{eq:approxFermiPseudopotential}) the index of refraction can be approximated to 
 \begin{equation}
@@ -253,9 +253,12 @@ V(\mbox{\boldmath$x$}) = \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN}{E}}
 \end{equation}
 
 In the case of magnetic materials the magnetic potential
-$$\mathcal{V_{mag}(\mbox{\boldmath$x$})=-\mbox{\boldmath$u\cdot B_{eff}$}$$ must be accounted for. This results in an index of refracton for magnetic materials such as Fe,Ni and Co of 
+\begin{equation*}
+\mathcal{V}_{mag}(\mbox{\boldmath$x$})=-\mbox{\boldmath$u \cdot B_{eff}$}
+\end{equation*}
+ must be accounted for. This results in an index of refraction for magnetic materials such as Fe,Ni and Co of 
 \begin{equation}
-n_{\pm}(\mbox{\boldmath$x$})= \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN \mp \mbox{\boldmath$u\cdot B_{eff}$}}{E}}
+n_{\pm}(\mbox{\boldmath$x$})= \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN \mp \mbox{\boldmath$u \cdot B_{eff}$}}{E}}
 \label{eq:nucleurIndexofRefraction}
 \end{equation}
 \subsection{Neutron Wave Guides}

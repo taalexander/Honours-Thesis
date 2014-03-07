@@ -19,8 +19,50 @@ $$V = \frac{2\pi*\hbar^2}{m}\rho=\frac{2\pi\hbar^2}{m}\frac{1}{V}\sum\limits_{i}
 
 
 \subsection{Motors and Actuators}
+The neutron interferometry lab uses a variety of motors and actuators that allow experimental parameters to be controlled over the wire. Depending on the device communication is achieved via analog or digital protocols.
+\subsubsection{Newport 301}
+
+The Newport ESP301 is a three axis motion controller and driver.\cite{esp301manual} It can drive both DC servo motors and 2-phase stepper motors at up to 3 amps. It has a 1000x micro-step resolution per axis which allows very fine grained control of movements which is necessary for precision measurements. The Newport ESP 301 is primarily used to drive servo motors that orient the phase flag in the neutron interferometer. Precise angular control is a must as this is one of the primary experimental parameter. The device can also be used to control the interferometry stage to orient it. 
+
+The Newport device utilizes encoder feedback built into servos to obtain precise positional feedback. While most Newport brand motors will automatically supply their configuration information, the equipment at NIST is not necessarily compatible in such a way. Therefore advanced configuration must be supplied by the device programmer. 
+
+The ESP301 is controllable via a fairly extensive language of approximately 100 commands, a large portion of which are necessary for the device to be controlled successfully. Valid configuration information must be supplied. Commands are transmitted via ASCII characters according to the selected protocol. Supported protocols are serial RS232C, USB and IEEE488 with delays of $7-30ms$,$3.5ms$ and $1ms$ respectively.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.5]{Figures/esp301.jpg}
+\caption{Newport ESP301 three axis motion controller}
+\label{fig:esp301}
+\end{figure}
+\subsubsection{Kepco}
+Kepco series ATE power supplies are used to control a variety of devices in the interferometry lab. Specifically the 15-6M and 36-15M models are used and are rack mounted. The models are rated at ($0$-$15V$,$0$-$6A$,$50W$) and ($0$-$36V$,$0$-$15A$,$500W$) respectively.\cite{kepco} The models are controllable via an analog input line that sets the supply output as a linear function of the input from $0$-$10V$. Additionally there is a crowbar voltage controller which allows a maximum voltage to be set in a similar manner. The Kepco supplies are controllable via DACs which are managed via a LabJack. 
+\subsubsection{LabJack}
+The LabJack is a low cost measurement and automation platform. Specifically NIST will use the U3-LV variant. The U3-LV provides up to 16 analog inputs, 2 analog outputs and up to 20 digital I/O pins. The analog inputs accept voltages from $0$-$3.6V$ and the onboard DACs outputs from $0$-$5V$. The LabJack devices are easily controlled via a Python API. 
+
+In Addition to the LabJack the LJTick-DACs, a DAC made to be digitally controlled by LabJack devices are used to provide control inputs to devices such as the Kepco power supplies. The LJTick-DAC outputs $\pm10V$  controllable by the LabJack pins in which it is inserted too. Each LJTick-DAC provides two DACs. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.5]{Figures/labjack.png}
+\caption{Labjack U3 with LJTick-DAC}
+\label{fig:labjack}
+\end{figure}
 \subsection{Sensors}
+As the likelihood method for the contrast measurement is a function of the temperature and humidity of the interferometer chamber, a variety of measurements must be taken using many different sensors.
+\subsubsection{EI1050 Temperature and Humidity Probe}
+The EI1050 is a digital temperature and humidity probe produced by LabJack. While its protocol is open source, it has been designed to be used with a LabJack device and sample code has been provided. The device is not especially accurate as it is rated at $\pm0.5^{\circ}$ and $\pm3.5\%$ humidity at ranges from $-40$-$120C$ and $0$-$100\%$ humidity. It is still useful to provide a quick and easy measurement. 
+\subsubsection{Stanford Research Systems CTC100 Temperature Controller}
+The SRS CTC100 is a cryogenic temperature controller. It provides four sensor inputs, four analog outputs and six feedback control loops. Temperature readings are made by thermistor sensors and heating is provided by resistive heaters. The device is programmable using USB, Ethernet and either GPIB or RS-232 inputs. Commands are provided via ASCII commands.  
+The thermistor temperature readings are very accurate with an accuracy of $\pm0.25\Omega$ for a $300\Omega$ thermistor. The CTC100 automatically supplies the mean and standard deviation of sampled temperatures. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/ctc100.jpg}
+\caption{Stanford Research Systems CTC100: Cryogenic Temperature Controller}
+\label{fig:ctc100}
+\end{figure}
 \section{NI-Engine}
+The current system at the NIST interferometry lab uses an Excel spreadsheet connected via ActiveX to closed source controller code. This system only controls the bare minimum of experimental hardware and is very inflexible. The system is not easily extensible and the software design principles are very poor. As the contrast improvement experiment requires many different sensor inputs and system controllability for many different measurement cases, it would have been a tremendous task to implement into the current system. 
+
+Ni-Engine attempts to solve the problems of the previous system for the proposed experiment and future lab researchers. NI-Engine is an experimental neutron interferometry control system programmed in Python using open source libraries and software design principles. 
 \subsection{Design Requirements}
 \subsection{Language and Library Choices}
 \subsection{System Architecture}
