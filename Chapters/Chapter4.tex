@@ -34,7 +34,7 @@ The ESP301 is controllable via a fairly extensive language of approximately 100 
 \caption{Newport ESP301 three axis motion controller}
 \label{fig:esp301}
 \end{figure}
-\subsubsection{Kepco}
+\subsubsection{Kepco Power Supply}
 Kepco series ATE power supplies are used to control a variety of devices in the interferometry lab. Specifically the 15-6M and 36-15M models are used and are rack mounted. The models are rated at ($0$-$15V$,$0$-$6A$,$50W$) and ($0$-$36V$,$0$-$15A$,$500W$) respectively.\cite{kepco} The models are controllable via an analog input line that sets the supply output as a linear function of the input from $0$-$10V$. Additionally there is a crowbar voltage controller which allows a maximum voltage to be set in a similar manner. The Kepco supplies are controllable via DACs which are managed via a LabJack. 
 \subsubsection{LabJack}
 The LabJack is a low cost measurement and automation platform. Specifically NIST will use the U3-LV variant. The U3-LV provides up to 16 analog inputs, 2 analog outputs and up to 20 digital I/O pins. The analog inputs accept voltages from $0$-$3.6V$ and the onboard DACs outputs from $0$-$5V$. The LabJack devices are easily controlled via a Python API. 
@@ -62,9 +62,39 @@ The thermistor temperature readings are very accurate with an accuracy of $\pm0.
 \section{NI-Engine}
 The current system at the NIST interferometry lab uses an Excel spreadsheet connected via ActiveX to closed source controller code. This system only controls the bare minimum of experimental hardware and is very inflexible. The system is not easily extensible and the software design principles are very poor. As the contrast improvement experiment requires many different sensor inputs and system controllability for many different measurement cases, it would have been a tremendous task to implement into the current system. 
 
-Ni-Engine attempts to solve the problems of the previous system for the proposed experiment and future lab researchers. NI-Engine is an experimental neutron interferometry control system programmed in Python using open source libraries and software design principles. 
+Ni-Engine attempts to solve the problems of the previous system for the proposed experiment and future lab researchers. NI-Engine is an experimental neutron interferometry control system programmed in Python using open source libraries and software design principles.
 \subsection{Design Requirements}
-\subsection{Language and Library Choices}
+\label{sec:requirements}
+The core design requirement of NI-Engine are to be a complete, easy to use neutron interferometry experimental control system. In order fulfil this core requirement the software had to fulfil these requirements: 
+\begin{itemize}
+  \item Be able to communicate with and control a large range of hardware in a manner that allows powerful functionality while hiding the inherent complexity. 
+  \item Handle experimental setup and configuration via configuration files such that an experimental setup is easily repeatable given an identical configuration. 
+  \item Handle the collection and storage of experimental data. Experimental data will be large, possible into the $10+GB$ range. Should allow for multiple identical experiments to be performed sequentially.
+  \item Execution of software functionality must be fast and allow for experiment running times to be dominated by hardware measurement and control, rather than software running time. 
+  \item Software must be able to run for long periods of time with consistent memory requirements.
+  \item Data should be collected and stored with units available to avoid confusion.  
+  \item Should be modular. Outside researchers should be able to modify software to their own requirements. ie. addition of new hardware, file formats, data types. 
+  \item Software must have extensive documentation and example code. Researchers should be able to utilize without extensive outside help.  
+\end{itemize}
+These design requirements had to be taken into account when designing and programming Ni-Engine
+\subsection{Language and Software Library Choices}
+\subsubsection{Language}
+Given the design requirements outlined in (\ref{sec:requirements}) it is clear that the system required is quite extensive. Python\cite{python} was selected as the development language for Ni-Engine. Python was selected for a variety of reasons including 
+\begin{itemize}
+\item Python is very easy to learn and use. Its syntax style allows newcomers the ability to quickly write code, while still allowing experts powerful expressibility. 
+\item Python's code is extremely legible and the nature of its syntax naturally generates readable code. 
+\item Python has many powerful libraries available that when used allow rapid development of complex software without the complexity of rolling ones own solution. 
+\item Python has a large and help community. 
+\item It is very easy to interface with C based code if performance is desired. 
+\item Python is object oriented which when used correctly allows simple creation of modular and extensible software. 
+\item Python is dynamically typed and evaluated which allows rapid iteration and ease of use at the cost of performance and security. 
+\end{itemize}
+While the use of python does come at some costs, namely memory and CPU performance, on a whole the choice of language provided enormous benefits.
+
+\subsubsection{Software Libraries}
+Due to the nature of an experimental system composed of heterogeneous hardware there is a lot of complexity in communicating with hardware over different communication channels. To overcome this challenge the library  InstrumentKit\cite{instrumentKit} was used. InstrumentKit allows identical commands to be sent over a variety of different communication channels at a high level of abstraction. It was a much more simple matter to contribute communication code for necessary sensors and hardware to InstrumentKit and then just utilize the library. As Ni-Engine must handle large volumes of data and manipulate this data, Numpy\cite{numpy} was used for its efficent handling of arrays in Python and the variety of methods it provides. To store this data the first file format to be implemented was HDF5\cite{hdf5}, which is a version of the Hierarchical Data Format. HDF5 was designed for the storage of large amounts of numerical data. Additionally, it provides an easily navigable hierarchical file system. Creation and manipulation of HDF5 files was facilitated by the memory efficient H5py\cite{h5py} library for Python. As the main goal of the system is to handle experimental data that is often associated with physical units of measurement Python units\cite{units} was used. Units allows the wrapping of Python data types and Numpy arrays in physical units, and performs the necessary unit operations when performing operations between data types of units. 
+
+As extensive documentation is a core design requirement of Ni-Engine, it was essential that a documentation generation library be used throughout development. Sphinx\cite{sphinx}, the De facto Python standard for documentation pulls in-code comments and generates relational documentation in a variety of formats including html and pdf formats. 
 \subsection{System Architecture}
 \subsection{Documentation}
 \section{Q-Infer}
