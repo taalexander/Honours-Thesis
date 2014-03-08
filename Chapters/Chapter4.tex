@@ -109,11 +109,13 @@ Ni-Engine divides the software into five separate components, each of which atte
 \label{fig:NiEngine}
 \end{figure}
 \subsubsection{Configuration}
-A core tenet of the design of Ni-Engine was that it has to make experiments easily scriptable and repeatable. As experimental hardware requires many different configuration values to be set, that if set incorrectly can result in disastrous consequences it is infeasible to supply configuration via the command-line or as python based configuration. Therefore configuration is provided to Ni-Engine via Yaml configuration files which allows the specification of all runtime configuration options for Ni-Engine. This allows experiments to be run with the same initial settings consistently simply by passing Ni-Engine a predefined configuration file. Configuration is made simple thanks to Yaml's hierarchical data format. 
+A core tenet of the design of Ni-Engine was that it has to make experiments easily scriptable and repeatable. As experimental hardware requires many different configuration values to be set, that if set incorrectly can result in disastrous consequences it is infeasible to supply configuration via the command-line or as python based configuration. Therefore configuration is provided to Ni-Engine via Yaml configuration files which allows the specification of all runtime configuration options for Ni-Engine. This allows experiments to be run with the same initial settings consistently simply by passing Ni-Engine a predefined configuration file. Configuration is made simple thanks to Yaml's hierarchical data format, which is converted into a very simple to use Python dictionary by PyYaml. 
 \subsubsection{Data Storage}
 Ni-Engine utilizes a storage format agnostic API. All storage communication is channelled through a DataHandler instance. At initialization time DataHandler is a passed its required configuration information as defined in the experiments configuration file. It is possible to utilize many different file formats provide a class that implements the AbstractPhysicalStorage is provided and it is registered with the main Ni-Engine class. This Builder pattern allows future extensibility and interaction, although at current time only the HDF5 file format is supported. 
 
 In Ni-Engine all measurements reside in memory as Data objects. Data objects are interesting in that they measurement meta-information with such fields such as measurement names, measurement types and the time the measurement was taken at. All the while Data objects behave as their value data-types in code. This allows measurements to be created with essential meta-information and than to be manipulated in a normal fashion as would integers,floats, arrays and other basic data-types. 
+
+Due to the slow nature of permanent storage devices, data to be written to storage are batched in order to limit the amount of write calls. When the buffer is filled it is flushed to the disk. A balance must be established between the amount of data stored in memory compared to how often it is written to disk. Of course any data in memory is ethereal and power failure / program crashes will cause the data to be lost. 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=0.6\textwidth]{Figures/datatypes.png}
@@ -121,8 +123,11 @@ In Ni-Engine all measurements reside in memory as Data objects. Data objects are
 \label{fig:datatypes}
 \end{figure}
 \subsubsection{Manager Objects}
-In Ni-Engine all control of physical hardware is managed by the HardwareManager,ControllerManager and SensorManager objects. Upon initialization
-\subsection{Documentation}
+In Ni-Engine all control of physical hardware is managed by the HardwareManager,ControllerManager and SensorManager objects. Managers are responsible for initialization, configuration, data acquisition and object destruction. Upon initialization these manager classes are passed configuration information that contains all necessary information for the setup and control with all experimental hardware. Each manager object creates its own singleton factory object that is responsible for constructing either the hardware, controllers or sensors for the system depending on its type. Every controller and sensor object interacts with physical hardware through hardware objects. This is to ensure that each physical device is only instantiated once and prevents race conditions. Upon creation of these experimental equipment objects they are placed under management by their respective managers. 
+
+Measurement calls to devices are made via manager objects. Manager objects have the ability to measure individual devices or all devices at once. As differing devices have different latencies, sequential measurement can take an excessive amount of time. Therefore measurement calls are threaded to allow measurements to be performed in parallel. Of course certain sensors and controllers may utilize the same hardware and therefore race conditions can result. It is therefore important for these to devices to implement thread locking at the hardware level for these objects. After measurements are made they are passed onto the DataHandler object for storage as well as returned to the function call. 
+\subsubsection{Documentation}
+As the purpose of Ni-Engine is to be a general neutron interferometry experimental engine and not just to be used one time the neutron contrast experiment it is important that documentation be available for future researchers that may not have the luxury of a hands on introduction by the software designers. To increase the software ease of use
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
