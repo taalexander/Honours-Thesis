@@ -108,7 +108,20 @@ Ni-Engine divides the software into five separate components, each of which atte
 \caption{NiEngine object control hierarchy}
 \label{fig:NiEngine}
 \end{figure}
-\section{NI-Engine}
+\subsubsection{Configuration}
+A core tenet of the design of Ni-Engine was that it has to make experiments easily scriptable and repeatable. As experimental hardware requires many different configuration values to be set, that if set incorrectly can result in disastrous consequences it is infeasible to supply configuration via the command-line or as python based configuration. Therefore configuration is provided to Ni-Engine via Yaml configuration files which allows the specification of all runtime configuration options for Ni-Engine. This allows experiments to be run with the same initial settings consistently simply by passing Ni-Engine a predefined configuration file. Configuration is made simple thanks to Yaml's hierarchical data format. 
+\subsubsection{Data Storage}
+Ni-Engine utilizes a storage format agnostic API. All storage communication is channelled through a DataHandler instance. At initialization time DataHandler is a passed its required configuration information as defined in the experiments configuration file. It is possible to utilize many different file formats provide a class that implements the AbstractPhysicalStorage is provided and it is registered with the main Ni-Engine class. This Builder pattern allows future extensibility and interaction, although at current time only the HDF5 file format is supported. 
+
+In Ni-Engine all measurements reside in memory as Data objects. Data objects are interesting in that they measurement meta-information with such fields such as measurement names, measurement types and the time the measurement was taken at. All the while Data objects behave as their value data-types in code. This allows measurements to be created with essential meta-information and than to be manipulated in a normal fashion as would integers,floats, arrays and other basic data-types. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{Figures/datatypes.png}
+\caption{Datatype measurement class}
+\label{fig:datatypes}
+\end{figure}
+\subsubsection{Manager Objects}
+In Ni-Engine all control of physical hardware is managed by the HardwareManager,ControllerManager and SensorManager objects. Upon initialization
 \subsection{Documentation}
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
