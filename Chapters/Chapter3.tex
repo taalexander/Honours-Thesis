@@ -1,6 +1,26 @@
 \chapter{Contrast Improvement of Neutron Interferometry Measurements} % Write in your own chapter title
 \label{Chapter2}
 \lhead{Chapter 2. \emph{Contrast Improvement of Neutron Interferometry Measurements}} % Write in your own chapter title to set the page header
+
+\subsection{Probabilistic Markov Models}
+Ever since Max Born presented what would become to be known as the Born interpretation, quantum mechanics has become a science of probabilities. The Born rule states that the probability of measuring an eigenvalue $\lambda_i$  of an observable corresponding to a hermitian operator $A$  will be 
+\begin{equation}
+p(\lambda_i) = \Braket{\Psi|P_i|\Psi}
+\label{eq:bornrule}
+\end{equation}
+This can be seen by applying the spectral theorem to $A$\cite{linear}
+\begin{equation}
+A = \lambda_1 P_1 + \lambda_2 P_2 \cdots \lambda_i P_i
+\end{equation}
+Where $P_i$ are the orthogonal projections of $A$ onto the eigenspace corresponding to $\lambda_i$. As $I = P_1 + P_2 \cdots + P_i$ and $\Braket{\Psi|\Psi} = 1$ given a probabilistic interpretation of the inner product. 
+\begin{equation}
+\Braket{\Psi|I|\Psi} =\Braket{\Psi|P_1|\Psi} + \Braket{\Psi|P_2|\Psi} + \cdots +\Braket{\Psi|P_i|\Psi}  = 1
+\end{equation}
+Given this result the interpretation may be made that 
+\begin{equation*}
+\Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =\lambda_1 p(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
+\end{equation*}
+Therefore it is quite easy to see where the Born rule arises. It is therefore clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
