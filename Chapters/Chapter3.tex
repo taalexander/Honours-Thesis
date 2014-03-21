@@ -2,7 +2,7 @@
 \label{Chapter2}
 \lhead{Chapter 2. \emph{Contrast Improvement of Neutron Interferometry Measurements}} % Write in your own chapter title to set the page header
 
-\subsection{Probabilistic Markov Models}
+\subsection{Probabilistic Models}
 Ever since Max Born presented what would become to be known as the Born interpretation, quantum mechanics has become a science of probabilities. The Born rule states that the probability of measuring an eigenvalue $\lambda_i$  of an observable corresponding to a hermitian operator $A$  will be 
 \begin{equation}
 p(\lambda_i) = \Braket{\Psi|P_i|\Psi}
@@ -21,6 +21,27 @@ Given this result the interpretation may be made that
 \Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =\lambda_1 p(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
 \end{equation*}
 Therefore it is quite easy to see where the Born rule arises. It is therefore clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
+\section{Baye's Theorem} 
+Baye's theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Baye's Thereom is 
+\begin{equation}
+P(A|B) = \frac{P(B|A)P(A)}{P(B)} 
+\label{eq:bayes}
+\end{equation}
+What this says is that given an event $B$ occurring from a set of events $\mathcal{E}$, the posterior probability that the model $A$ describing it is the most likely model in the set of models $\mathcal{M}$ is the probability of event $B$ occurring according to model $A$ multiplied by the prior likelihood of model $A$ and normalized by the total probability of event $B$ occurring according to all models in set $\mathcal{M}$.\cite{bayes}
+
+This is an incredibly powerful theorem as it allows a set of models to be analysed statistically to determine the correct model with an actual likelihood of correctness given event data. A broad range of models can be tested and as more data rolls in the likelihood of the correct model to describe the system will rise.
+
+There are discrete and continuous forms of Baye's theorem, however in this case only the discrete form is of interest. 
+\begin{equation}
+P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum \limits_j P(B|A_j)P(A_j)}
+\label{eq:discretebayes}
+\end{equation}
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.5]{Figures/bayes.eps}
+\caption{Example prior and posterior distribution for a set of coin flip models that samples 10 heads flips in a row}
+\label{fig:bayes}
+\end{figure}
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
