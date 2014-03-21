@@ -2,7 +2,7 @@
 \label{Chapter2}
 \lhead{Chapter 2. \emph{Contrast Improvement of Neutron Interferometry Measurements}} % Write in your own chapter title to set the page header
 
-\subsection{Probabilistic Models}
+\section{Bayesian Markov Chain Monte Carlo Algorithms}
 Ever since Max Born presented what would become to be known as the Born interpretation, quantum mechanics has become a science of probabilities. The Born rule states that the probability of measuring an eigenvalue $\lambda_i$  of an observable corresponding to a hermitian operator $A$  will be 
 \begin{equation}
 p(\lambda_i) = \Braket{\Psi|P_i|\Psi}
@@ -21,7 +21,7 @@ Given this result the interpretation may be made that
 \Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =\lambda_1 p(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
 \end{equation*}
 Therefore it is quite easy to see where the Born rule arises. It is therefore clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
-\section{Baye's Theorem} 
+\subsection{Baye's Theorem} 
 Baye's theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Baye's Thereom is 
 \begin{equation}
 P(A|B) = \frac{P(B|A)P(A)}{P(B)} 
@@ -42,6 +42,17 @@ P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum \limits_j P(B|A_j)P(A_j)}
 \caption{Example prior and posterior distribution for a set of coin flip models that samples 10 heads flips in a row}
 \label{fig:bayes}
 \end{figure}
+\subsection{Markov Chain Monte Carlo}
+Often when attempting to fit a model it is computationally infeasible to explore the entire model space. This can be due to having a large number of possible models, models having a large number of parameters and the fact that most physical process parameters are described by real numbers and it is therefore impossible to explore the entire parameter space. A way to deal with model selection in this case is known are Markov Chain Monte Carlo (MCMC) methods. Given a set of models 
+\begin{equation}
+\mathcal{M} = {\mathbf{M}(x_1,x_2,\cdots,x_i;y_1,y_2,\cdots,y_i) : y_j \in \mathcal{F}}
+\label{eq:models}
+\end{equation}
+where $x_j$ are input variables to the model and $y_j$ are model parameters, it is desired to find and approximate ideal model. MCMC methods will select an original set of possible model parameters $\mathbf{P} = {(y_11,y_12,\cdots,y_1i),\cdots,(y_j1,y_j2,\cdots,y_ji)}$ and assign a prior distribution to these models $\mathcal{D}_{prior}$. Given a set of inputs $\mathbf{I} = {(x_11,x_12,\cdots,x_1i),\cdots,(x_j1,x_j2,\cdots,x_ji)}$ the posterior distribution $\mathcal{D}_{pos}$ can be evaluated using (\ref{eq:discretebayes}). In order to explore the parameter space, the algorithim must select a new set of parameters. One method of doing this is to select some $\subset \mathbf{{P}$ and generate a new set of models and posterior distributions according to some function
+\begin{equation}
+\mathcal{M}_{pos},\mathcal{D}_{pos_2} = f(\mathcal{M},\mathcal{D}_{pos})
+\label{mcmcupdate} 
+\end{equation}
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
