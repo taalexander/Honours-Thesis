@@ -44,6 +44,7 @@ P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum \limits_j P(B|A_j)P(A_j)}
 \label{fig:bayes}
 \end{figure}
 \subsection{Markov Chain Monte Carlo Methods}
+\label{sec:mcmcupdate}
 Often when attempting to fit a model it is computationally infeasible to explore the entire model space. This can be due to having a large number of possible models, models having a large number of parameters and the fact that most physical process parameters are described by real numbers and it is therefore impossible to explore the entire parameter space. A way to deal with model selection in this case is known are Markov Chain Monte Carlo (MCMC) methods. Given a set of models 
 \begin{equation}
 \mathcal{M} = \left\{\mathbf{M}(x_1,x_2,\cdots,x_i;y_1,y_2,\cdots,y_i) : y_j \in \mathcal{F}\right\}
@@ -75,27 +76,81 @@ Where $u=E(\mathbf{X})$. It is prudent to note that the elements of the diagonal
 The Cramer-Rao lower bound states that the variance of an unbiased estimator $\hat{\theta}$ is lower bounded by the reciprocal Fisher Information $I(\theta)$.\cite{cramer} 
 \begin{equation}
 var(\hat{\theta}) \geq \frac{1}{I(\theta)}
-\label{cramerao}
+\label{eq:cramerao}
 \end{equation}
 The Fisher Information is the expectation value of the square of the first moment of the log likelihood function for some probability density function $p(\mathbf{X};\theta)$. The log-likelihood of the probability density function is defined as $\mathcal{l}(\mathbf{X};\theta) = log(p(\mathbf{X};\theta))$
 Therefore the Fisher information is 
 \begin{equation}
 I(\theta) = E\left[\left(\frac{\partial}{\partial \theta} log (p(\mathbf{X};\theta)) \right)^2 \Big| \theta \right] = -E\left[\frac{\partial^2}{\partial\theta^2} l(\mathbf{X};\theta) \Big| \theta \right]
-\label{fisherinformation}
+\label{eq:fisherinformation}
 \end{equation}
-The Fisher Information is the variance of the statistical score of the probability density function. Geometrically it is a measure of the amount of curvature of the log-likelihood function. It is a measure of the amount of information an observable $\mathbf{X}$ carries about an unknown parameter $\theta$ of which the probability of $\mathbf{X}$ relies on according to the function $p(\mathbf{X};\theta)$. 
+The Fisher Information is the variance of the statistical score of the probability density function. Geometrically it is a measure of the amount of curvature of the log-likelihood function. It is a measure of the amount of information an observable $\mathbf{X}$ carries about an unknown parameter $\theta$ of which the probability of $\mathbf{X}$ relies on according to the function $p(\mathbf{X};\theta)$. In multiple dimensions the Fisher Information matrix takes the form 
+\begin{equation}
+\mathbf{I}(\mathbf{\theta}) = E_D[\mathbf{\nabla}_\mathbf{\theta}log(P(D|\mathbf{\theta}))\cdot \mathbf{\nabla}^T_\mathbf{\theta}log(P(D|\mathbf{\theta}))]
+\label{eq:fishermatrix}
+\end{equation}
 
 The Cramer-Rao lower bound establishes a lower limit on the amount of information an unknown parameter of a probability distribution carries.\cite{cramerrao2} This is very useful in determining the fit of a set of model parameters as shall be seen. It is important to keep in mind that this only holds for unbiased estimators and may be violated by biased estimators. 
 
 \section{Robust Online Hamiltonian Learning}
 The construction of a large scale quantum information processor is an extremely difficult challenge. Before error correcting codes and algorithms can be applied to such a system, the full characterization of the system is required. This is normally achieved via statistical estimation of Hamiltonian parameters via tomography. In quantum tomography the process is normally carried out on the device as a \textit{black box} and a set of measurements is chosen such that the parametrization of them will allow the output of any input state to be predicted.\cite{tomography} Full tomography is computationally complex and requires the simulation of the behaviour of the quantum system. As the systems being simulated grow in complexity, it is no longer possible for classical computer to simulate.\cite{simulate}
 
-In practice there is often more information available about the form of the Hamiltonian of a given system and this allows the number of parameters that need be estimated to be reduced. This is known as partial process estimation or partial tomography. The goal of the experiment proposed in this thesis is to provide experimental verification of the algorithm proposed in the 2013 paper "Robust Online Hamiltonian Learning" from the University of Waterloo.\cite{hamiltonian_learning} 
+In practice there is often more information available about the form of the Hamiltonian of a given system and this allows the number of parameters that need be estimated to be reduced. This is known as partial process estimation or partial tomography. The goal of the experiment proposed in this thesis is to provide experimental verification of the algorithm proposed in the 2013 paper "Robust Online Hamiltonian Learning" by Chris Granade at the University of Waterloo.\cite{hamiltonian_learning} 
 
-An additional benefit to the algorithm of focus is that in quantum mechanics, often future measurement results depend on prior measurements. The use of MCMC methods allows model parameters to be estimated for such time dependent measurements. 
+An additional benefit to the algorithm of focus is that in quantum mechanics, often future measurement results depend on prior measurements. The use of MCMC methods allows model parameters to be estimated for such time dependent measurements. As given a set of estimated models for the hamiltonian it is possible to predict the probability of a future measurement $d_{N+1}$ given a future set of experimental controls $c_{N+1}$. 
+\begin{equation}
+P(d_{N+1}\big|D;c_{N+1},C) = E_{\mathbf{x}|D;C}[P(d_{N+1}\big|\mathbf{x};c_{N+1}]
+\label{eq:batch}
+\end{equation}
 
 \subsubsection{Algorithm Specifics}
+Given a set of future experimental controls and their potential outcome probabilities it is useful to quantify the measurements usefulness. This is just the utility function as described in section (\ref{sec:mcmcupdate}). An often used measure is that of information gain, or in other words the expectation value of the logarithm of the estimator. 
+\begin{equation}
+U(d_{N+1};c_{N+1}) = E_{\mathbf{x}|d{N+1},D;c_{N+1},C}[log P(\mathbf{x}|d_{N+1},D;c_{N+1},C)]
+\label{eq:utilityfunction}
+\end{equation}
+Maximizing the utility function is equivalent to minimizing the entropy of the posterior distribution.
+
+The quality of an estimator $\mathbf{\hat{x}}$ for a set of observed data $D$ and experimental controls $C$ can be quantified by using the quadratic loss function 
+
+\begin{equation}
+L_{\mathbf{Q}}(\mathbf{x},\mathbf{\hat{x}}(X,X)) = (\mathbf{x},\mathbf{\hat{x}}(D,C))^T\mathbf{Q}(\mathbf{x},\mathbf{\hat{x}}(D,C))
+\label{eq:quadraticloss}
+\end{equation}
+Where $\mathbf{Q}$ is a chosen positive definite matrix deciding the importance of model parameters in the quadratic loss function. The quadratic loss is used to define the risk of an estimator by taking the expectation value of the quadratic loss over all possible outcomes of the experiment.
+\begin{equation}
+R(\mathbf{x},\mathbf{\hat{x}};C) = E_{D|\mathbf{x};C}[L(\mathbf{x},\mathbf{\hat{x}}(D,X))]
+\label{eq:risk}
+\end{equation}
+The Bayes risk is the average risk of the risk function with respect to a prior distribution $\pi(\mathbf{x})$
+\begin{equation}
+r(\pi;C) = E_\mathbf{x}[R(\mathbf{x},\mathbf{\hat{x}};C)] = \int \pi(\mathbf{x})R(\mathbf{x},\mathbf{\hat{x}};C)d\mathbf{x}
+\label{eq:bayesrisk}
+\end{equation}
+Here $\mathbf{\hat{x}}$ is taken to be the unique Bayes estimator, which is the estimator that minimizes the total risk. The utility function is chosen as the negative Bayes risk as this corresponds to minimizing the Bayes risk for chosen set of parameters. 
  
+Remembering the Fisher information matrix as defined in (\ref{eq:fishermatrix}) we call the Bayesian information matrix\cite{bayesiancramer}
+\begin{equation}
+\mathbf{J}(\pi;C) = E_\mathbf{x}[\mathbf{I}(\mathbf{x};C)] = \int \pi(\mathbf{x})R(\mathbf{x},\mathbf{\hat{x}},C)d\mathbf{x}
+\label{eq:bayesianinformation}
+\end{equation}
+From Bayesian information matrix a lower bound on the risk function called the Bayesian Cramer-Rao bound can be placed \cite{bcrb}
+\begin{equation}
+\label{eq:bayeslowerbound}
+r(\pi;C)\geq \frac{1}{\mathbf{J}(\pi;C)}
+\end{equation}
+
+This is used rather than the Fisher Information as in the case of an experiment giving no information about a parameter set, the Fisher Matrix $I$ is singular and therefore its inverse is undefined, this is resolved via the Bayesian Cramer-Rao Lower Bound (\ref{eq:bayeslowerbound}). 
+
+Given (\ref{eq:bayeslowerbound}) the lower bound on the Bayes risk can be iteratively monitored. 
+\begin{equation}
+r(\pi;C_{N+1})\geq \frac{1}{\mathbf{J}_{N+1}(C_{N+1})}
+\end{equation}
+where 
+\begin{equation}
+\mathbf{J}_{N+1}(C_{N+1} = \mathbf{J}(\pi;C_{N+1})+ J_N(C_N)
+\label{eq:riskiteration}
+\end{equation}
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
