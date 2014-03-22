@@ -86,6 +86,16 @@ I(\theta) = E\left[\left(\frac{\partial}{\partial \theta} log (p(\mathbf{X};\the
 The Fisher Information is the variance of the statistical score of the probability density function. Geometrically it is a measure of the amount of curvature of the log-likelihood function. It is a measure of the amount of information an observable $\mathbf{X}$ carries about an unknown parameter $\theta$ of which the probability of $\mathbf{X}$ relies on according to the function $p(\mathbf{X};\theta)$. 
 
 The Cramer-Rao lower bound establishes a lower limit on the amount of information an unknown parameter of a probability distribution carries.\cite{cramerrao2} This is very useful in determining the fit of a set of model parameters as shall be seen. It is important to keep in mind that this only holds for unbiased estimators and may be violated by biased estimators. 
+
+\section{Robust Online Hamiltonian Learning}
+The construction of a large scale quantum information processor is an extremely difficult challenge. Before error correcting codes and algorithms can be applied to such a system, the full characterization of the system is required. This is normally achieved via statistical estimation of Hamiltonian parameters via tomography. In quantum tomography the process is normally carried out on the device as a \textit{black box} and a set of measurements is chosen such that the parametrization of them will allow the output of any input state to be predicted.\cite{tomography} Full tomography is computationally complex and requires the simulation of the behaviour of the quantum system. As the systems being simulated grow in complexity, it is no longer possible for classical computer to simulate.\cite{simulate}
+
+In practice there is often more information available about the form of the Hamiltonian of a given system and this allows the number of parameters that need be estimated to be reduced. This is known as partial process estimation or partial tomography. The goal of the experiment proposed in this thesis is to provide experimental verification of the algorithm proposed in the 2013 paper "Robust Online Hamiltonian Learning" from the University of Waterloo.\cite{hamiltonian_learning} 
+
+An additional benefit to the algorithm of focus is that in quantum mechanics, often future measurement results depend on prior measurements. The use of MCMC methods allows model parameters to be estimated for such time dependent measurements. 
+
+\subsubsection{Algorithm Specifics}
+ 
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
