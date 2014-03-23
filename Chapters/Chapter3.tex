@@ -104,6 +104,7 @@ P(d_{N+1}\big|D;c_{N+1},C) = E_{\mathbf{x}|D;C}[P(d_{N+1}\big|\mathbf{x};c_{N+1}
 \end{equation}
 
 \subsubsection{Algorithm Specifics}
+\subsubsection{Bounding the Error of an Estimator}
 Given a set of future experimental controls and their potential outcome probabilities it is useful to quantify the measurements usefulness. This is just the utility function as described in section (\ref{sec:mcmcupdate}). An often used measure is that of information gain, or in other words the expectation value of the logarithm of the estimator. 
 \begin{equation}
 U(d_{N+1};c_{N+1}) = E_{\mathbf{x}|d{N+1},D;c_{N+1},C}[log P(\mathbf{x}|d_{N+1},D;c_{N+1},C)]
@@ -151,6 +152,31 @@ where
 \mathbf{J}_{N+1}(C_{N+1} = \mathbf{J}(\pi;C_{N+1})+ J_N(C_N)
 \label{eq:riskiteration}
 \end{equation}
+\subsubsection{Resampling}
+Utilizing sequential monte carlo methods the costly posterior distribution are approximately calculated by approximating the distribution as a set of particles or points distributed over the parameter space, each with weight $w_i$ and with the sum of all weights being $\sum \limits_i w_i = 1$. Therefore the probability distribution is 
+\begin{equation*}
+P(\mathbf{x}|D) \approx \sum \limits_{k=1}^n w_k(D)\delta(\mathbf{x}-\mathbf{x}_k)
+\end{equation*}
+with the weights being iteratively updated according to 
+\begin{equation*}
+w_k(d_{j+1} \cup D) = \sum \limits_{k=1}^n P(d_{j+1}|\mathbf{x}_k)w_k(d_j)
+\end{equation*}
+As with MCMC algorithms the accuracy can be made arbitrarily high by increasing the number of particles. The initial weights are chosen to simply be $w_k = 1/n$. Using this approximate distribution, Bayes updates can be performed and an accurate estimator approached.
+
+Since any particle estimate will only ever approach the true parametrization, all weights will tend to zero. This can be postponed by re-sampling and updating weights at intervals. The basic idea is too select some $n$ most likely particles and choose new particles around these likely particles according to some distribution to replace unlikely particles. Re-sampling will be performed when $n_ess = 1/\sum \limits_i w_i^2>0.5$ where $0.5$ is the re-sampling threshold. After re-sampling the weights are reset. 
+
+The algorithm to be tested adds the additional step of a random normally distributed perturbation vector $\mathbf{\epsilon}= \mathcal{N}(0,\sum \limits)$ to the position of a random selected point. This is to further increase the size of the parameter space explored.\cite{hamiltonian_learning}
+\begin{equation}
+pos(\mathbf{x'}) = \sum \limits_i w_i \frac{1}{\sqrt{(2\pi)^k|\sum|}}exp\left(-\frac{1}{2}(\mathbf{x'}-\mathbf{u_i})^T\sum ^-1(\mathbf{x'}-\mathbf{u_i})\right)
+\label{eq:resample}
+\end{equation}
+Where $k$ is the number of model parameters. This distribution is known as a mixture distribution. The mean $u_i$ of each particle is chosen using a linear combination of the form 
+\begin{equation}
+\mathbf{u}_i = a\mathbf{x}_i + (1-a)\mathbf{u}
+\end{equation}
+Where $\mathbf{u}= E[\mathbf{x}]$. Therefore re-sampling consists of sampling from the distribution described by (\ref{eq:resample}) for the $k=N-n$ unselected particles and then resetting all weights to $w_i = 1/n$.  
+\subsubsection{Region Estimation}
+
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
