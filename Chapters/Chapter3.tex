@@ -67,7 +67,7 @@ cov(\mathbf{X})_{ij} = cov(X_i,X_j) = E[(X_i-E[X_i])(X_j-E[X_j])]
 \end{equation}
 Which in matrix notation takes the form 
 \begin{equation}
-cov(\mathbf{X}) = [(\mathbf{X}- u)(\mathbf{X}-u)^T] = E(\mathbf{X}\mathbf{X}^T) - uu^T
+\mathbf{\Sigma} = cov(\mathbf{X}) = [(\mathbf{X}- u)(\mathbf{X}-u)^T] = E(\mathbf{X}\mathbf{X}^T) - uu^T
 \label{eq:covarianceMatrix}
 \end{equation}
 Where $u=E(\mathbf{X})$. It is prudent to note that the elements of the diagonal of the covariant matrix $\sum{ii}$ are the variances of the elements of the vector $\mathbf{X}$. When $\sigma(x,y)>0$ the relationship between the two variables tends to be similar, ie. when one grows the other grows and similarly when $\sigma(x,y)<0$ when one variable grows the other will tend to show the opposite behaviour.\cite{covariance}  
@@ -153,6 +153,7 @@ where
 \label{eq:riskiteration}
 \end{equation}
 \subsubsection{Resampling}
+\label{sec:resampling}
 Utilizing sequential monte carlo methods the costly posterior distribution are approximately calculated by approximating the distribution as a set of particles or points distributed over the parameter space, each with weight $w_i$ and with the sum of all weights being $\sum \limits_i w_i = 1$. Therefore the probability distribution is 
 \begin{equation*}
 P(\mathbf{x}|D) \approx \sum \limits_{k=1}^n w_k(D)\delta(\mathbf{x}-\mathbf{x}_k)
@@ -167,7 +168,7 @@ Since any particle estimate will only ever approach the true parametrization, al
 
 The algorithm to be tested adds the additional step of a random normally distributed perturbation vector $\mathbf{\epsilon}= \mathcal{N}(0,\sum \limits)$ to the position of a random selected point. This is to further increase the size of the parameter space explored.\cite{hamiltonian_learning}
 \begin{equation}
-pos(\mathbf{x'}) = \sum \limits_i w_i \frac{1}{\sqrt{(2\pi)^k|\sum|}}exp\left(-\frac{1}{2}(\mathbf{x'}-\mathbf{u_i})^T\sum ^-1(\mathbf{x'}-\mathbf{u_i})\right)
+pos(\mathbf{x'}) = \sum \limits_i w_i \frac{1}{\sqrt{(2\pi)^k|\sum|}}exp\left(-\frac{1}{2}(\mathbf{x'}-\mathbf{u_i})^T\mathbf{\Sigma}^{-1}(\mathbf{x'}-\mathbf{u_i})\right)
 \label{eq:resample}
 \end{equation}
 Where $k$ is the number of model parameters. This distribution is known as a mixture distribution. The mean $u_i$ of each particle is chosen using a linear combination of the form 
@@ -176,7 +177,27 @@ Where $k$ is the number of model parameters. This distribution is known as a mix
 \end{equation}
 Where $\mathbf{u}= E[\mathbf{x}]$. Therefore re-sampling consists of sampling from the distribution described by (\ref{eq:resample}) for the $k=N-n$ unselected particles and then resetting all weights to $w_i = 1/n$.  
 \subsubsection{Region Estimation}
+It is not just important to have an accurate estimator for the system, but also crucial to be able to quantify the error in the estimator and how much it differs from the  Bayesian Cramer-Rao lower bound. This is achieved by finding a region of the parameter space $\mathbf{\hat{X}}$ such that the probability of the true parameter set $\mathbf{x_0}$ is contained within $\mathbf{\hat{X}}$ is maximized, while the volume $V(\mathbf{\hat{X}})$ is minimized.\cite{hamiltonian_learning}
 
+The probability of the true model being within a region $\mathbf{\hat{X}}$ can be expressed as 
+\begin{equation}
+P(\mathbf{x_0}\in \mathbf{\hat{X}}) = E[1_{\mathbf{\hat{X}}}]
+\end{equation}
+Where $1_{\mathbf{\hat{X}}}(x) = 1$ if $\mathbf{x}\in \mathbf{\hat{X}}$ and otherwise $1_{\mathbf{\hat{X}}}(x) = 0$. 
+The probability of a region can then be calculated from the particle weights from section (\ref{sec:resampling}). 
+\begin{equation}
+E[1_{\mathbf{\hat{X}}}] \approx \sum \limits_i w_i 1_{\mathbf{\hat{X}}}(\mathbf{x}_i) = \sum \limits_{i,\mathbf{x_i}\in\mathbf{\hat{X}}} w_i
+\label{eq:probin}
+\end{equation}
+Therefore a region $\mathbf{\hat{X}}$ must be found such that (\ref{eq:probin}) is sufficiently large, while $V(\mathbf{\hat{X}})$ is sufficiently small. Under the assumption that after a reasonable amount of data the posterior distribution is approximately normally distributed according to $\mathcal{N}(\mathbf{\mu},\mathbf{\Sigma})$, from the definition of the normal distribution it follows that the inverse covariance matrix $\Sigma^{-1}$ describes an ellipse of dimension $d$ where $0.682^d$ of the probability mass is contained within the ellipse. Where, $d$ is the number of model parameters. 
+The volume of the ellipse can be found to be 
+\begin{equation}
+V(\mathbf{\Sigma^{-1}}) = \frac{\pi^{d/2}}{\Gamma(d/2+1)}det(\mathbf{\Sigma^{-1}}) 
+\end{equation}
+In order to determine the fit of the region found, it is important to compare the found covariance ellipse to the optimal one according to the Bayesian Cramer-Rao lower bound 
+\begin{equation*}
+E_\pi [cov(\mathbf{\hat{x}})] \geq \mathbf{J}(\pi;C)^{-1}
+\end{equation*}
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
