@@ -46,7 +46,7 @@ Where $n$ is a positive integer, $d$ is the distance between the atomic planes o
  \label{eq:hamiltonian}
  \end{equation}
 The presence of the potential $\mathcal{V}$ causes the solution to be different than the free particle state 
-$$\mathcal{H}_0\Ket{\Phi}=E\Ket{Phi}$$
+$$\mathcal{H}_0\Ket{\Phi}=E\Ket{\Phi}$$
 
 Therefore we are looking for solutions to the Schrödinger equation of the form 
 \begin{equation}
@@ -248,7 +248,7 @@ n(\mbox{\boldmath$x$}) = \frac{K}{k} = \sqrt{\frac{E-\mathcal{V}(\mbox{\boldmath
 \end{equation}
 Given that the neutron scattering potentials are described by (\ref{eq:approxFermiPseudopotential}) the index of refraction can be approximated to 
 \begin{equation}
-V(\mbox{\boldmath$x$}) = \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN}{E}}
+V(\mbox{\boldmath$x$}) = \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN}{E}}= \sqrt{1 - \frac{4\pi bN}{k^2}}
 \label{eq:indexofrefraction}
 \end{equation}
 
@@ -260,6 +260,16 @@ In the case of magnetic materials the magnetic potential
 \begin{equation}
 n_{\pm}(\mbox{\boldmath$x$})= \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN \mp \mbox{\boldmath$u \cdot B_{eff}$}}{E}}
 \label{eq:nucleurIndexofRefraction}
+\end{equation}
+\subsection{Neutron in Material Phase-Shift}
+The phase shift due to a perturbing potential is given by \cite{green_2}
+\begin{equation}
+\phi = \frac{1}{\hbar}\int  \mathbf{p}\cdot \mathbf{dl} = \int \mathbf{K}\cdot d\mathbf{l}= \int \mathbf{nk}\cdot \mathbf{dl}
+\label{phase_shift}
+\end{equation}
+Where $\mathbf{n}$ is the neutron index of refraction and $\mathbf{k}$ is the neutron wave vector. Under the assumption that $\mathbf{n}$ is isotropic and that the perturbation that creates $\mathbf{n}$ does not shift the path to a large degree, the phase difference between two optical paths may be written as
+\begin{equation}
+\int (n_1-n_2)\mathbf{k}\cdot \mathbf{dl}
 \end{equation}
 \subsection{Neutron Wave Guides}
 
