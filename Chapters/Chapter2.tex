@@ -265,11 +265,37 @@ n_{\pm}(\mbox{\boldmath$x$})= \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN \mp \mbox{\b
 The phase shift due to a perturbing potential is given by \cite{green_2}
 \begin{equation}
 \phi = \frac{1}{\hbar}\int  \mathbf{p}\cdot \mathbf{dl} = \int \mathbf{K}\cdot d\mathbf{l}= \int \mathbf{nk}\cdot \mathbf{dl}
-\label{phase_shift}
+\label{eq:phase_shift}
 \end{equation}
 Where $\mathbf{n}$ is the neutron index of refraction and $\mathbf{k}$ is the neutron wave vector. Under the assumption that $\mathbf{n}$ is isotropic and that the perturbation that creates $\mathbf{n}$ does not shift the path to a large degree, the phase difference between two optical paths may be written as
 \begin{equation}
-\int (n_1-n_2)\mathbf{k}\cdot \mathbf{dl}
+\delta\phi = \int (n_1-n_2)\mathbf{k}\cdot \mathbf{dl} = Nb\lambda D
+\label{eq:phase_shift_full}
+\end{equation}
+Where $D$ is the thickness of the material the neutron beam travels through.  
+\subsection{Phase Flag}
+Utilizing the phase shift due to the neutron beam passing through a perturbing potential it is possible to analyse materials via the induced phase shift. 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/phase_flag.png}
+\caption{Neutron interferometer with a phase flag \cite{dimaThesis} }
+\label{fig:phaseflag}
+\end{figure}
+
+As seen in fig(\ref{fig:phaseflag}) the two paths will pass through the phase flag. Providing the angle of the phase flag $\delta$ is not equal to zero the paths $D_1$ and $D_2$ will accrue a phase shift due to the different path lengths inside the material. The path lengths of the up and down beams are given by 
+\begin{equation}
+d_1 = \frac{D}{cos(-\theta -\delta)} \,\,\,\,\, d_2 = \frac{D}{cos(-\theta +\delta)}
+\label{eq:phase_path_lengths}
+\end{equation}
+Where $D$ is the thickness of the phase flag, $\theta$ is the angle of the two neutron beams relative to the horizontal, and $\delta$ is the angle of the phase flag relative to the vertical. Using these paths lengths and (\ref{eq:phase_shift_full}) the phase shift along each path are 
+\begin{equation*}
+\delta\phi_1 = \frac{Nb\lambda D}{ cos(-\theta -\delta)} \,\,\,\,\, \delta\phi_2 = \frac{Nb\lambda D}{ cos(-\theta +\delta)}
+\end{equation*}
+Which gives a relative phase between the two beams of 
+\begin{equation}
+\delta\phi = Nb\lambda D \left(\frac{1}{cos(-\theta -\delta)} - \frac{1}{cos(-\theta +\delta)}\right)  
+\label{eq:relative_phase}
 \end{equation}
 \subsection{Neutron Wave Guides}
 
