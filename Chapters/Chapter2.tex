@@ -13,22 +13,7 @@ The neutron is a subatomic hadron particle that is present in the nucleus of eve
 Neutron interferometry utilizes thermal neutrons which are free neutrons that follow a Boltzmann distribution. The neutrons at NIST are found in the kinetic energy range of $4$-$20meV$ around room temperature of $T=293.15K$. This gives gives neutron velocities of $875-1956\frac{m}{s}$ which gives $v<<c$ and therefore relativistic affects do not play a role. Therefore thermal neutrons are in near thermal equilibrium with their surroundings. Neutrons are decelerated to a thermal state in the reactor by collisions with neutron moderators in the reactor. From de Broglie relations the wavelength of thermal neutrons is approximately $\lambda = \frac{h}{p}= 2.0$-$4.5\AA$. After being emitted form the NIST reactor the neutrons follow a wave-guide and using a wave splitter are sent into individual labs. As the strongest known phase space density of a neutron source is around $10^-14$ it can be safely assumed that the probability of two neutrons interacting inside the wave-guide or interferometer is sufficiently low that it can be disregarded and therefore detected neutrons have no correlation between each-other.
 
 \section{Neutron Interferometry}
-The Neutron interferometer is similar to other forms of interferometry in which an incoming wave is split and than allowed to interfere at a later point which allows the two wave paths to be compared. The modern day neutron interferometer is functionally equivalent to an optical Mach-Zender (MZ) interferometer.
-
-\subsection{Mach-Zehnder Interferometer}
-
-The MZ utilizes a half-mirror to split the incoming electromagnetic wave and the resultant two beam paths are refocused on a second beam-splitter. The two interfered waveforms exit the second beam-splitter and are incident on two detectors that can be visualized as Detector 1 \& 2 in fig(\ref{mach-zehnder}),
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[scale=1.0]{Figures/mach-zender.png}
-\caption{The Mach-Zehnder interferometer}
-\label{mach-zehnder}
-\end{figure}
-
-As reflection results in a phase shift of $\pi$ and assuming transmission through the half-mirrors results in a phase shift of $\delta$ we easily calculate the phase differences of the two paths at the two detectors. At detector 1 and path $U$ there is a total of two reflections and a single transmission which results in a phase shift of $2\pi+\delta$. Similarly for path $D$ the phase shift is also $2\pi + \delta$. therefore at detector 1 there is constructive interference. At detector 2 path $U$ has a phase of $2\pi + 2\delta$ and path $D$ has a phase of $\pi + 2\delta$. Therefore at detector 2 there is destructive interference.\cite{dimaThesis}
-
-
+The Neutron interferometer is similar to other forms of interferometry in which an incoming wave is split and than allowed to interfere at a later point which allows the two wave paths to be compared. The modern day neutron interferometer is functionally equivalent to an optical Mach-Zender (MZ) interferometer.\cite{machzehnder}
 
 \subsection{Bragg Scattering}
 In neutron interferometry the crystal planes of the interferometer blades act as diffraction gratings. Incident waves that satisfy the Bragg condition \ref{bragg} are coherently scattered.
@@ -273,6 +258,56 @@ Where $\mathbf{n}$ is the neutron index of refraction and $\mathbf{k}$ is the ne
 \label{eq:phase_shift_full}
 \end{equation}
 Where $D$ is the thickness of the material the neutron beam travels through.  
+
+\subsection{Mach-Zehnder Interferometer}
+
+The MZ utilizes a half-mirror to split the incoming electromagnetic wave and the resultant two beam paths are refocused on a second beam-splitter. The two interfered waveforms exit the second beam-splitter and are incident on two detectors that can be visualized as Detector 1 \& 2 in fig(\ref{mach-zehnder}),
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/mach-zender.png}
+\caption{The Mach-Zehnder interferometer}
+\label{mach-zehnder}
+\end{figure}
+
+As reflection results in a phase shift of $\pi$ and assuming transmission through the half-mirrors results in a phase shift of $\delta$ we easily calculate the phase differences of the two paths at the two detectors. At detector 1 and path $U$ there is a total of two reflections and a single transmission which results in a phase shift of $2\pi+\delta$. Similarly for path $D$ the phase shift is also $2\pi + \delta$. therefore at detector 1 there is constructive interference. At detector 2 path $U$ has a phase of $2\pi + 2\delta$ and path $D$ has a phase of $\pi + 2\delta$. Therefore at detector 2 there is destructive interference.\cite{dimaThesis}
+
+\subsection{Three Blade Perfect Crystal Neutron Interferometer}
+When inside the neutron interferometer it is useful to analyse the wavefunction as the sum of the two possible neutron paths which will be refereed to as path one $\Psi_0 = \Ket{I}$ and path two $\Ket{II}$. The wavefunction inside the interferometer can be represented by\cite{dimaThesis} 
+\begin{equation*}
+\Psi = C_1e^{i\phi_1}\Ket{I} + C_2e^{i\phi_2}{II}
+\end{equation*}
+Where $\phi_i$ are the phase of each component and $C_i$ are the amplitudes of each component. Representing the amplitude of a Bragg transmitted wave as $t$ and the reflected amplitude as $r$ the wavefunctions can be traced through the interferometer. Consider an initial neutron with wavefunction $\Ket{I}$ is incident on the first blade of the neutron interferometer. The resultant wavefunction is 
+$$ te^{i\phi_{1_1}}\Ket{I} + re^{i\phi_{2_1}}{II}$$
+This wavefunction is than incident on the second blade interferometer. Discarding the transmitted waves as they exit the interferometer, the resultant wavefunction is 
+$$rte^{i\phi_{1_2}}\Ket{I} + rre^{i\phi_{2_2}}{II}$$
+At the third and final blade, the geometry of the wave splitting superimposes path one and two onto each-other the two resultant beams are incident on two detectors, the upper detector known as the $O$ detector upon which the $O$ beam is incident and the lower which is known as the $H$ detector upon which the $H$ beam is incident. The resultant wave functions are 
+\begin{equation}
+\Ket{\Psi_O} = (rrte^{i\phi_1}+trre^{i\phi_2}) \Ket{I} \,\,\,\,\,\, \Ket{\Psi_H} = (trte^{i\phi_1}+rrre^{i\phi_2})\Ket{II}
+\label{eq:beams}
+\end{equation}
+This results in an intensity at the $O$ detector of\cite{dimaThesis}
+\begin{equation}
+I_O = \Braket{\Psi_O | \Psi_O} = |\Psi_0|^2|r|^4|t|^2(1+cos(\psi_1-\psi_2) = A(1+cos(\Delta\phi)
+\label{eq:obeamintensity}
+\end{equation} 
+Where $A=|\Psi_0|^2|r|^4|t|^2$ and $\Delta\phi = \phi_1-\phi_2$. The resultant intensity for the $H$ beam is therefore 
+\begin{equation}
+I_H = \Braket{\Psi_H | \Psi_H} = |\Psi_0|^2(|t|^4|r|^2 + |r|^6)-|\Psi_0|^2|r|^4|t|^2(cos(\phi_1-\phi_2)) = B - Acos(\Delta\phi)
+\label{eq:hbeamintensity}
+\end{equation}
+Where $B=|\Psi_0|^2(|t|^4|r|^2 + |r|^6)$. 
+
+The contrast of the neutron interferometer detectors is defined as 
+\begin{equation}
+C = \frac{\text{max}(I)-\text{min}(I)}{\text{max}(I)+\text{min}(I)}
+\label{eq:contrastdefinition}
+\end{equation}
+Clearly than the contrast of the $O$ beam will be $1$ in the ideal case. However, the contrast of the $H$ beam will depend on the size of the reflection coefficient $r$. 
+\begin{equation}
+C_O = 1 \,\,\,\,\,\, C_H = \frac{|r|^4|t|^2}{|t|^4|r|^2+|r|^6}
+\label{eq:contrasts}
+\end{equation}
 \subsection{Phase Flag}
 Utilizing the phase shift due to the neutron beam passing through a perturbing potential it is possible to analyse materials via the induced phase shift. 
 
@@ -285,17 +320,23 @@ Utilizing the phase shift due to the neutron beam passing through a perturbing p
 
 As seen in fig(\ref{fig:phaseflag}) the two paths will pass through the phase flag. Providing the angle of the phase flag $\delta$ is not equal to zero the paths $D_1$ and $D_2$ will accrue a phase shift due to the different path lengths inside the material. The path lengths of the up and down beams are given by 
 \begin{equation}
-d_1 = \frac{D}{cos(-\theta -\delta)} \,\,\,\,\, d_2 = \frac{D}{cos(-\theta +\delta)}
+d_1 = \frac{D}{cos(\theta_B -\delta)} \,\,\,\,\, d_2 = \frac{D}{cos(\theta_B +\delta)}
 \label{eq:phase_path_lengths}
 \end{equation}
-Where $D$ is the thickness of the phase flag, $\theta$ is the angle of the two neutron beams relative to the horizontal, and $\delta$ is the angle of the phase flag relative to the vertical. Using these paths lengths and (\ref{eq:phase_shift_full}) the phase shift along each path are 
+Where $D$ is the thickness of the phase flag, $\theta_B$ is the scattering Bragg angle of the two neutron beams relative to the horizontal, and $\delta$ is the angle of the phase flag relative to the vertical. Using these paths lengths and (\ref{eq:phase_shift_full}) the phase shift along each path are 
 \begin{equation*}
-\delta\phi_1 = \frac{Nb\lambda D}{ cos(-\theta -\delta)} \,\,\,\,\, \delta\phi_2 = \frac{Nb\lambda D}{ cos(-\theta +\delta)}
+\delta\phi_1 = \frac{Nb\lambda D}{ cos(\theta_B -\delta)} \,\,\,\,\, \delta\phi_2 = \frac{Nb\lambda D}{ cos(\theta_B +\delta)}
 \end{equation*}
 Which gives a relative phase between the two beams of 
 \begin{equation}
-\delta\phi = Nb\lambda D \left(\frac{1}{cos(-\theta -\delta)} - \frac{1}{cos(-\theta +\delta)}\right)  
+\delta\phi = Nb\lambda D \left(\frac{1}{cos(\theta_B -\delta)} - \frac{1}{cos(\theta_B +\delta)}\right) = -2Nb\lambda \frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \delta 
 \label{eq:relative_phase}
 \end{equation}
+The contrast of the neutron interferometer is defined as a function of the phase flag angle and measured intensities at the neutron detectors\cite{noise_neutron}
+\begin{equation}
+C_0 = \frac{\text{max}[D_0(\delta)] - \text{min}[D_0(\delta)]}{\text{max}[D_0(\delta)] + \text{min}[D_0(\delta)]}
+\label{eq:contrast}
+\end{equation}
+Where $D_0$ is the detected neutron intensity at the $O$ detector. 
 \subsection{Neutron Wave Guides}
 
