@@ -277,7 +277,7 @@ When inside the neutron interferometer it is useful to analyse the wavefunction 
 \begin{equation*}
 \Psi = C_1e^{i\phi_1}\Ket{I} + C_2e^{i\phi_2}{II}
 \end{equation*}
-Where $\phi_i$ are the phase of each component and $C_i$ are the amplitudes of each component. Representing the amplitude of a Bragg transmitted wave as $t$ and the reflected amplitude as $r$ the wavefunctions can be traced through the interferometer. Consider an initial neutron with wavefunction $\Ket{I}$ is incident on the first blade of the neutron interferometer. The resultant wavefunction is 
+Where $\phi_i$ are the phase of each component and $C_i$ are the amplitudes of each component. Representing the amplitude of a Bragg transmitted wave as $t$ and the reflected amplitude as $r$, where $|r|^2+|t|^2 = 1$. The wavefunctions can be traced through the interferometer. Consider an initial neutron with wavefunction $\Ket{I}$ is incident on the first blade of the neutron interferometer. The resultant wavefunction is 
 $$ te^{i\phi_{1_1}}\Ket{I} + re^{i\phi_{2_1}}{II}$$
 This wavefunction is than incident on the second blade interferometer. Discarding the transmitted waves as they exit the interferometer, the resultant wavefunction is 
 $$rte^{i\phi_{1_2}}\Ket{I} + rre^{i\phi_{2_2}}{II}$$
@@ -288,15 +288,15 @@ At the third and final blade, the geometry of the wave splitting superimposes pa
 \end{equation}
 This results in an intensity at the $O$ detector of\cite{dimaThesis}
 \begin{equation}
-I_O = \Braket{\Psi_O | \Psi_O} = |\Psi_0|^2|r|^4|t|^2(1+cos(\psi_1-\psi_2) = A(1+cos(\Delta\phi)
+I_O \propto P(O|\Delta\phi) = \Braket{\Psi_O | \Psi_O} = |r|^4|t|^2(1+cos(\psi_1-\psi_2) = A(1+cos(\Delta\phi))
 \label{eq:obeamintensity}
 \end{equation} 
-Where $A=|\Psi_0|^2|r|^4|t|^2$ and $\Delta\phi = \phi_1-\phi_2$. The resultant intensity for the $H$ beam is therefore 
+Where $A=|r|^4|t|^2$ and $\Delta\phi = \phi_1-\phi_2$. The resultant intensity for the $H$ beam is therefore 
 \begin{equation}
-I_H = \Braket{\Psi_H | \Psi_H} = |\Psi_0|^2(|t|^4|r|^2 + |r|^6)-|\Psi_0|^2|r|^4|t|^2(cos(\phi_1-\phi_2)) = B - Acos(\Delta\phi)
+I_H \propto P(H|\Delta\phi) = \Braket{\Psi_H | \Psi_H} = (|t|^4|r|^2 + |r|^6)-|r|^4|t|^2(cos(\phi_1-\phi_2)) = B - Acos(\Delta\phi)
 \label{eq:hbeamintensity}
 \end{equation}
-Where $B=|\Psi_0|^2(|t|^4|r|^2 + |r|^6)$. 
+Where $B=|t|^4|r|^2 + |r|^6$. 
 
 The contrast of the neutron interferometer detectors is defined as 
 \begin{equation}
@@ -308,6 +308,13 @@ Clearly than the contrast of the $O$ beam will be $1$ in the ideal case. However
 C_O = 1 \,\,\,\,\,\, C_H = \frac{|r|^4|t|^2}{|t|^4|r|^2+|r|^6}
 \label{eq:contrasts}
 \end{equation}
+In (\ref{eq:hbeamintensity},\ref{eq:obeamintensity}) the intensities account for the loss of neutrons due to the transmitted neutrons in the second blade which exit the interferometer. This is apparent as 
+$$I_O+I_H \neq 1$. If the assumption is made that information is not lost with the exit of those neutrons the intensities can be reformulated by treating the second blades as ideal mirrors resulting in the new intensity formulation of\cite{dimaThesis}
+\begin{equation}
+I_O \propto P(O|\Delta\phi) = 2|rt|^2(1+cos(\Delta\phi)) \,\,\,\,\, I_H \propto P(H|\Delta\phi) = (|r|^4+|t|^4)-2|rt|^2cos(\Delta\phi)
+\label{eq:normalizedIntensities}
+\end{equation}
+This revised intensity equation satisfies the property that $P(O|\Delta\phi)+P(H|\Delta\phi) = 1$. 
 \subsection{Phase Flag}
 Utilizing the phase shift due to the neutron beam passing through a perturbing potential it is possible to analyse materials via the induced phase shift. 
 
@@ -328,15 +335,22 @@ Where $D$ is the thickness of the phase flag, $\theta_B$ is the scattering Bragg
 \delta\phi_1 = \frac{Nb\lambda D}{ cos(\theta_B -\delta)} \,\,\,\,\, \delta\phi_2 = \frac{Nb\lambda D}{ cos(\theta_B +\delta)}
 \end{equation*}
 Which gives a relative phase between the two beams of 
+$$\Delta\phi = Nb\lambda D \left(\frac{1}{cos(\theta_B -\delta)} - \frac{1}{cos(\theta_B +\delta)}\right) = $$
 \begin{equation}
-\delta\phi = Nb\lambda D \left(\frac{1}{cos(\theta_B -\delta)} - \frac{1}{cos(\theta_B +\delta)}\right) = -2Nb\lambda \frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \delta 
+=-2Nb\lambda \frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \delta = C\delta
 \label{eq:relative_phase}
 \end{equation}
-The contrast of the neutron interferometer is defined as a function of the phase flag angle and measured intensities at the neutron detectors\cite{noise_neutron}
+
+Using this result the intensity at the $O$ and $H$ detectors become 
+\begin{equation}
+I_O \propto  P(O|\Delta\phi,\delta) = A(1+cos(\Delta\phi)+C\delta) \,\,\,\,\, I_H \propto P(H|\Delta\phi,\delta) = B - Acos(\Delta\phi+C\delta)
+\label{eq:intensities_phase_shift}
+\end{equation}
+The contrast of the neutron interferometer is a function of the phase flag angle and measured intensities at the neutron detectors\cite{noise_neutron}
 \begin{equation}
 C_0 = \frac{\text{max}[D_0(\delta)] - \text{min}[D_0(\delta)]}{\text{max}[D_0(\delta)] + \text{min}[D_0(\delta)]}
 \label{eq:contrast}
 \end{equation}
-Where $D_0$ is the detected neutron intensity at the $O$ detector. 
+Where $D_0$ is the detected neutron intensity at the $O$ detector. Similarly to the case without a phase flag, the maximum contrast for the $O$ beam is $1$ and the H beam depends on the coefficient $r$. 
 \subsection{Neutron Wave Guides}
 

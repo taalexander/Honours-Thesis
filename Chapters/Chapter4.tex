@@ -128,7 +128,4 @@ In Ni-Engine all control of physical hardware is managed by the HardwareManager,
 Measurement calls to devices are made via manager objects. Manager objects have the ability to measure individual devices or all devices at once. As differing devices have different latencies, sequential measurement can take an excessive amount of time. Therefore measurement calls are threaded to allow measurements to be performed in parallel. Of course certain sensors and controllers may utilize the same hardware and therefore race conditions can result. It is therefore important for these to devices to implement thread locking at the hardware level for these objects. After measurements are made they are passed onto the DataHandler object for storage as well as returned to the function call. 
 \subsubsection{Documentation}
 As the purpose of Ni-Engine is to be a general neutron interferometry experimental engine and not just to be used one time the neutron contrast experiment it is important that documentation be available for future researchers that may not have the luxury of a hands on introduction by the software designers. To increase the software ease of use
-\section{Q-Infer}
-\subsection{Interaction with NI-Engine}
-\subsection{GPU Implementations of Likelihood functions}
 
