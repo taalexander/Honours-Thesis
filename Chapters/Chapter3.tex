@@ -93,6 +93,7 @@ The Fisher Information is the variance of the statistical score of the probabili
 The Cramer-Rao lower bound establishes a lower limit on the amount of information an unknown parameter of a probability distribution carries.\cite{cramerrao2} This is very useful in determining the fit of a set of model parameters as shall be seen. It is important to keep in mind that this only holds for unbiased estimators and may be violated by biased estimators. 
 
 \section{Robust Online Hamiltonian Learning}
+\label{sec:robosthamiltonian}
 The construction of a large scale quantum information processor is an extremely difficult challenge. Before error correcting codes and algorithms can be applied to such a system, the full characterization of the system is required. This is normally achieved via statistical estimation of Hamiltonian parameters via tomography. In quantum tomography the process is normally carried out on the device as a \textit{black box} and a set of measurements is chosen such that the parametrization of them will allow the output of any input state to be predicted.\cite{tomography} Full tomography is computationally complex and requires the simulation of the behaviour of the quantum system. As the systems being simulated grow in complexity, it is no longer possible for classical computer to simulate.\cite{simulate}
 
 In practice there is often more information available about the form of the Hamiltonian of a given system and this allows the number of parameters that need be estimated to be reduced. This is known as partial process estimation or partial tomography. The goal of the experiment proposed in this thesis is to provide experimental verification of the algorithm proposed in the 2013 paper "Robust Online Hamiltonian Learning" by Chris Granade at the University of Waterloo.\cite{hamiltonian_learning} 
@@ -198,6 +199,16 @@ In order to determine the fit of the region found, it is important to compare th
 \begin{equation*}
 E_\pi [cov(\mathbf{\hat{x}})] \geq \mathbf{J}(\pi;C)^{-1}
 \end{equation*}
+\section{Experimental Verification of the Robust Online Hamiltonian Learning Algorithm}
+While simulations predict that the algorithim introduced in sec(\ref{sec:robusthamiltonian}) quickly approaches the lower bound on the error for a variety of physical systems.\cite{hamiltonian_learning} It has yet to be verified experimentally. Therefore a proof of concept neutron interferometry experiment will be proposed which theoretically should allow the prediction of neutron interferometer model parameters and improve the maximum contrast of interferometer measurements.  
+\subsection{Experimental Model}
+Take the O and H detectors as 0 and 1 respectively. We model the probability of the neutron striking the $O$ detector similarly to (\ref{eq:normalizedIntensities}) except now the model is non-ideal and has parameters that must be fitted to it as 
+\begin{equation}
+P(0|A,b,\delta\phi,C,\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\delta)
+\label{eq:model1}
+\end{equation}
+where $b$ is an unknown experimental offset,$A$ is an unknown amplitude, $\Delta\phi$ is the induced phase due to the different paths, $C$ is the phase flag constant and $\delta$ is the phase flag setting. 
+
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}
 \subsection{GPU Implementations of Likelihood functions}
