@@ -208,6 +208,52 @@ P(0|A,b,\delta\phi,C,\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\del
 \label{eq:model1}
 \end{equation}
 where $b$ is an unknown experimental offset,$A$ is an unknown amplitude, $\Delta\phi$ is the induced phase due to the different paths, $C$ is the phase flag constant and $\delta$ is the phase flag setting. 
+\subsubsection{Humidity Dependence}
+As the neutron interferometry chamber is not humidity or temperature controlled we will attempt to increase the contrast of measurements by accounting for the induced phase shift due to the water vapour in the air. This phase shift will occur if there is a path length difference between the two interferometer paths. This path length difference will be induced by one of the paths spending a longer time in the phase flag and therefore will be a function of the phase flag angle. The model will now have the form 
+\begin{equation}
+P(0|A,b,\delta\phi,C,\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\delta+\Delta\gamma(\Phi,T,\delta))
+\end{equation}
+Where 
+\begin{equation*}
+\Delta\gamma(\Phi,T,\delta) = \frac{n}{v}\lambda b D
+\end{equation*}
+$D$ is the path length difference and from sec(\ref{sec:phaseflag}) the phase shift as a function of the phase flag angle is the negative of (\ref{eq:relative_phase}) due to the extra path length in the water vapour occurring when the other pass is still in the phase flag. therefore the phase difference induced by the water vapour is 
+\begin{equation}
+\Delta\gamma(\Phi,T,\delta)= 2\frac{n(\Phi,T)}{V}b_{water}\lambda D\frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \frac{n(\Phi,T)}{V}b_{water}\lambda\delta = \approx \alpha  \frac{n}{V}b_{water}\lambda\delta
+\label{eq:phasewater}
+\end{equation}
+Where $\alpha$ is the phase multiplier constant and $\delta$ is the angle of the phase flag.
+
+By the ideal gas law 
+\begin{equation}
+\frac{n(\Phi,T)}{V} = \frac{p_w(\Phi,T)}{RT}
+\end{equation}
+The partial pressure of water $p_w$ at percent humidity $\Phi$ is given by 
+\begin{equation}
+p_w(\Phi,T) = \Phi p^*_w(T)
+\label{eq:partialPressure}
+\end{equation}
+Where $p^*_w$ is the saturation vapour pressure.\cite{relativehumidity} The saturation pressure of water at temperature $T$ can be fitted to the Antoine equation \cite{antoineequation}
+\begin{equation}
+\label{eq:antoine}
+p^*_w(T) = 10^{h_A - \frac{h_B}{h_C - T}}
+\end{equation} 
+Therefore $h_A,h_B$ and $h_C$ are empirical constants that must be fitted and are parameters of the estimator for the $O$ detector model. The phase shift due to water vapour is can be found by combining (\ref{eq:phasewater}),(\ref{eq:partialPressure}) and (\ref{eq:antoine}) to obtain
+\begin{equation}
+\Delta\gamma(\Phi,T,\delta) = \frac{\alpha b_{water}\Phi\delta}{RT}\times 10^{h_A - \frac{h_B}{h_C - T}}
+\label{eq:phasewaterfinal}
+\end{equation}
+In reality we do not have the exact values of $\Phi$ and $T$ and therefore must marginalize over the distribution of $P(T,\Phi|\hat{T},\hat{\Phi})$ conditioned on the estimator for the phase shift described by (\ref{eq:phasewaterfinal}).
+\begin{equation}
+P(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T P(\Delta\gamma|\Phi,T)P(T,\Phi|\hat{T},\hat{\Phi})dTd\Phi
+\label{eq:marginalizeprop}
+\end{equation}  
+For simplicity we assume that $\hat{\Phi}\perp\hat{T}$ which reduces 
+(\ref{eq:marginalizeprop}) to 
+\begin{equation}
+P(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T P(\Delta\gamma|\Phi,T)P(T,\hat{T})P(\Phi,\hat{\Phi})dTd\Phi
+\label{eq:marginalizeprop2}
+\end{equation}
 
 \section{Q-Infer}
 \subsection{Interaction with NI-Engine}

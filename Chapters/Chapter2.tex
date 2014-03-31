@@ -309,13 +309,14 @@ C_O = 1 \,\,\,\,\,\, C_H = \frac{|r|^4|t|^2}{|t|^4|r|^2+|r|^6}
 \label{eq:contrasts}
 \end{equation}
 In (\ref{eq:hbeamintensity},\ref{eq:obeamintensity}) the intensities account for the loss of neutrons due to the transmitted neutrons in the second blade which exit the interferometer. This is apparent as 
-$$I_O+I_H \neq 1$. If the assumption is made that information is not lost with the exit of those neutrons the intensities can be reformulated by treating the second blades as ideal mirrors resulting in the new intensity formulation of\cite{dimaThesis}
+$I_O+I_H \neq 1$. If the assumption is made that information is not lost with the exit of those neutrons the intensities can be reformulated by treating the second blades as ideal mirrors resulting in the new intensity formulation of\cite{dimaThesis}
 \begin{equation}
 I_O \propto P(O|\Delta\phi) = 2|rt|^2(1+cos(\Delta\phi)) \,\,\,\,\, I_H \propto P(H|\Delta\phi) = (|r|^4+|t|^4)-2|rt|^2cos(\Delta\phi)
 \label{eq:normalizedIntensities}
 \end{equation}
 This revised intensity equation satisfies the property that $P(O|\Delta\phi)+P(H|\Delta\phi) = 1$. 
 \subsection{Phase Flag}
+\label{sec:phaseflag}
 Utilizing the phase shift due to the neutron beam passing through a perturbing potential it is possible to analyse materials via the induced phase shift. 
 
 \begin{figure}[ht!]
@@ -337,7 +338,7 @@ Where $D$ is the thickness of the phase flag, $\theta_B$ is the scattering Bragg
 Which gives a relative phase between the two beams of 
 $$\Delta\phi = Nb\lambda D \left(\frac{1}{cos(\theta_B -\delta)} - \frac{1}{cos(\theta_B +\delta)}\right) = $$
 \begin{equation}
-=-2Nb\lambda \frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \delta = C\delta
+=-2NbD\lambda \frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \delta = C\delta
 \label{eq:relative_phase}
 \end{equation}
 
