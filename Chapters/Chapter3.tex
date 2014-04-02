@@ -208,10 +208,10 @@ P(0|A,b,\delta\phi,C,\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\del
 \label{eq:model1}
 \end{equation}
 where $b$ is an unknown experimental offset,$A$ is an unknown amplitude, $\Delta\phi$ is the induced phase due to the different paths, $C$ is the phase flag constant and $\delta$ is the phase flag setting. 
-\subsubsection{Humidity Dependence}
+\subsubsection{Humidity and Temperature Phase Dependence}
 As the neutron interferometry chamber is not humidity or temperature controlled we will attempt to increase the contrast of measurements by accounting for the induced phase shift due to the water vapour in the air. This phase shift will occur if there is a path length difference between the two interferometer paths. This path length difference will be induced by one of the paths spending a longer time in the phase flag and therefore will be a function of the phase flag angle. The model will now have the form 
 \begin{equation}
-P(0|A,b,\Delta\phi,C,\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\delta+\Delta\gamma(\Phi,T,\delta))
+P(0|A,b,\Delta\phi,C;\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\delta+\Delta\gamma(\Phi,T,\delta))
 \end{equation}
 Where 
 \begin{equation*}
@@ -219,7 +219,7 @@ Where
 \end{equation*}
 $D$ is the path length difference and from sec(\ref{sec:phaseflag}) the phase shift as a function of the phase flag angle is the negative of (\ref{eq:relative_phase}) due to the extra path length in the water vapour occurring when the other pass is still in the phase flag. therefore the phase difference induced by the water vapour is 
 \begin{equation}
-\Delta\gamma(\Phi,T,\delta)= 2\frac{n(\Phi,T)}{V}b_{water}\lambda D\frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx \alpha \times \frac{n(\Phi,T)}{V}b_{water}\lambda\delta = \alpha  \frac{n}{V}b_{water}\lambda\delta
+\Delta\gamma(\Phi,T,\delta)= 2\frac{n(\Phi,T)}{V}b_{water}\lambda D\frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx \alpha \times \frac{n(\Phi,T)}{V}\delta 
 \label{eq:phasewater}
 \end{equation}
 Where $\alpha$ is the phase multiplier constant and $\delta$ is the angle of the phase flag.
@@ -247,7 +247,7 @@ Therefore $h_A,h_B$ and $h_C$ are empirical constants that must be fitted and ar
 \end{figure}
 The phase shift due to water vapour is can be found by combining (\ref{eq:phasewater}),(\ref{eq:partialPressure}) and (\ref{eq:antoine}) to obtain
 \begin{equation}
-\Delta\gamma(\Phi,T,\delta) = \frac{\alpha b_{water}\Phi\delta}{RT}\times 10^{h_A - \frac{h_B}{h_C - T}}
+\Delta\gamma(\Phi,T,\delta) = \frac{\alpha'\Phi\delta}{T}\times 10^{h_A - \frac{h_B}{h_C - T}}
 \label{eq:phasewaterfinal}
 \end{equation}
 In reality we do not have the exact values of $\Phi$ and $T$ and therefore must marginalize over the distribution of $P(T,\Phi|\hat{T},\hat{\Phi})$ conditioned on the estimator for the phase shift described by (\ref{eq:phasewaterfinal}).
@@ -264,18 +264,15 @@ P(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T P(\Delta\ga
 Taking account of the humidity and temperature dependence of the phase due to water vapour in the air, the updated model now takes the form 
 
 \begin{equation*}
-  P(0|A,b,\Delta\phi,C,\delta,\hat{\Phi},\hat{T}) = \int \limits_{\Delta\gamma} P(0|A,b,\Delta\phi,C,\hat{\Phi},\hat{T},\Delta\gamma)d\Delta\gamma =
+  P(0|A,b,\Delta\phi,C,\alpha';\delta,\hat{\Phi},\hat{T}) = \int \limits_{\Delta\gamma} P(0|A,b,\Delta\phi,C,\delta,\alpha',\hat{\Phi},\hat{T},\Delta\gamma)d\Delta\gamma =
 \end{equation*}
 \begin{equation*}
-= \int \limits_{\Delta\gamma} \int \limits_\Phi \int \limits_T P(0|A,b,\Delta\phi,C,\Phi,T,\Delta\gamma)P(T,\hat{T})P(\Phi,\hat{\Phi})dTd\Phi d\Delta\gamma =
+= \int \limits_{\Delta\gamma} \int \limits_\Phi \int \limits_T P(0|A,b,\Delta\phi,C,\alpha';\delta,\Phi,T,\Delta\gamma)P(T,\hat{T})P(\Phi,\hat{\Phi})dTd\Phi d\Delta\gamma =
 \end{equation*}
 \small
 \begin{equation}
-= \int \limits_\Phi \int \limits_T \left[(\frac{1}{2}+b)+\frac{A}{2}cos\left(\Delta\phi + C\delta + \frac{\alpha b_{water}\Phi\delta}{RT}\times 10^{h_A - \frac{h_B}{h_C - T}}\right)\right]P(T|\hat{T})P(\Phi|\hat{\Phi})dTd\Phi
+= \int \limits_\Phi \int \limits_T \left[(\frac{1}{2}+b)+\frac{A}{2}cos\left(\Delta\phi + C\delta + \frac{\alpha' \Phi\delta}{T}\times 10^{h_A - \frac{h_B}{h_C + T}}\right)\right]P(T|\hat{T})P(\Phi|\hat{\Phi})dTd\Phi
 \label{eq:finalmodel}
 \end{equation}
 \normalsize
 The integral in (\ref{eq:finalmodel}) will be integrated using Monte Carlo sampling techniques in order to reduce the computational complexity involved in evaluating (\ref{eq:finalmodel}) many, many times. Provided the temperature and humidity data is normally distributed the required number of samples should be $n\approx100-300$ and is tunable based on the desired accuracy.  
-\section{Q-Infer}
-\subsection{Interaction with NI-Engine}
-\subsection{GPU Implementations of Likelihood functions}

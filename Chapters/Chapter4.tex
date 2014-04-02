@@ -129,3 +129,41 @@ Measurement calls to devices are made via manager objects. Manager objects have 
 \subsubsection{Documentation}
 As the purpose of Ni-Engine is to be a general neutron interferometry experimental engine and not just to be used one time the neutron contrast experiment it is important that documentation be available for future researchers that may not have the luxury of a hands on introduction by the software designers. To increase the software ease of use
 
+\section{Q-Infer}
+Q-Infer is a software library written in python that implements the Hamiltonian finding algorithm described in sec(\ref{sec:robosthamiltonian}).\cite{qinfer} The library is open-source and was written by Chris Granade and Dr. Chris Ferrie at the Institute for Quantum Computing. It allows the Hamiltonian Learning algorithm to be used with minimal coding.
+\subsection{Interaction with NI-Engine}
+Ni-Engine was designed to allow the experimental testing of Q-Infer. It is simply a by-product of good software design that it in theory should be usable for many other projects at the NIST interferometry labs. As both Q-Infer and NI-Engine are separate libraries they do not share any dependencies and all interaction between the two libraries is through generic python code. The anticipated workflow for experimental testing of Q-Infer is seen in fig(\ref{fig:flow}). 
+\afterpage{%
+\begin{figure}
+\centering
+\begin{tikzpicture}[align=center, node distance=1cm and 1cm,auto]
+%place nodes
+\node [block] (initqinfer) {Initialize Q-Infer};
+\node [block2, right =of initqinfer] (initNiEngine) {Initialize NI-Engine};
+\node [block2, below =of initNiEngine] (configureNiEngine) {Configure NI-Engine experimental setup};
+\node [block, below =of initqinfer] (initialdistribution) {Setup initial distribution};
+\node [block, below =of initialdistribution] (initialparameters) {Choose initial experimental parameters};
+\node [block2, below =of configureNiEngine] (configureparameters) {Move all experimental parameters to desired targes};
+\node [block2, below =of configureparameters] (measure) {Measure all experimental data};
+\node [block, left =of measure] (updatemodels){Update probability distributions to reflect new data};
+\node [block, below =of updatemodels](resample){Resample probability distributions};
+\node [decision, below =of resample](decide){Has parameter region of sufficent density been found?};
+\node [block, below =of decide] (stopqinfer) {Q-Infer and NI-Engine exit};
+%draw edges 
+\path [line] (initqinfer) -- (initialdistribution);
+\path [line] (initNiEngine) -- (configureNiEngine);
+\path [line] (initialdistribution) -- (initialparameters);
+\path [line] (configureNiEngine) -- (configureparameters);
+\path [line] (initialparameters) -- (configureparameters);
+\path [line] (configureparameters) -- (measure);
+\path [line] (measure) -- (updatemodels);
+\path [line] (updatemodels) -- (resample);
+\path [line] (decide) |- node  {no} (initialparameters);
+\path [line] (decide) -- node {yes} (stopqinfer);
+\end{tikzpicture}
+\caption{Experiment flow with NI-Engine and Q-Infer}
+\label{fig:flow}
+\end{figure}
+\clearpage
+}
+\subsection{GPU Implementations of Likelihood functions}
