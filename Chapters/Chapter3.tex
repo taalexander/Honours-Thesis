@@ -276,3 +276,52 @@ Taking account of the humidity and temperature dependence of the phase due to wa
 \end{equation}
 \normalsize
 The integral in (\ref{eq:finalmodel}) will be integrated using Monte Carlo sampling techniques in order to reduce the computational complexity involved in evaluating (\ref{eq:finalmodel}) many, many times. Provided the temperature and humidity data is normally distributed the required number of samples should be $n\approx100-300$ and is tunable based on the desired accuracy.  
+
+\subsection{Model Analysis}
+Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithim described in sec(\ref{sec:robosthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l*{6}{c}r}
+Parameter Set     & A&b& $\Delta\phi$ & C & $\alpha$ \\
+\hline
+ 1 &0.9& 0.0& 0.0844& 1.02& -1.02 \\
+ 2&0.9& 0.0& 0.0844& 1.02& -1.02 \\
+ 3&0.9& 0.0& 1.5707& 1.02& -1.02 \\
+ 4&0.7& 0.1& 0.0844& 1.02& -1.02 \\
+ 5&0.9& 0.0& 0.0844& 1.5& -1.02 \\ 
+ 6&0.1& 0.0& 0.0844& 1.02& -1.02 \\
+\end{tabular}
+\caption{True parameter sets to simulate model for}
+\label{tab:trueparams}
+\end{center}
+\end{table}
+Uniform prior distributions were established around the true values as in table (\ref{tab:around}). The set of starting values were kept relatively near to the true values in order to reduce simulation time. 
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l*{5}{c}r}
+A&b& $\Delta\phi$ & C & $\alpha$ \\
+\hline
+ $\pm0.02$ & $\pm0.02$ & $[0,\frac{pi}{2}]$ & $\pm0.05$ & $\pm0.05$
+\end{tabular}
+\caption{Range around true parameters that prior distributions were established for}
+\label{tab:around}
+\end{center}
+\end{table}
+From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialrisk}).
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/risks1.eps}
+\caption{The Bayes Risk of the initial prior distributions}
+\label{fig:initialdistributions}
+\end{figure}
+It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around a phase flag setting of slightly  past $\delta=\pi/2$. This is due to the fact that when the total phase offset is $\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. 
+
+We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\2pi]$ are measured, with the assumption that at each interval $10$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $10$ and varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/risks2.eps}
+\caption{The Bayes Risk a naive algorithm that sweeps through all phase flag settings from $0$ to $2\pi$}
+\label{fig:naiverisks}
+\end{figure}
+
+
