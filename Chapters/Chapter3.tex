@@ -275,7 +275,11 @@ Taking account of the humidity and temperature dependence of the phase due to wa
 \label{eq:finalmodel}
 \end{equation}
 \normalsize
-The integral in (\ref{eq:finalmodel}) will be integrated using Monte Carlo sampling techniques in order to reduce the computational complexity involved in evaluating (\ref{eq:finalmodel}) many, many times. Provided the temperature and humidity data is normally distributed the required number of samples should be $n\approx100-300$ and is tunable based on the desired accuracy.  
+The integral in (\ref{eq:finalmodel}) will be integrated using Monte Carlo sampling techniques in order to reduce the computational complexity involved in evaluating (\ref{eq:finalmodel}) many, many times. Provided the temperature and humidity data is normally distributed the required number of samples should be $n\approx100-300$ and is tunable based on the desired accuracy. Similarly to the original model (\ref{eq:relativephase}), due to the small angle approximation of the phase flag a lower bound must be put on the phase induced by the flag and water vapour, in order to allow full phase control. 
+\begin{equation}
+C+\frac{\alpha'\Phi}{T}\times 10^{h_A - \frac{h_B}{h_C + T}} \geq 20
+\label{eq:fullphasecontrol}
+\end{equation}
 
 \subsection{Model Analysis}
 Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithim described in sec(\ref{sec:robosthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 

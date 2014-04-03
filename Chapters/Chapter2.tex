@@ -341,7 +341,11 @@ $$\Delta\phi = Nb\lambda D \left(\frac{1}{cos(\theta_B -\delta)} - \frac{1}{cos(
 =-2NbD\lambda \frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx (CONSTANT)\times \delta = C\delta
 \label{eq:relative_phase}
 \end{equation}
-
+It should be noted that as (\ref{eq:relative_phase}) relies on a small angle approximation, the result only hold for approximately $\delta=0..\pi/10$. Due to this restriction of phase flag angles to have full control of the phase we require that
+\begin{equation}
+C\times  \geq \frac{2\pi}{\frac{\pi}{10}} = 20
+\
+\end{equation}
 Using this result the intensity at the $O$ and $H$ detectors become 
 \begin{equation}
 I_O \propto  P(O|\Delta\phi,\delta) = A(1+cos(\Delta\phi)+C\delta) \,\,\,\,\, I_H \propto P(H|\Delta\phi,\delta) = B - Acos(\Delta\phi+C\delta)
