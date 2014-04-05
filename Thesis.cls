@@ -42,7 +42,7 @@
 \def\today{\ifcase\month\or
   January\or February\or March\or April\or May\or June\or
   July\or August\or September\or October\or November\or December\fi
-  \space \number\year}
+  \space \number\day, \space \number\year}
 \usepackage{setspace}
 \onehalfspacing
 \setlength{\parindent}{0pt}
@@ -200,15 +200,11 @@
       \smallskip
       {\LARGE \authornames \par}
       \vfill
-      {\large A thesis submitted in partial fulfillment for the \par}
-      {\large degree of Bachelor of Science with Honours \par}
-      \bigskip
-      \bigskip
-      {\large in the \par}
-      {\large \facname \par}
-      {\large \deptname \par}
-      \bigskip
-      \bigskip
+      {\large A thesis submitted to the Department of Physics \\
+      Mount Allison University \\
+      in partial fulfillment of the requirements for the \\	      
+       \par}
+      {\large degree of Bachelor of Science with Honours \par}      
       \bigskip
       {\Large \@date \par}
       \bigskip
@@ -238,9 +234,7 @@
   \begin{center}
     \setlength{\parskip}{0pt}
     {\normalsize \UNIVNAME \par}
-    \bigskip
-    {\huge{\textit{Abstract}} \par}
-    \bigskip
+    \bigskip    
     {\normalsize \facname \par}
     {\normalsize \deptname \par}
     \bigskip
@@ -250,6 +244,8 @@
     \medskip
     {\normalsize by \authornames \par}
     \bigskip
+    {\huge{\textit{Abstract}} \par}
+    
   \end{center}
 }
 {
