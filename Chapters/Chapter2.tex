@@ -21,7 +21,18 @@ In neutron interferometry the crystal planes of the interferometer blades act as
 \label{bragg}
 n\lambda = 2d sin(\theta_{b})
 \end{equation} 
-Where $n$ is a positive integer, $d$ is the distance between the atomic planes of the crystal lattice and $\theta_{b}$ is the angle between the incident beam and the atomic plane of the crystal. The amplitudes of the transmitted and the reflected beams are given by the coefficients $t$ (transmitted) and $r$ reflected.\cite{dimaThesis} 
+Where $n$ is a positive integer, $d$ is the distance between the atomic planes of the crystal lattice and $\theta_{b}$ is the angle between the incident beam and the atomic plane of the crystal. Not all of the amplitude of the neutron beam is scattered and a large portion is transmitted through the crystal with only its phase shifted. The amplitudes of the transmitted and the reflected beams are given by the coefficients $t$ (transmitted) and $r$ reflected. Under the assumption that the entire beam is either Bragg scattered or transmitted the coefficients $t$ and $r$ must have the following relationship.\cite{dimaThesis}  
+\begin{equation}
+|r|^2+|t|^2 = 1
+\label{eq:BraggCoefficents}
+\end{equation}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.5]{Figures/braggscattering.png}
+\caption{Bragg scattering off of a crystal lattice}
+\label{fig:braggscattering}
+\end{figure}
 
 \subsection{Quantum Scattering Theory}
 \label{sec:scatteringTheory}
@@ -111,7 +122,7 @@ Using this result in (\ref{eq:lippmannSchwingerLocal}) gives an expression for t
 f(\mbox{\boldmath$k^{'},k$})=-m\left(\frac{2\pi}{h}\right)^2\Braket{\mbox{\boldmath$k^{'}$}|\mathcal{V}|\Psi^{+}}
 \end{equation}
 It is very easy to see that the result wavefunction is a combination of the original incident plane-wave and an outgoing spherical wave with an amplitude described by (\ref{eq:f}). An obvious issue is that here scattering has only been treated for an incident plane-wave which is not a normalizable wavefunction. In reality to describe discrete particles such as neutrons wave packet solutions are used to describe the incident particles. However, provided the size of the wave packet is much larger than the range of the finite potential $\mathcal{V}$ it is sufficient to treat an incident packet as a plane-wave.  
-\subsection{Differential Cross-Section}
+\subsection{Differential Scattering Cross-Section}
 The scattering cross section is an important parameter for experimental scattering physics. It relates the number of particles scattering into the solid angle $d\Omega$ per unit time to the number of incident particles into an infinitesimal element $d\sigma$ of area per unit time. We search for a relation between $d\Omega$ and $d\sigma$ which we term the differential cross section given by $d\sigma/d\Omega$.
 \begin{figure}[ht!]
 \centering

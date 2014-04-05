@@ -233,7 +233,7 @@ The partial pressure of water $p_w$ at percent humidity $\Phi$ is given by
 p_w(\Phi,T) = \Phi p^*_w(T)
 \label{eq:partialPressure}
 \end{equation}
-Where $p^*_w$ is the saturation vapour pressure.\cite{relativehumidity} The saturation pressure of water at temperature $T$ can be fitted to the Antoine equation \cite{antoineequation}
+Where $p^*_w$ is the saturation vapour pressure in bars.\cite{relativehumidity} The saturation pressure of water at temperature $T$ can be fitted to the Antoine equation \cite{antoineequation}
 \begin{equation}
 \label{eq:antoine}
 p^*_w(T) = 10^{h_A - \frac{h_B}{h_C + T}}
@@ -286,14 +286,14 @@ Due to unforeseen departmental issues it was not possible to experimentally veri
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l*{6}{c}r}
-Parameter Set     & A&b& $\Delta\phi$ & C & $\alpha$ \\
+Parameter Set     & A&b& $\Delta\phi$ & C & $\alpha$ & Description \\
 \hline
- 1 &0.9& 0.0& 0.0844& 1.02& -1.02 \\
- 2&0.9& 0.0& 0.0844& 1.02& -1.02 \\
- 3&0.9& 0.0& 1.5707& 1.02& -1.02 \\
- 4&0.7& 0.1& 0.0844& 1.02& -1.02 \\
- 5&0.9& 0.0& 0.0844& 1.5& -1.02 \\ 
- 6&0.1& 0.0& 0.0844& 1.02& -1.02 \\
+1& 0.9& 0.0& 0.0844& 22.02& -1.02 & Normal set of Parameters  \\
+2&  0.9& 0.0& 0.0844& 15.0& -1.02 & No full phase control \\
+3& 0.9& 0.0& 1.5707& 22.02& -1.02 &   Larger phase offset \\
+4& 0.7& 0.0& 0.0844& 22.02& -1.02 & Smaller A constant\\
+5& 0.1& 0.0& 0.0844& 22.02& -1.02 & Very small A constant\\
+6&  0.7& 0.1& 0.0844& 22.02& -1.02 & B is offset\\
 \end{tabular}
 \caption{True parameter sets to simulate model for}
 \label{tab:trueparams}
