@@ -233,7 +233,7 @@ Where $N$ is the atom number density.
 As the neutron beam is a wavefunction many analogies from classical optics hold. The index of refraction is defined as the ratio of the speed of neutrons experiencing no potential to the speed of neutrons affected by a potential. Compared to light the form is familiar 
 $$ \frac{c}{n} = \frac{K}{k}$$
 Where from Schrödinger's equation
-$$\Delta^2\Psi(\mbox{\boldmath$x$}) + \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\boldmath$x$})\Psi(r) = 0 $$ 
+$$\nabla^2\Psi(\mbox{\boldmath$x$}) + \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\boldmath$x$}))\Psi(\mathbf{x}) = 0 $$ 
 \begin{equation}
 \label{eq:K}
 K^2 = \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\boldmath$x$}))
@@ -276,7 +276,7 @@ The MZ utilizes a half-mirror to split the incoming electromagnetic wave and the
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=1.0]{Figures/mach-zender.png}
+\includegraphics[scale=0.65]{Figures/mach-zender.png}
 \caption{The Mach-Zehnder interferometer}
 \label{mach-zehnder}
 \end{figure}
@@ -332,7 +332,7 @@ Utilizing the phase shift due to the neutron beam passing through a perturbing p
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=1.0]{Figures/phase_flag.png}
+\includegraphics[scale=0.7]{Figures/phase_flag.png}
 \caption{Neutron interferometer with a phase flag \cite{dimaThesis} }
 \label{fig:phaseflag}
 \end{figure}
@@ -369,4 +369,24 @@ C_0 = \frac{\text{max}[D_0(\delta)] - \text{min}[D_0(\delta)]}{\text{max}[D_0(\d
 \end{equation}
 Where $D_0$ is the detected neutron intensity at the $O$ detector. Similarly to the case without a phase flag, the maximum contrast for the $O$ beam is $1$ and the H beam depends on the coefficient $r$. 
 \subsection{Neutron Wave Guides}
+\label{sec:waveguide}
+As neutrons are a wave, similarly to light the obey Snell's Law 
+\begin{equation}
+n_1sin(\theta_1) = n_2sin(\theta_2)
+\label{eq:snellslaw}
+\end{equation}
+Total reflection will occur when 
+$$sin(\theta_2)= \frac{n_1}{n_2}sin(\theta_1)\le 0 \,\,\,\,\, \forall 0<\theta<\pi$$
+As $max(sin(\theta_1))=1$ occur when $\theta_1=\frac{pi}{2}$, using (\ref{eq:indexofrefraction}) the condition for total reflection in air where $n_1\approx1$ is  
+\begin{equation}
+V(x)> E_\perp
+\label{eq:interalreflection}
+\end{equation}
+Therefore given a material with large enough values for $N$ and $b$ it is possible to design a waveguide for neutrons as they will simply reflect back and forth inside the guide. 
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{Figures/waveguide.png}
+\caption{Neutron waveguide under the assumption that there is no Bragg scattering and the absorption is negligible \cite{waveguide} }
+\label{fig:waveguide}
+\end{figure}
