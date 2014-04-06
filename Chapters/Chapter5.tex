@@ -1,10 +1,17 @@
 % Chapter 5
 
-\chapter{Discussion} % Write in your own chapter title
+\chapter{Discussion and Conclusion} % Write in your own chapter title
 \label{Chapter5}
-\lhead{Chapter 5. \emph{Discussion}} % Write in your own chapter title to set the page header
+\lhead{Chapter 5. \emph{Discussion and Conclusion}} % Write in your own chapter title to set the page header
 
+\section{Results}
+While it was not possible to carry out our proposed experiment to test the algorithm described in section (\ref{sec:robosthamiltonian}) it was still possible to model and simulate the behaviour of the algorithm for the proposed system. Our model model attempted to take into account imperfections in the experimental setup, such as variable offsets, temperatures, humidities and phase constants. The derived model for probability of detection at the O-detector is given by (\ref{eq:finalmodel}).
 
+Simulation of the behaviour of the MCMC algorithm was performed on a variety of chosen parameter sets for the model, in order to verify if in theory the algorithm would be able to adequately converge on a valid approximate solution. Simulations demonstrated that the algorithm would be able to greatly decrease the Bayes risk and converge on the true parameter set in all tested cases.   
+
+The most interesting aspect of the algorithm and our results is that of experimental design. The Robust Online Hamiltonian Learning algorithm allows future experimental parameters to be chosen to maximize the amount of information gain and thus reduce the Bayes risk to a much greater degree with each additional experiment. This is especially useful when experiments require a long time to perform for different experimental parameters and the time of simulation is much less than that of performing additional experiments. As could be seen in fig(\ref{fig:adaptiveaverage}) the algorithm could rapidly converge on the true parameter set in as little as $50$ experiments, rivalling the accuracy of the naive test of the ridiculous $2^15$ phase flag settings experiment. 
+
+A downside of the experimental adaptive design is the simulation time required greatly increases. The selection of experimental parameters to maximize information gain greatly increases the computational time. Therefore adaptive experimental design will only actually increase the average information gain per time unit if the cost of simulation is less than the time taken to perform enough experiments to equal the information gained through measurement of choice experimental parameters. 
 
 
 \section{Application to Quantum Information}

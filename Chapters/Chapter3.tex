@@ -299,7 +299,16 @@ Parameter Set     & A&b& $\Delta\phi$ & C & $\alpha$ & Description \\
 \label{tab:trueparams}
 \end{center}
 \end{table}
-Uniform prior distributions were established around the true values as in table (\ref{tab:around}). The set of starting values were kept relatively near to the true values in order to reduce simulation time. 
+In fig(\ref{fig:likelihoods}) the likelihood of detection at the O-detector for the system parameters in table (\ref{tab:trueparams}) are plotted as a function of the phase flag angle $\delta$ at a temperature of $293.15K$ and humidity of $70\%$. 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{Figures/likelihoods.png}
+\caption{Liklihood of detection at O-detector for various system parameters as a function of $\delta$, $T=293.15$,$\Phi=70\%$}
+\label{fig:antoine}
+\end{figure}
+
+It can be seen that the likelihood of detection is never $100\%$ due to the parameter $A$ being less one in all test cases. In the case of parameter set five, $A$ is very small and the result is a very low maximum probability of detection. Additionally, in the case of parameter set 2 it can be seen that full phase control does not exist due to the weakness of the settings of the phase flag constant $\alpha'$.   Uniform prior distributions were established around the true values as in table (\ref{tab:around}). The set of starting values were kept relatively near to the true values in order to reduce simulation time. 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l*{5}{c}r}
@@ -314,16 +323,16 @@ A&b& $\Delta\phi$ & C & $\alpha$ \\
 From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialrisk}).
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=1.0]{Figures/risks1.eps}
+\includegraphics[scale=1.0]{Figures/priors.png}
 \caption{The Bayes Risk of the initial prior distributions}
 \label{fig:initialdistributions}
 \end{figure}
-It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around a phase flag setting of slightly  past $\delta=\pi/2$. This is due to the fact that when the total phase offset is $\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. 
+It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around the point when the sum of the phases is $\pm\pi/2$. This is because when the total phase offset is $\pm\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. The risks of parameter set two are singularly peaked, due to the lack of full phase control. 
 
-We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,2\pi]$ are measured, with the assumption that at each interval $10$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $10$ and varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
+We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.5]{Figures/risks1.eps}
+\includegraphics[scale=0.5]{Figures/naiverisk.png}
 \caption{The Bayes Risk a naive algorithm that sweeps through all phase flag settings from $0$ to $2\pi$}
 \label{fig:naiverisks}
 \end{figure}
