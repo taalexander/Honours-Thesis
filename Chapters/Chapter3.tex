@@ -73,7 +73,7 @@ Which in matrix notation takes the form
 Where $u=E(\mathbf{X})$. It is prudent to note that the elements of the diagonal of the covariant matrix $\sum{ii}$ are the variances of the elements of the vector $\mathbf{X}$. When $\sigma(x,y)>0$ the relationship between the two variables tends to be similar, ie. when one grows the other grows and similarly when $\sigma(x,y)<0$ when one variable grows the other will tend to show the opposite behaviour.\cite{covariance}  
 
 \subsubsection{Cramer-Rao Lower Bound}
-The Cramer-Rao lower bound states that the variance of an unbiased estimator $\hat{\theta}$ is lower bounded by the reciprocal Fisher Information $I(\theta)$.\cite{cramer} 
+The Cramer-Rao lower bound states that the variance of an unbiased estimator $\hat{\theta}$ is lower bounded by the reciprocal Fisher Information $I(\theta)$.\cite{cramerrao} 
 \begin{equation}
 var(\hat{\theta}) \geq \frac{1}{I(\theta)}
 \label{eq:cramerao}
@@ -93,7 +93,7 @@ The Fisher Information is the variance of the statistical score of the probabili
 The Cramer-Rao lower bound establishes a lower limit on the amount of information an unknown parameter of a probability distribution carries.\cite{cramerrao2} This is very useful in determining the fit of a set of model parameters as shall be seen. It is important to keep in mind that this only holds for unbiased estimators and may be violated by biased estimators. 
 
 \section{Robust Online Hamiltonian Learning}
-\label{sec:robosthamiltonian}
+\label{sec:robusthamiltonian}
 The construction of a large scale quantum information processor is an extremely difficult challenge. Before error correcting codes and algorithms can be applied to such a system, the full characterization of the system is required. This is normally achieved via statistical estimation of Hamiltonian parameters via tomography. In quantum tomography the process is normally carried out on the device as a \textit{black box} and a set of measurements is chosen such that the parametrization of them will allow the output of any input state to be predicted.\cite{tomography} Full tomography is computationally complex and requires the simulation of the behaviour of the quantum system. As the systems being simulated grow in complexity, it is no longer possible for classical computer to simulate.\cite{simulate}
 
 In practice there is often more information available about the form of the Hamiltonian of a given system and this allows the number of parameters that need be estimated to be reduced. This is known as partial process estimation or partial tomography. The goal of the experiment proposed in this thesis is to provide experimental verification of the algorithm proposed in the 2013 paper "Robust Online Hamiltonian Learning" by Chris Granade at the University of Waterloo.\cite{hamiltonian_learning} 
@@ -275,14 +275,14 @@ Taking account of the humidity and temperature dependence of the phase due to wa
 \label{eq:finalmodel}
 \end{equation}
 \normalsize
-The integral in (\ref{eq:finalmodel}) will be integrated using Monte Carlo sampling techniques in order to reduce the computational complexity involved in evaluating (\ref{eq:finalmodel}) many, many times. Provided the temperature and humidity data is normally distributed the required number of samples should be $n\approx100-300$ and is tunable based on the desired accuracy. Similarly to the original model (\ref{eq:relativephase}), due to the small angle approximation of the phase flag a lower bound must be put on the phase induced by the flag and water vapour, in order to allow full phase control. 
+The integral in (\ref{eq:finalmodel}) will be integrated using Monte Carlo sampling techniques in order to reduce the computational complexity involved in evaluating (\ref{eq:finalmodel}) many, many times. Provided the temperature and humidity data is normally distributed the required number of samples should be $n\approx100-300$ and is tunable based on the desired accuracy. Similarly to the original model (\ref{eq:model1}), due to the small angle approximation of the phase flag a lower bound must be put on the phase induced by the flag and water vapour, in order to allow full phase control. 
 \begin{equation}
 C+\frac{\alpha'\Phi}{T}\times 10^{h_A - \frac{h_B}{h_C + T}} \geq 20
 \label{eq:fullphasecontrol}
 \end{equation}
 
 \subsection{Model Analysis}
-Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithim described in sec(\ref{sec:robosthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
+Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithim described in sec(\ref{sec:robusthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l*{6}{c}r}
@@ -308,7 +308,7 @@ In fig(\ref{fig:likelihoods}) the likelihood of detection at the O-detector for 
 \label{fig:liklihoods}
 \end{figure}
 
-It can be seen that the likelihood of detection is never $100\%$ due to the parameter $A$ being less one in all test cases. In the case of parameter set five, $A$ is very small and the result is a very low maximum probability of detection. Additionally, in the case of parameter set 2 it can be seen that full phase control does not exist due to the weakness of the settings of the phase flag constant $\alpha'$.   Uniform prior distributions were established around the true values as in table (\ref{tab:around}). The set of starting values were kept relatively near to the true values in order to reduce simulation time. 
+It can be seen that the likelihood of detection is never $100\%$ due to the parameter $A$ being less one in all test cases. In the case of parameter set five, $A$ is very small and the result is a very low maximum probability of detection. Additionally, in the case of parameter set 2 it can be seen that full phase control does not exist due to the weakness of the settings of the phase flag constant $\alpha'$.   Uniform prior distributions were established around the true values as in table (\ref{tab:around}). The set of starting values were kept relatively near to the true values in order to reduce simulation time. It should be noted that the specifications of the system that the simulations were performed on can be found in appendix (\ref{app:testsystem}). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l*{5}{c}r}
@@ -323,18 +323,18 @@ A&b& $\Delta\phi$ & C & $\alpha$ \\
 From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialrisk}).
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=1.0]{Figures/priors.png}
+\includegraphics[scale=0.5]{Figures/priors.png}
 \caption{The Bayes Risk of the initial prior distributions}
 \label{fig:initialdistributions}
 \end{figure}
 It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around the point when the sum of the phases is $\pm\pi/2$. This is because when the total phase offset is $\pm\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. The risks of parameter set two are singularly peaked, due to the lack of full phase control. 
 
-We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
+We next examine the algorithm behaviour for an experiment in which $2^13$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.5]{Figures/naiverisk.png}
 \caption{The Bayes Risk a naive algorithm that sweeps through all phase flag settings from $0$ to $2\pi$}
 \label{fig:naiverisks}
 \end{figure}
-
+From the naive simulation it can be seen the risk is over two to three orders of magnitude lower than that of the uniform distribution for all parameter sets. Additionally, the risk is much more uniform in value over the entire phase flag range as all risks fluctuate only by order $10^-7$. The approximate values for the system parameters calculated by the simulation can be found in table (\ref{tab:naiveparams}). 
 
