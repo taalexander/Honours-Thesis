@@ -426,8 +426,13 @@ Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
 \label{tab:naive200}
 \end{center}
 \end{table}
-It is interesting to observe how the error in the system parameters behave as additional experiments are performed. This can be seen in fig(\ref{eq:errexp}) for the error in the phase shift of $\Delta\phi$. It can be observed that the error rapidly decreases as the first experiments are performed and the algorithm gains information about the system. The error continues to decrease with additional experiments and tends to follow the Cramer-Rao Lower Bound for the simulation quite closely. 
-
+It is interesting to observe how the error in the system parameters behave as additional experiments are performed. This can be seen in fig(\ref{fig:errexp}) for the error in the phase shift of $\Delta\phi$. It can be observed that the error rapidly decreases as the first experiments are performed and the algorithm gains information about the system. The error continues to decrease with additional experiments and tends to follow the Cramer-Rao Lower Bound for the simulation quite closely. 
+ \begin{figure}[ht!]
+\centering
+\includegraphics[scale=1.0]{Figures/meanerror.eps}
+\caption{The behaviour of the error in $\Delta\phi$ as additional experiments are performed, compared to the Cramer-Rao Lower Bound for the simulation.}
+\label{fig:errexp}
+\end{figure}
 While the adaptive simulation does converge on the true system parameters much more quickly than that of the naive experiment, there are very real compromises. As can be seen in fig(\ref{fig:adaptivetimes}) the time taken to perform each adaptive measurement is many orders of magnitude larger than that of simply naively choosing experiments spread out over a range of experimental parameters. The choice to use adaptive measurements becomes a balancing act. Each adaptive experiment should provide more information than the naive experiments, however if the simulation time is much larger than the time it would take to perform many naive experts, it may not be efficient to use adaptive experiment design. However there are often ways of accelerating computation with an example explored in section (\ref{sec:gpu}), whereas normally it is quite difficult to speed up physical experiments.  
  \begin{figure}[ht!]
 \centering
