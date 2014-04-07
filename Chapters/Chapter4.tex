@@ -161,7 +161,8 @@ Ni-Engine was designed to allow the experimental testing of Q-Infer. It is simpl
 \path [line] (configureparameters) -- (measure);
 \path [line] (measure) -- (updatemodels);
 \path [line] (updatemodels) -- (resample);
-\path [line] (decide) |- node  {no} (initialparameters);
+\path [line] (resample) -- (decide);
+\path [line] (decide.west) node {no} |-  (initialparameters.west);
 \path [line] (decide) -- node {yes} (stopqinfer);
 \end{tikzpicture}
 \caption{Experiment flow with NI-Engine and Q-Infer}

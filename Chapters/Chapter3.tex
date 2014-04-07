@@ -305,7 +305,7 @@ In fig(\ref{fig:likelihoods}) the likelihood of detection at the O-detector for 
 \centering
 \includegraphics[scale=0.7]{Figures/likelihoods.png}
 \caption{Liklihood of detection at O-detector for various system parameters as a function of $\delta$, $T=293.15$,$\Phi=70\%$}
-\label{fig:liklihoods}
+\label{fig:likelihoods}
 \end{figure}
 
 It can be seen that the likelihood of detection is never $100\%$ due to the parameter $A$ being less one in all test cases. In the case of parameter set five, $A$ is very small and the result is a very low maximum probability of detection. Additionally, in the case of parameter set 2 it can be seen that full phase control does not exist due to the weakness of the settings of the phase flag constant $\alpha'$.   Uniform prior distributions were established around the true values as in table (\ref{tab:around}). The set of starting values were kept relatively near to the true values in order to reduce simulation time. It should be noted that the specifications of the system that the simulations were performed on can be found in appendix (\ref{app:testsystem}). 
@@ -320,7 +320,7 @@ A&b& $\Delta\phi$ & C & $\alpha$ \\
 \label{tab:around}
 \end{center}
 \end{table}
-From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialrisk}).
+From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialdistributions}).
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.5]{Figures/priors.png}
@@ -329,7 +329,7 @@ From these initial uniform distributions the Bayes risk can be calculated as see
 \end{figure}
 It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around the point when the sum of the phases is $\pm\pi/2$. This is because when the total phase offset is $\pm\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. The risks of parameter set two are singularly peaked, due to the lack of full phase control. 
 
-We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
+We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisks}). 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth]{Figures/naiverisk.png}
@@ -395,5 +395,10 @@ $0.894 \pm 0.004	$&$ 0.011 \pm 0.002 $&$	 0.04 \pm 0.01 $&$22.000 \pm 0.006	$&$ 
 \end{table}
 The parameters chosen for the acceptable system parameters can be seen in table (\ref{tab:adaptivedparams}). While close to the true system parameters in table (\ref{tab:trueparams}), they are not as close as those of the naive system as seen in table (\ref{tab:naiveparams}). This is very interesting considering the risk of the adaptive experiment is much lower. This is explained by the fact that the risk only provides a lower bound on the error in the experiment, it does not provide the true error. As the adaptive experiment actively attempts to minimize risk, it does not completely correlate with a minimization of absolute error. However as can be seen from the results it does function well in this regard too as the adaptive simulation only simulates $200$ experiments, whereas the naive simulation, simulates $2^13=32768$ experiments.   
 
-While the adaptive simulation does converge on the true system parameters much more quickly than that of the naive experiment, there are very real compromises. 
- 
+While the adaptive simulation does converge on the true system parameters much more quickly than that of the naive experiment, there are very real compromises. As can be seen in fig(\ref{fig:adaptivetimes}) the time taken to perform each adaptive measurement is many orders of magnitude larger than that of simply naively choosing experiments spread out over a range of experimental parameters. The choice to use adaptive measurements becomes a balancing act. Each adaptive experiment should provide more information than the naive experiments, however if the simulation time is much larger than the time it would take to perform many naive experts, it may not be efficient to use adaptive experiment design. However there are often ways of accelerating computation with an example explored in section (\ref{sec:gpu}), whereas normally it is quite difficult to speed up physical experiments.  
+ \begin{figure}[ht!]
+\centering
+\includegraphics[width=\textwidth]{Figures/adaptivetimes.eps}
+\caption{The time of experiment simulation based on the number of experiments.}
+\label{fig:adaptivetimes}
+\end{figure}

@@ -7,10 +7,10 @@
 
 \section{Neutrons}
 \subsection{Particle Description of Neutrons}
-The neutron is a subatomic hadron particle that is present in the nucleus of every atom except $^1H$. The neutron is composed of two down quarks and a single up quarks. This composition gives a neutral electric charge for the neutron making it an ideal candidate for sensitive experiments, however the downside is that neutrons are much more difficult to manipulate. The neutron is also therefore a fermion and by the Pauli exclusion principle only a single neutron is allowed in each quantum state. The free neutron is unstable and undergoes beta decay with a lifetime of just $881.5 \pm 1.5 s$. The neutron has a rest mass of approximately $939.56Mev$. Free neutrons are produced using either neutral fission or fusion although in practical experiments fission is almost always used. At the NIST Research Reactor free neutrons are produced from the fission of $^{235}U$. 
+The neutron is a subatomic hadron particle that is present in the nucleus of every atom except $^1H$. The neutron is composed of two down quarks and a single up quarks. This composition gives a neutral electric charge for the neutron making it an ideal candidate for sensitive experiments, however the downside is that neutrons are much more difficult to manipulate. The neutron is also therefore a fermion and by the Pauli exclusion principle only a single neutron is allowed in each quantum state. The free neutron is unstable and undergoes beta decay with a lifetime of just $881.5 \pm 1.5 s$. The neutron has a rest mass of approximately $939.56Mev$. Free neutrons are produced using either neutral fission or fusion although in practical experiments fission is almost always used. At the NIST Research Reactor free neutrons are produced from the fission of $^{235}U$.\cite{dimaThesis}
 \subsection{Thermal Neutrons}
 \label{sec:thermal}
-Neutron interferometry utilizes thermal neutrons which are free neutrons that follow a Boltzmann distribution. The neutrons at NIST are found in the kinetic energy range of $4$-$20meV$ around room temperature of $T=293.15K$. This gives gives neutron velocities of $875-1956\frac{m}{s}$ which gives $v<<c$ and therefore relativistic affects do not play a role. Therefore thermal neutrons are in near thermal equilibrium with their surroundings. Neutrons are decelerated to a thermal state in the reactor by collisions with neutron moderators in the reactor. From de Broglie relations the wavelength of thermal neutrons is approximately $\lambda = \frac{h}{p}= 2.0$-$4.5\AA$. After being emitted form the NIST reactor the neutrons follow a wave-guide and using a wave splitter are sent into individual labs. As the strongest known phase space density of a neutron source is around $10^-14$ it can be safely assumed that the probability of two neutrons interacting inside the wave-guide or interferometer is sufficiently low that it can be disregarded and therefore detected neutrons have no correlation between each-other.
+Neutron interferometry utilizes thermal neutrons which are free neutrons that follow a Boltzmann distribution. The neutrons at NIST are found in the kinetic energy range of $4$-$20meV$ around room temperature of $T=293.15K$. This gives gives neutron velocities of $875-1956\frac{m}{s}$ which gives $v<<c$ and therefore relativistic affects do not play a role. Therefore thermal neutrons are in near thermal equilibrium with their surroundings. Neutrons are decelerated to a thermal state in the reactor by collisions with neutron moderators in the reactor. From de Broglie relations the wavelength of thermal neutrons is approximately $\lambda = \frac{h}{p}= 2.0$-$4.5\AA$. After being emitted form the NIST reactor the neutrons follow a wave-guide and using a wave splitter are sent into individual labs. As the strongest known phase space density of a neutron source is around $10^-14$ it can be safely assumed that the probability of two neutrons interacting inside the wave-guide or interferometer is sufficiently low that it can be disregarded and therefore detected neutrons have no correlation between each-other.\cite{dimaThesis}
 
 \section{Neutron Interferometry}
 The Neutron interferometer is similar to other forms of interferometry in which an incoming wave is split and than allowed to interfere at a later point which allows the two wave paths to be compared. The modern day neutron interferometer is functionally equivalent to an optical Mach-Zender (MZ) interferometer.\cite{machzehnder}
@@ -44,22 +44,22 @@ Where $n$ is a positive integer, $d$ is the distance between the atomic planes o
 The presence of the potential $\mathcal{V}$ causes the solution to be different than the free particle state 
 $$\mathcal{H}_0\Ket{\Phi}=E\Ket{\Phi}$$
 
-Therefore we are looking for solutions to the Schrödinger equation of the form 
+Therefore we are looking for solutions to the Schrödinger equation of the form \cite{sakurai}
 \begin{equation}
 \label{eq:schrodinger}
 \mathcal{H}_0+\mathcal{V}\Ket{\Psi} = E\Ket{\Psi} 
 \end{equation} 
- A valid solution should have that $\Ket{\Psi}\rightarrow\Ket{\Phi}$ as $\mathcal{V}\rightarrow 0$. A solution that satisfies these requirements is known as the Lippmann-Schwinger equation. 
+ A valid solution should have that $\Ket{\Psi}\rightarrow\Ket{\Phi}$ as $\mathcal{V}\rightarrow 0$. A solution that satisfies these requirements is known as the Lippmann-Schwinger equation. \cite{sakurai}
  \begin{equation}
  	\label{lippmanSchwinger}
  	\Ket{\Psi^{\pm}}=\Ket{\Phi}+\frac{1}{E-\mathcal{H}_0\pm i\epsilon}\mathcal{V}\Ket{\Psi^{\pm}} 
  \end{equation}
- Here the energy $E$ was made slightly complex with the addition of $\pm \epsilon$ to deal with the singular nature of the operator $1/(E-\mathcal{H}_0)$. It can easily be seen that the application of the operator $E-\mathcal{H}_0$ reduces (\ref{lippmanSchwinger}) to the desired solution (\ref{eq:schrodinger}) when neglecting the imaginary component. By taking the Lipmann-Schwinger equation to the position basis explicitly it can be represented as 
+ Here the energy $E$ was made slightly complex with the addition of $\pm \epsilon$ to deal with the singular nature of the operator $1/(E-\mathcal{H}_0)$. It can easily be seen that the application of the operator $E-\mathcal{H}_0$ reduces (\ref{lippmanSchwinger}) to the desired solution (\ref{eq:schrodinger}) when neglecting the imaginary component. By taking the Lipmann-Schwinger equation to the position basis explicitly it can be represented as \cite{sakurai}
  \begin{equation}
  \label{eq:positionBasis}
  \Braket{\mbox{\boldmath$x$}|\Psi^{\pm}}=\Braket{\mbox{\boldmath$x$}|\Phi} -\frac{2m}{\hbar^2} \int d^3x^{'} \frac{e^{\pm ik\left|\mbox{\boldmath$x-x^{'}$}\right|}}{ 4\pi \left| \mbox{\boldmath$x-x^{'}$} \right|} \Braket{\mbox{\boldmath$x^{'}$}|\mathcal{V}|\Psi^{\pm}}
  \end{equation}
-As our scattering potentials are a function of position only the assumption can be made that the potential is \textit{local} such that it is diagonal in the position representation. Specifically the potential satisfies the requirement that 
+As our scattering potentials are a function of position only the assumption can be made that the potential is \textit{local} such that it is diagonal in the position representation. Specifically the potential satisfies the requirement that \cite{sakurai}
 \begin{equation}
 \label{eq:localPotential}
 \braket{\mbox{\boldmath$x^{'}$}|\mathcal{V}|\mbox{\boldmath$x^{''}$}}=\mathcal{V}(\mbox{\boldmath$x$}^{'})\delta^{(3)}(\mbox{\boldmath$x^{'}$}-\mbox{\boldmath$x^{''}$})
@@ -70,7 +70,7 @@ Utilizing this potential we obtain
 \label{eq:localPotentialResult}
 \Braket{\mbox{\boldmath$x$}|\mathcal{V}|\Psi^{\pm}}=\int d^3x^{''} \braket{\mbox{\boldmath$x^{'}$}|\mathcal{V}|\mbox{\boldmath$x^{''}$}} \braket{\mbox{\boldmath$x^{''}$}|\Psi^{\pm}}=\mathcal{V}(\mbox{\boldmath$x^{'}$})\braket{\mbox{\boldmath$x^{'}$}|\Psi^{\pm}}
 \end{equation}
-With this result the Lippmann-Schwinger equation can be reduced to
+With this result the Lippmann-Schwinger equation can be reduced to 
 \begin{equation}
 \label{eq:lippmannSchwingerLocal}
  \Braket{\mbox{\boldmath$x$}|\Psi^{\pm}}=\Braket{\mbox{\boldmath$x$}|\Phi} -\frac{2m}{\hbar^2} \int d^3x^{'} \frac{e^{\pm ik\left|\mbox{\boldmath$x-x^{'}$}\right|}}{ 4\pi \left| \mbox{\boldmath$x-x^{'}$} \right|} \mathcal{V}(\mbox{\boldmath$x{'}$})\Braket{\mbox{\boldmath$x^{'}$}|\Psi^{\pm}}
@@ -83,7 +83,7 @@ Given that we are concerned with studying finite range scatters and that any obs
 \label{fig:finiteRangePotential}
 \end{figure}
 
-Keeping in mind this result we can define 
+Keeping in mind this result we can define \cite{sakurai}
 $$ r = \left| \mbox{\boldmath$x$} \right| $$
 $$r^{'}=\left|\mbox{\boldmath$x^{'}$}\right|$$
 $$\alpha = \angle(\mbox{\boldmath$x,x^{'}$})$$
@@ -98,7 +98,7 @@ $$\mbox{\boldmath$\hat{r}$} \equiv \frac{\mbox{\boldmath$x$}}{\left|\mbox{\boldm
 \mbox{\boldmath$k^{'}$} \equiv k\mbox{\boldmath$\hat{r}$}
 \end{equation}
 
-Utilizing equations (\ref{eq:toObservation},\ref{eq:propogationVector}) 
+Utilizing equations (\ref{eq:toObservation},\ref{eq:propogationVector})
 \begin{equation}
 e^{\pm ik \left|\mbox{\boldmath$x-x^{'}$}\right|} \approx e^{\pm ikr}e^{\mp i \mbox{\boldmath$k^{'}\cdot x^{'}$}}
 \label{eq:waveSimplification}
@@ -107,7 +107,7 @@ For the distant $r$ at the observation point it is a useful approximation to say
 \begin{equation}
 \frac{1}{\left|\mbox{\boldmath$x-x^{'}$}\right|} \approx \frac{1}{r}
 \end{equation}
-Now replacing our incident generic wave with an incident plane wave $\Ket{\Phi}\rightarrow \Ket{\mbox{\boldmath$p$}}$ and using \mbox{\boldmath$k$} $\equiv \mbox{\boldmath$p_i$}/ \hbar$ To remove the $\hbar$'s from the expression. We obtain for the first term in (\ref{eq:lippmannSchwingerLocal}) 
+Now replacing our incident generic wave with an incident plane wave $\Ket{\Phi}\rightarrow \Ket{\mbox{\boldmath$p$}}$ and using \mbox{\boldmath$k$} $\equiv \mbox{\boldmath$p_i$}/ \hbar$ To remove the $\hbar$'s from the expression.\cite{sakurai} We obtain for the first term in (\ref{eq:lippmannSchwingerLocal}) 
 \begin{equation}
 \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k$}}=\int d^3k^{'} \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k^{'}$}}\Braket{\mbox{\boldmath$k^{'}$}|\mbox{\boldmath$k$}}=\int d^3k^{'}  \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k^{'}$}} \delta^{(3)}(\mbox{\boldmath$k^{'}-k$})=\frac{e^{i\mbox{\boldmath$k \cdot x$}}}{(2\pi)^{\frac{3}{2}}}
 \label{eq:PlaneWave}
