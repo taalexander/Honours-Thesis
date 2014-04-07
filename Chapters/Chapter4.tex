@@ -133,7 +133,7 @@ Measurement calls to devices are made via manager objects. Manager objects have 
 As the purpose of Ni-Engine is to be a general neutron interferometry experimental engine and not just to be used one time the neutron contrast experiment it is important that documentation be available for future researchers that may not have the luxury of a hands on introduction by the software designers. To increase the software ease of use
 
 \section{Q-Infer}
-Q-Infer is a software library written in python that implements the Hamiltonian finding algorithm described in sec(\ref{sec:robosthamiltonian}).\cite{qinfer} The library is open-source and was written by Chris Granade and Dr. Chris Ferrie at the Institute for Quantum Computing. It allows the Hamiltonian Learning algorithm to be used with minimal coding.
+Q-Infer is a software library written in python that implements the Hamiltonian finding algorithm described in sec(\ref{sec:robusthamiltonian}).\cite{qinfer} The library is open-source and was written by Chris Granade and Dr. Chris Ferrie at the Institute for Quantum Computing. It allows the Hamiltonian Learning algorithm to be used with minimal coding.
 \subsection{Interaction with NI-Engine}
 Ni-Engine was designed to allow the experimental testing of Q-Infer. It is simply a by-product of good software design that it in theory should be usable for many other projects at the NIST interferometry labs. As both Q-Infer and NI-Engine are separate libraries they do not share any dependencies and all interaction between the two libraries is through generic python code. The anticipated workflow for experimental testing of Q-Infer is seen in fig(\ref{fig:flow}). 
 \afterpage{%

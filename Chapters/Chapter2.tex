@@ -123,14 +123,14 @@ f(\mbox{\boldmath$k^{'},k$})=-m\left(\frac{2\pi}{h}\right)^2\Braket{\mbox{\boldm
 \end{equation}
 It is very easy to see that the result wavefunction is a combination of the original incident plane-wave and an outgoing spherical wave with an amplitude described by (\ref{eq:f}). An obvious issue is that here scattering has only been treated for an incident plane-wave which is not a normalizable wavefunction. In reality to describe discrete particles such as neutrons wave packet solutions are used to describe the incident particles. However, provided the size of the wave packet is much larger than the range of the finite potential $\mathcal{V}$ it is sufficient to treat an incident packet as a plane-wave.  
 \subsection{Differential Scattering Cross-Section}
-The scattering cross section is an important parameter for experimental scattering physics. It relates the number of particles scattering into the solid angle $d\Omega$ per unit time to the number of incident particles into an infinitesimal element $d\sigma$ of area per unit time. We search for a relation between $d\Omega$ and $d\sigma$ which we term the differential cross section given by $d\sigma/d\Omega$.
+The scattering cross section is an important parameter for experimental scattering physics. It relates the number of particles scattering into the solid angle $d\Omega$ per unit time to the number of incident particles into an infinitesimal element $d\sigma$ of area per unit time. We search for a relation between $d\Omega$ and $d\sigma$ which we term the differential cross section given by $d\sigma/d\Omega$.\cite{sakurai}
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=1.0]{Figures/scatteringCrossSection.png}
-\caption{The differential cross section is the relationship between incident particles travelling through area $d\sigma$ to scattered particles crossing through the solid angle $d\Omega$}
+\caption{The differential cross section is the relationship between incident particles travelling through area $d\sigma$ to scattered particles crossing through the solid angle $d\Omega$. \cite{sakurai}}
 \label{fig:scatteringCrossSection}
 \end{figure}
-Evidently the probability of an incident particle being within an area $d\sigma$ in time $dt$ while travelling with velocity $v$ is just 
+Evidently the probability of an incident particle being within an area $d\sigma$ in time $dt$ while travelling with velocity $v$ is just \cite{griffiths}
 \begin{equation}
 dP = \left|\Psi_i\right|^2 dV  = \frac{1}{2\pi}^3 (vdt)d\sigma
 \label{eq:incidentCross}
@@ -139,7 +139,7 @@ dP = \left|\Psi_i\right|^2 dV  = \frac{1}{2\pi}^3 (vdt)d\sigma
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.7]{Figures/incidentBeam.png}
-\caption{The volume element $dV$ that a beam occupies passing through an area $d\sigma$ in time $dt$}
+\caption{The volume element $dV$ that a beam occupies passing through an area $d\sigma$ in time $dt$. \cite{griffiths}}
 \label{fig:incidentBeam}
 \end{figure}
 
@@ -155,21 +155,21 @@ Equations (\ref{eq:incidentCross}) and (\ref{eq:scatteredCross}) can be solved f
 \end{equation}
 
 \subsection{Scattering Amplitude}
-While equation (\ref{eq:f}) defines the magnitude of the outgoing spherical wave, it is defined implicitly in terms of the unknown ket $\Ket{\Psi^{+}}$. The solution to this problem in the case of sufficiently weak scatterers is to use the first Born approximation 
+While equation (\ref{eq:f}) defines the magnitude of the outgoing spherical wave, it is defined implicitly in terms of the unknown ket $\Ket{\Psi^{+}}$. The solution to this problem in the case of sufficiently weak scatterers is to use the first Born approximation \cite{sakurai}
 \begin{equation}
 \label{eq:born}
 \Braket{\mbox{\boldmath$x^{'}$}|\Psi^{+}} \rightarrow \Braket{\mbox{\boldmath$x^{'}$}| \Phi} = \frac{e^{i\mbox{\boldmath$x^{'}$}}}{(2\pi)^{3/2}}
 \end{equation}
-Combining (\ref{eq:born}) and (\ref{eq:f}) results in the first-order Born amplitude 
+Combining (\ref{eq:born}) and (\ref{eq:f}) results in the first-order Born amplitude \cite{sakurai}
 \begin{equation}
 \label{eq:firstOrderBorn}
 f^{(1)}(\mbox{\boldmath$k^{'},k$}) = -\frac{m}{2\pi\hbar^2}\int d^3x^{'}e^{i(\mbox{\boldmath$k-k^{'}$})\cdot \mbox{\boldmath$x^{'}$}}\mathcal{V}(\mbox{\boldmath$x^{'}$})
 \end{equation}
-As the potentials that will be dealt with are spherically symmetrical, further approximations can be made utilizing $\mbox{\boldmath$q$} \equiv \mbox{\boldmath$k-k^{'}$}$ and $$\left|\mbox{\boldmath$k-k^{'}$}\right| \equiv  q = 2ksin \left( \frac{\theta}{2}\right)$$ as seen in fig(\ref{fig:scatteringAngle}) The spherical symmetry can be used to integrate explicitly the angular component of the scattering magnitude. 
+As the potentials that will be dealt with are spherically symmetrical, further approximations can be made utilizing $\mbox{\boldmath$q$} \equiv \mbox{\boldmath$k-k^{'}$}$ and $$\left|\mbox{\boldmath$k-k^{'}$}\right| \equiv  q = 2ksin \left( \frac{\theta}{2}\right)$$ as seen in fig(\ref{fig:scatteringAngle}) The spherical symmetry can be used to integrate explicitly the angular component of the scattering magnitude. \cite{sakurai}
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.5]{Figures/scatteringAngle.png}
-\caption{Scattering amplitude as a function of $\theta$ where $\mbox{\boldmath$q$}=\mbox{\boldmath$k-k^{'}$}$ }
+\caption{Scattering amplitude as a function of $\theta$ where $\mbox{\boldmath$q$}=\mbox{\boldmath$k-k^{'}$}$ \cite{sakurai}}
 \label{fig:scatteringAngle}
 \end{figure}
 $$
@@ -185,7 +185,7 @@ Generally there are two interactions that an incident neutron on a material will
 
 Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\mbox{\boldmath$r$})$ between the nucleus and neutron. As this is interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\mbox{\boldmath$r$}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave a wave function described by (\ref{eq:PlaneWave}) and the scattered wavefunction will take the form of (\ref{eq:scatteredEquation},\ref{eq:f}).
 
-Due to the magnitude of the difference between the wavelength of the incident neutrons and the effective acting distance of the strong-force neutron-nucleus interaction and its approximate spherical symmetry it is an acceptable approximation to use the Fermi pseudo-potential
+Due to the magnitude of the difference between the wavelength of the incident neutrons and the effective acting distance of the strong-force neutron-nucleus interaction and its approximate spherical symmetry it is an acceptable approximation to use the Fermi pseudo-potential \cite{waveguide}
 \begin{equation}
 \label{eq:FermiPseudoPotential}
 \mathcal{V}(\mbox{\boldmath$x^{'}$}) = \frac{2\pi\hbar^2}{m}b\delta(\mbox{\boldmath$x^{'}$})
@@ -217,7 +217,7 @@ From this approximate solution it is evident that the only difference between in
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.5]{Figures/neutronScatteringLength.png}
-\caption{Neutron scattering lengths $b$ for the elements of the periodic table }
+\caption{Neutron scattering lengths $b$ for the elements of the periodic table. \cite{scatteringlengths}}
 \label{fig:scatteringLength}
 \end{figure}
 
@@ -242,7 +242,7 @@ K^2 = \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\boldmath$x$}))
 \label{eq:NinPotential}
 n(\mbox{\boldmath$x$}) = \frac{K}{k} = \sqrt{\frac{E-\mathcal{V}(\mbox{\boldmath$x$})}{E}}=\sqrt{1-\frac{\mathcal{V}(\mbox{\boldmath$x$})}{E}}
 \end{equation}
-Given that the neutron scattering potentials are described by (\ref{eq:approxFermiPseudopotential}) the index of refraction can be approximated to 
+Given that the neutron scattering potentials are described by (\ref{eq:approxFermiPseudopotential}) the index of refraction can be approximated to \cite{waveguide}
 \begin{equation}
 V(\mbox{\boldmath$x$}) = \sqrt{1-\frac{\frac{2\pi\hbar^2}{m}bN}{E}}= \sqrt{1 - \frac{4\pi bN}{k^2}}
 \label{eq:indexofrefraction}
@@ -277,7 +277,7 @@ The MZ utilizes a half-mirror to split the incoming electromagnetic wave and the
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.65]{Figures/mach-zender.png}
-\caption{The Mach-Zehnder interferometer}
+\caption{The Mach-Zehnder interferometer. \cite{dimaThesis}}
 \label{mach-zehnder}
 \end{figure}
 
@@ -386,7 +386,7 @@ Therefore given a material with large enough values for $N$ and $b$ it is possib
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{Figures/waveguide.png}
+\includegraphics[width=\textwidth]{Figures/waveguide.png}
 \caption{Neutron waveguide under the assumption that there is no Bragg scattering and the absorption is negligible \cite{waveguide} }
 \label{fig:waveguide}
 \end{figure}

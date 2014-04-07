@@ -329,25 +329,71 @@ From these initial uniform distributions the Bayes risk can be calculated as see
 \end{figure}
 It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around the point when the sum of the phases is $\pm\pi/2$. This is because when the total phase offset is $\pm\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. The risks of parameter set two are singularly peaked, due to the lack of full phase control. 
 
-We next examine the algorithm behaviour for an experiment in which $2^13$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
+We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisk}). 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.5]{Figures/naiverisk.png}
-\caption{The Bayes Risk a naive algorithm that sweeps through all phase flag settings from $0$ to $2\pi$}
+\includegraphics[width=\textwidth]{Figures/naiverisk.png}
+\caption{The Bayes Risk a naive algorithm that sweeps through all phase flag settings from $0$ to $\pi/10$}
 \label{fig:naiverisks}
 \end{figure}
-From the naive simulation it can be seen the risk is over two to three orders of magnitude lower than that of the uniform distribution for all parameter sets. Additionally, the risk is much more uniform in value over the entire phase flag range as all risks fluctuate only by order $10^-7$. The approximate values for the system parameters calculated by the simulation can be found in table (\ref{tab:naiveparams}). 
+From the naive simulation it can be seen the risk is over two to three orders of magnitude lower than that of the uniform distribution for all parameter sets. Additionally, the risk is much more uniform in value over the entire phase flag range as all risks fluctuate only by order $10^-7$. The approximate values for the system parameters calculated by the simulation can be found in table (\ref{tab:naiveparams}). From the calculated parameters it is clear to see that almost all parameters are properly calculated within one to two standard deviations of error. Therefore we can conclude that given enough measurements the algorithm will converge on the correct model parameters, at least in theory.
 
 \begin{table}[h]
+\tiny
 \begin{center}
 \begin{tabular}{l*{5}{c}r}
-A&b& $\Delta\phi$ & C & $\alpha$ \\
+Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
 \hline
- 
-	
+
+1 &$0.9007 \pm 0.0004$&$	 0.0005 \pm 0.0002$&  $0.087 \pm 0.002$ & $22.009 \pm 0.009$	& $-1.0225 \pm 0.026762$	\\
+
+2& $0.9004 \pm 0.0007$ &	 $0.0003 \pm 0.0004$	&$0.084 \pm 0.003$	& $15.00 \pm 0.01$ & $-1.01 \pm 0.03$	\\
+
+3&$0.8999 \pm 0.0005$ &	 $0.0004 \pm 0.0002$	& $1.5687 \pm 0.0009$& $22.029 \pm 0.006$ & $-1.02 \pm 0.03$	\\
+
+4&$0.7010 \pm 0.0006$ &	 $0.0000 \pm 0.0003$	 &$0.084 \pm 0.002$	& $22.02 \pm 0.01	$ & $-1.0093 \pm 0.027575$	\\
+
+5&$0.0995 \pm 0.0008$ &	$0.0003 \pm 0.0003$ &	 $0.094 \pm 0.009$	& $22.02 \pm 0.03$	 &$-1.02 \pm 0.03$	\\
+
+6&$0.7000 \pm 0.0005$ &	 $0.0996 \pm 0.0003$	 &$0.084 \pm 0.002$	& $22.04 \pm 0.01$ &	 $-1.02 \pm 0.03$	\\
 
 \end{tabular}
-\caption{Approximate system parameters from naive experiment}
+\caption{Approximate calculated system parameters from naive experiment}
 \label{tab:naiveparams}
 \end{center}
 \end{table}
+
+While the experiment simulated above is simply a parameter sweep of as many $\delta$ values as possible, the import feature of the tested algorithm is experimental design. By simulating future experiments based on the present probability distributions it is possible to select experimental parameters such that the information gain is maximized and the Bayes risk minimized. The results of the adaptive simulations can be seen in fig(\ref{fig:adaptiverisks}). Note that the risk is very low in comparison to the naive simulation. An interesting aspect to note is that the two simulations with the most extreme system parameters, parameter sets two and five, demonstrate very jagged risk curves. This is most likely due to the inability to adequately choose experimental parameters when the ability to control the system is small such as in these two cases. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\textwidth]{Figures/adaptiverisk.png}
+\caption{The Bayes Risk from an adaptive simulations, when 200 experiments were performed with experimental parameters chosen to maximize the information gain.}
+\label{fig:adaptiverisks}
+\end{figure}
+
+\begin{table}[h]
+\tiny
+\begin{center}
+\begin{tabular}{l*{5}{c}r}
+Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
+\hline
+$0.901\pm 0.006	$& $0.000 \pm 0.004$&$	 0.09 \pm 0.02	$&$ 22.000 \pm 0.006$&$	 -1.020 \pm 0.006$\\	
+
+$0.8896 \pm 0.0002	$&$ -0.0080 \pm 0.0001	$&$ 0.0150 \pm 0.0002	$&$ 22.0130 \pm 0.0003$&$ -1.0227 \pm 0.0006$\\
+
+$0.901 \pm 0.006	$&$ -0.005 \pm 0.003	$&$ 1.554 \pm 0.009	$&$ 22.001 \pm 0.006	$&$ -1.020 \pm 0.006	$\\
+
+$0.894 \pm 0.001$&$	 -0.006 \pm 0.002	$&$ 0.273 \pm 0.009$&$	 22.002 \pm 0.003	$&$ -1.021 \pm 0.003$	\\
+
+$0.8905 \pm 0.0004 $&$0.0137 \pm 0.0004	$&$ 1.196 \pm 0.001$&$	 22.0160 \pm 0.0004	$&$ -1.0141 \pm 0.0003	$\\
+
+$0.894 \pm 0.004	$&$ 0.011 \pm 0.002 $&$	 0.04 \pm 0.01 $&$22.000 \pm 0.006	$&$ -1.018 \pm 0.006$\\
+\end{tabular}
+\caption{Approximate calculated system parameters from adaptive experiment with 200 adaptively chosen experimental parameters.}
+\label{tab:adaptivedparams}
+\end{center}
+\end{table}
+The parameters chosen for the acceptable system parameters can be seen in table (\ref{tab:adaptivedparams}). While close to the true system parameters in table (\ref{tab:trueparams}), they are not as close as those of the naive system as seen in table (\ref{tab:naiveparams}). This is very interesting considering the risk of the adaptive experiment is much lower. This is explained by the fact that the risk only provides a lower bound on the error in the experiment, it does not provide the true error. As the adaptive experiment actively attempts to minimize risk, it does not completely correlate with a minimization of absolute error. However as can be seen from the results it does function well in this regard too as the adaptive simulation only simulates $200$ experiments, whereas the naive simulation, simulates $2^13=32768$ experiments.   
+
+While the adaptive simulation does converge on the true system parameters much more quickly than that of the naive experiment, there are very real compromises. 
+ 
