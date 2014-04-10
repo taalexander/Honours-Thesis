@@ -16,14 +16,16 @@ Where $P_i$ are the orthogonal projections of $A$ onto the eigenspace correspond
 \begin{equation}
 \Braket{\Psi|I|\Psi} =\Braket{\Psi|P_1|\Psi} + \Braket{\Psi|P_2|\Psi} + \cdots +\Braket{\Psi|P_i|\Psi}  = 1
 \end{equation}
-Given this result the interpretation may be made that 
+Given this result the interpretation may be made that
+$$Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =$$
 \begin{equation}
-\Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =\lambda_1 p(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
+=\lambda_1 p(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
 \label{eq:quantumExpectation}
 \end{equation}
+
 Therefore it is quite easy to see where the Born rule arises. It is therefore clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
 \subsection{Baye's Theorem} 
-Baye's theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Baye's Thereom is 
+Baye's theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Baye's Theorem is 
 \begin{equation}
 P(A|B) = \frac{P(B|A)P(A)}{P(B)} 
 \label{eq:bayes}
@@ -155,7 +157,7 @@ where
 \end{equation}
 \subsubsection{Resampling}
 \label{sec:resampling}
-Utilizing sequential monte carlo methods the costly posterior distribution are approximately calculated by approximating the distribution as a set of particles or points distributed over the parameter space, each with weight $w_i$ and with the sum of all weights being $\sum \limits_i w_i = 1$. Therefore the probability distribution is 
+Utilizing sequential Monte Carlo methods the costly posterior distribution are approximately calculated by approximating the distribution as a set of particles or points distributed over the parameter space, each with weight $w_i$ and with the sum of all weights being $\sum \limits_i w_i = 1$. Therefore the probability distribution is 
 \begin{equation*}
 P(\mathbf{x}|D) \approx \sum \limits_{k=1}^n w_k(D)\delta(\mathbf{x}-\mathbf{x}_k)
 \end{equation*}
@@ -201,7 +203,7 @@ In order to determine the fit of the region found, it is important to compare th
 E_\pi [cov(\mathbf{\hat{x}})] \geq \mathbf{J}(\pi;C)^{-1}
 \end{equation*}
 \section{Experimental Verification of the Robust Online Hamiltonian Learning Algorithm}
-While simulations predict that the algorithim introduced in sec(\ref{sec:robusthamiltonian}) quickly approaches the lower bound on the error for a variety of physical systems.\cite{hamiltonian_learning} It has yet to be verified experimentally. Therefore a proof of concept neutron interferometry experiment will be proposed which theoretically should allow the prediction of neutron interferometer model parameters and improve the maximum contrast of interferometer measurements. As control of the contrast of the neutron interferometer is desired, precise contrast control will only be obtainable when all system parameters are known. 
+While simulations predict that the algorithm introduced in sec(\ref{sec:robusthamiltonian}) quickly approaches the lower bound on the error for a variety of physical systems.\cite{hamiltonian_learning} It has yet to be verified experimentally. Therefore a proof of concept neutron interferometry experiment will be proposed which theoretically should allow the prediction of neutron interferometer model parameters and improve the maximum contrast of interferometer measurements. As control of the contrast of the neutron interferometer is desired, precise contrast control will only be obtainable when all system parameters are known. 
 \subsection{Experimental Model}
 Take the O and H detectors as 0 and 1 respectively. We model the probability of the neutron striking the $O$ detector similarly to (\ref{eq:normalizedIntensities}) except now the model is non-ideal and has parameters that must be fitted to it as 
 \begin{equation}
@@ -283,7 +285,7 @@ C+\frac{\alpha'\Phi}{T}\times 10^{h_A - \frac{h_B}{h_C + T}} \geq 20
 \end{equation}
 
 \subsection{Model Analysis}
-Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithim described in sec(\ref{sec:robusthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
+Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithm described in sec(\ref{sec:robusthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l*{6}{c}r}
@@ -334,7 +336,7 @@ We next examine the algorithm behaviour for an experiment in which $2^15$ linear
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth]{Figures/naiverisk.png}
-\caption{Approximate calculated system parameters from naive experiment with $2^15$ linearly spaced phase flag angles $0<\delta<\pi/10$.}
+\caption{Approximate calculated system parameters from naive experiment with $2^{15}$ linearly spaced phase flag angles $0<\delta<\pi/10$.}
 \label{fig:naiverisks}
 \end{figure}
 From the naive simulation it can be seen the risk is over two to three orders of magnitude lower than that of the uniform distribution for all parameter sets. Additionally, the risk is much more uniform in value over the entire phase flag range as all risks fluctuate only by order $10^-7$. The approximate values for the system parameters calculated by the simulation can be found in table (\ref{tab:naiveparams}). From the calculated parameters it is clear to see that almost all parameters are properly calculated within one to two standard deviations of error. Therefore we can conclude that given enough measurements the algorithm will converge on the correct model parameters, at least in theory.
@@ -378,23 +380,23 @@ While the experiment simulated above is simply a parameter sweep of as many $\de
 \begin{tabular}{l*{5}{c}r}
 Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
 \hline
-$0.901\pm 0.006	$& $0.000 \pm 0.004$&$	 0.09 \pm 0.02	$&$ 22.000 \pm 0.006$&$	 -1.020 \pm 0.006$\\	
+1&$0.901\pm 0.006	$& $0.000 \pm 0.004$&$	 0.09 \pm 0.02	$&$ 22.000 \pm 0.006$&$	 -1.020 \pm 0.006$\\	
 
-$0.8896 \pm 0.0002	$&$ -0.0080 \pm 0.0001	$&$ 0.0150 \pm 0.0002	$&$ 22.0130 \pm 0.0003$&$ -1.0227 \pm 0.0006$\\
+2&$0.8896 \pm 0.0002	$&$ -0.0080 \pm 0.0001	$&$ 0.0150 \pm 0.0002	$&$ 22.0130 \pm 0.0003$&$ -1.0227 \pm 0.0006$\\
 
-$0.901 \pm 0.006	$&$ -0.005 \pm 0.003	$&$ 1.554 \pm 0.009	$&$ 22.001 \pm 0.006	$&$ -1.020 \pm 0.006	$\\
+3&$0.901 \pm 0.006	$&$ -0.005 \pm 0.003	$&$ 1.554 \pm 0.009	$&$ 22.001 \pm 0.006	$&$ -1.020 \pm 0.006	$\\
 
-$0.894 \pm 0.001$&$	 -0.006 \pm 0.002	$&$ 0.273 \pm 0.009$&$	 22.002 \pm 0.003	$&$ -1.021 \pm 0.003$	\\
+4&$0.894 \pm 0.001$&$	 -0.006 \pm 0.002	$&$ 0.273 \pm 0.009$&$	 22.002 \pm 0.003	$&$ -1.021 \pm 0.003$	\\
 
-$0.8905 \pm 0.0004 $&$0.0137 \pm 0.0004	$&$ 1.196 \pm 0.001$&$	 22.0160 \pm 0.0004	$&$ -1.0141 \pm 0.0003	$\\
+5&$0.8905 \pm 0.0004 $&$0.0137 \pm 0.0004	$&$ 1.196 \pm 0.001$&$	 22.0160 \pm 0.0004	$&$ -1.0141 \pm 0.0003	$\\
 
-$0.894 \pm 0.004	$&$ 0.011 \pm 0.002 $&$	 0.04 \pm 0.01 $&$22.000 \pm 0.006	$&$ -1.018 \pm 0.006$\\
+6&$0.894 \pm 0.004	$&$ 0.011 \pm 0.002 $&$	 0.04 \pm 0.01 $&$22.000 \pm 0.006	$&$ -1.018 \pm 0.006$\\
 \end{tabular}
 \caption{Approximate calculated system parameters from adaptive experiment with 200 adaptively chosen experimental parameters.}
 \label{tab:adaptivedparams}
 \end{center}
 \end{table}
-The parameters chosen for the acceptable system parameters can be seen in table (\ref{tab:adaptivedparams}). While close to the true system parameters in table (\ref{tab:trueparams}), they are not as close as those of the naive system as seen in table (\ref{tab:naiveparams}). This is very interesting considering the risk of the adaptive experiment is much lower. This is explained by the fact that the risk only provides a lower bound on the error in the experiment, it does not provide the true error. As the adaptive experiment actively attempts to minimize risk, it does not completely correlate with a minimization of absolute error. However as can be seen from the results it does function well in this regard too as the adaptive simulation only simulates $200$ experiments, whereas the naive simulation, simulates $2^13=32768$ experiments. If instead the adaptive experiment is compared against the case of $200$ naive experiments, it can be seen in fig(\ref{fig:naive200}) that the risks are much higher than the adaptive measurements which as expected. Additionally it can be seen in table (\ref{tab:naive200}) that the values selected by the algorithm as system parameters are much farther off and with large standard deviations than that of the adaptive algorithm. It is clear the adaptive experiment design is superior in terms of converging on the system parameter set in the least amount of experiments. 
+The parameters chosen for the acceptable system parameters can be seen in table (\ref{tab:adaptivedparams}). While close to the true system parameters in table (\ref{tab:trueparams}), they are not as close as those of the naive system as seen in table (\ref{tab:naiveparams}). This is very interesting considering the risk of the adaptive experiment is much lower. This is explained by the fact that the risk only provides a lower bound on the error in the experiment, it does not provide the true error. As the adaptive experiment actively attempts to minimize risk, it does not completely correlate with a minimization of absolute error. However as can be seen from the results it does function well in this regard too as the adaptive simulation only simulates $200$ experiments, whereas the naive simulation, simulates $2^{15}=32768$ experiments. If instead the adaptive experiment is compared against the case of $200$ naive experiments, it can be seen in fig(\ref{fig:naive200}) that the risks are much higher than the adaptive measurements which as expected. Additionally it can be seen in table (\ref{tab:naive200}) that the values selected by the algorithm as system parameters are much farther off and with large standard deviations than that of the adaptive algorithm. It is clear the adaptive experiment design is superior in terms of converging on the system parameter set in the least amount of experiments. 
 
 \begin{figure}[ht!]
 \centering
