@@ -17,13 +17,15 @@ Where $P_i$ are the orthogonal projections of $A$ onto the eigenspace correspond
 \Braket{\Psi|I|\Psi} =\Braket{\Psi|P_1|\Psi} + \Braket{\Psi|P_2|\Psi} + \cdots +\Braket{\Psi|P_i|\Psi}  = 1
 \end{equation}
 Given this result the interpretation may be made that
-$$Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =$$
+\begin{equation*}
+\Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =
+\end{equation*}
 \begin{equation}
-=\lambda_1 Pr(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
+=\lambda_1 Pr(\lambda_1) + \lambda_2 Pr(\lambda_2) + \cdots +\lambda_i Pr(\lambda_i) = \bar{\lambda} 
 \label{eq:quantumExpectation}
 \end{equation}
 
-Therefore it is quite easy to see where the Born rule arises. It is therefore clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
+Therefore it is quite easy to see where the Born rule arises. It is clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
 \subsection{Bayes' Theorem} 
 Bayes' theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Bayes' Theorem is 
 \begin{equation}
@@ -48,7 +50,7 @@ An example of applying Bayes' Theorem to modelling the probability of obtaining 
 \end{figure}
 \subsection{Markov Chain Monte Carlo Methods}
 \label{sec:mcmcupdate}
-Often when attempting to fit a model it is computationally infeasible to explore the entire model space. This can be due to having a large number of possible models, models having a large number of parameters and the fact that most physical process parameters are described by real numbers and it is therefore impossible to explore the entire parameter space. A way to deal with model selection in this case is known are Markov Chain Monte Carlo (MCMC) methods. Given a set of models 
+Often when attempting to fit a model it is computationally infeasible to explore the entire model space. This can be due to having a large number of possible models, models having a large number of parameters, and the fact that most physical process parameters are described by real numbers and it is therefore impossible to explore the entire parameter space. A way to deal with model selection in this case is known as Markov Chain Monte Carlo (MCMC) methods. Given a set of models 
 \begin{equation}
 \mathcal{M} = \left\{\mathbf{M}(x_1,x_2,\cdots,x_i;y_1,y_2,\cdots,y_i) : y_j \in \mathcal{F}\right\}
 \label{eq:models}
@@ -59,10 +61,10 @@ where $x_j$ are input variables to the model and $y_j$ are model parameters, it 
 \label{mcmcupdate} 
 \end{equation}
 
-It is useful to think of the set of selected model parameters as a large number of points in space, in practice these are often referred to as points. By re-sampling model parameters as in (\ref{mcmcupdate}) it is possible to select points throughout the parameter space and ideally zero in on the optimal model. However, due to the nature of sampling normally being non-deterministic and numerical precision errors, it is crucial to examine the convergence of the model to experimental data. 
+It is useful to think of the set of selected model parameters as a large number of points in space, in practice these are often referred to as particles. By re-sampling model parameters as in (\ref{mcmcupdate}) it is possible to select points throughout the parameter space and ideally zero in on the optimal model. However, due to the nature of sampling normally being non-deterministic and numerical precision errors, it is crucial to examine the convergence of the model and whether results agree with experimental data. 
 
 \subsection{Fisher Information and the Cramer-Rao Lower Bound}
-The Cramer-Rao lower bound is hugely important in statistics as it provides a lower bound on the variance of an unbiased estimator 
+The Cramer-Rao lower bound is hugely important in statistics as it provides a lower bound on the variance of an unbiased estimator.
 \subsubsection{Covariance Matrix}
 The covariance matrix in statistics is a measure of how a random vector of variables changes together. Two random variables are related by their covariance $\sigma(x,y) = E_x \left[(x-E[x])(y-E[y])\right]$, where $E[x]$ denotes the expectation value of $x$. As an example, in quantum mechanics the expectation value according to the Born interpretation is as in (\ref{eq:quantumExpectation}). The covariance of two random variables can be generalized to that of a random vector of estimated coefficients $\mathbf{X}$ where \cite{covariance}
 \begin{equation}
@@ -97,11 +99,11 @@ The Cramer-Rao lower bound establishes a lower limit on the amount of informatio
 
 \section{Robust Online Hamiltonian Learning}
 \label{sec:robusthamiltonian}
-The construction of a large scale quantum information processor is an extremely difficult challenge. Before error correcting codes and algorithms can be applied to such a system, the full characterization of the system is required. This is normally achieved via statistical estimation of Hamiltonian parameters via tomography. In quantum tomography the process is normally carried out on the device as a \textit{black box} and a set of measurements is chosen such that the parametrization of them will allow the output of any input state to be predicted.\cite{tomography} Full tomography is computationally complex and requires the simulation of the behaviour of the quantum system. As the systems being simulated grow in complexity, it is no longer possible for classical computer to simulate.\cite{simulate}
+The construction of a large scale quantum information processor is an extremely difficult challenge. Before error correcting codes and algorithms can be applied to such a system, the full characterization of the system is required. This is normally achieved via statistical estimation of Hamiltonian parameters via tomography. In quantum tomography the process is normally carried out on the device as a \textit{black box} and a set of measurements is chosen such that the parametrization of them will allow the output of any input state to be predicted.\cite{tomography} Full tomography is computationally complex and requires the simulation of the behaviour of the quantum system. As the systems being simulated grow in complexity, it is no longer possible for classical computers to simulate.\cite{simulate}
 
 In practice there is often more information available about the form of the Hamiltonian of a given system and this allows the number of parameters that need be estimated to be reduced. This is known as partial process estimation or partial tomography. The goal of the experiment proposed in this thesis is to provide experimental verification of the algorithm proposed in the 2013 paper "Robust Online Hamiltonian Learning" by Chris Granade at the University of Waterloo.\cite{hamiltonian_learning} 
 
-An additional benefit to the algorithm of focus is that in quantum mechanics, often future measurement results depend on prior measurements. The use of MCMC methods allows model parameters to be estimated for such time dependent measurements. As given a set of estimated models for the hamiltonian it is possible to predict the probability of a future measurement $d_{N+1}$ given a future set of experimental controls $c_{N+1}$. 
+An additional benefit to the algorithm of focus is that in quantum mechanics future measurement results often depend on prior measurements. The use of MCMC methods allows model parameters to be estimated for such time dependent measurements. As given a set of estimated models for the hamiltonian it is possible to predict the probability of a future measurement $d_{N+1}$ given a future set of experimental controls $c_{N+1}$. 
 \begin{equation}
 P(d_{N+1}\big|D;c_{N+1},C) = E_{\mathbf{x}|D;C}[P(d_{N+1}\big|\mathbf{x};c_{N+1}]
 \label{eq:batch}
@@ -206,12 +208,12 @@ E_\pi [cov(\mathbf{\hat{x}})] \geq \mathbf{J}(\pi;C)^{-1}
 \section{Experimental Verification of the Robust Online Hamiltonian Learning Algorithm}
 While simulations predict that the algorithm introduced in sec(\ref{sec:robusthamiltonian}) quickly approaches the lower bound on the error for a variety of physical systems.\cite{hamiltonian_learning} It has yet to be verified experimentally. Therefore a proof of concept neutron interferometry experiment will be proposed which theoretically should allow the prediction of neutron interferometer model parameters and improve the maximum contrast of interferometer measurements. As control of the contrast of the neutron interferometer is desired, precise contrast control will only be obtainable when all system parameters are known. 
 \subsection{Experimental Model}
-Take the O and H detectors as 0 and 1 respectively. We model the probability of the neutron striking the $O$ detector similarly to (\ref{eq:normalizedIntensities}) except now the model is non-ideal and has parameters that must be fitted to it as 
+Take the O and H detectors as 0 and 1 respectively. We model the probability of the neutron striking the $O$ detector similarly to (\ref{eq:normalizedIntensities}) except now the model is non-ideal and has parameters that must be fitted
 \begin{equation}
 P(0|A,b,\delta\phi,C,\delta) = (\frac{1}{2}+b) + \frac{A}{2}cos(\Delta\phi+C\delta)
 \label{eq:model1}
 \end{equation}
-where $b$ is an unknown experimental offset,$A$ is an unknown amplitude, $\Delta\phi$ is the induced phase due to the different paths, $C$ is the phase flag constant and $\delta$ is the phase flag setting. 
+where $b$ is an unknown experimental offset, $A$ is an unknown amplitude, $\Delta\phi$ is the induced phase due to the different paths, $C$ is the phase flag constant and $\delta$ is the phase flag setting. 
 \subsubsection{Humidity and Temperature Phase Dependence}
 As the neutron interferometry chamber is not humidity or temperature controlled we will attempt to increase the contrast of measurements by accounting for the induced phase shift due to the water vapour in the air. This phase shift will occur if there is a path length difference between the two interferometer paths. This path length difference will be induced by one of the paths spending a longer time in the phase flag and therefore will be a function of the phase flag angle. The model will now have the form 
 \begin{equation}
@@ -221,7 +223,7 @@ Where
 \begin{equation*}
 \Delta\gamma(\Phi,T,\delta) = \frac{n}{v}\lambda b D
 \end{equation*}
-$D$ is the path length difference and from sec(\ref{sec:phaseflag}) the phase shift as a function of the phase flag angle is the negative of (\ref{eq:relative_phase}) due to the extra path length in the water vapour occurring when the other pass is still in the phase flag. therefore the phase difference induced by the water vapour is 
+$D$ is the path length difference and from sec(\ref{sec:phaseflag}) the phase shift as a function of the phase flag angle is the negative of (\ref{eq:relative_phase}) due to the extra path length in the water vapour occurring when the other pass is still in the phase flag. Therefore the phase difference induced by the water vapour is 
 \begin{equation}
 \Delta\gamma(\Phi,T,\delta)= 2\frac{n(\Phi,T)}{V}b_{water}\lambda D\frac{sin(\theta_B)sin(\delta)}{cos^2(\theta_B)-sin^2(\delta)} \approx \alpha \times \frac{n(\Phi,T)}{V}\delta 
 \label{eq:phasewater}
@@ -254,7 +256,7 @@ The phase shift due to water vapour is can be found by combining (\ref{eq:phasew
 \Delta\gamma(\Phi,T,\delta) = \frac{\alpha'\Phi\delta}{T}\times 10^{h_A - \frac{h_B}{h_C - T}}
 \label{eq:phasewaterfinal}
 \end{equation}
-In reality we do not have the exact values of $\Phi$ and $T$ and therefore must marginalize over the distribution of $P(T,\Phi|\hat{T},\hat{\Phi})$ conditioned on the estimator for the phase shift described by (\ref{eq:phasewaterfinal}).
+In reality we do not have the exact values of $\Phi$ and $T$ and therefore must marginalize over the distribution of $P(T,\Phi|\hat{T},\hat{\Phi})$ conditioned on the estimator for the phase shift described by (\ref{eq:phasewaterfinal})
 \begin{equation}
 Pr(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T Pr(\Delta\gamma|\Phi,T)P(T,\Phi|\hat{T},\hat{\Phi})dTd\Phi
 \label{eq:marginalizeprop}
@@ -436,7 +438,7 @@ It is interesting to observe how the error in the system parameters behave as ad
 \caption{The behaviour of the error in $\Delta\phi$ as additional experiments are performed, compared to the Cramer-Rao Lower Bound for the simulation.}
 \label{fig:errexp}
 \end{figure}
-While the adaptive simulation does converge on the true system parameters much more quickly than that of the naive experiment, there are very real compromises. As can be seen in fig(\ref{fig:adaptivetimes}) the time taken to perform each adaptive measurement is many orders of magnitude larger than that of simply naively choosing experiments spread out over a range of experimental parameters. The choice to use adaptive measurements becomes a balancing act. Each adaptive experiment should provide more information than the naive experiments, however if the simulation time is much larger than the time it would take to perform many naive experts, it may not be efficient to use adaptive experiment design. However there are often ways of accelerating computation with an example explored in section (\ref{sec:gpu}), whereas normally it is quite difficult to speed up physical experiments.  
+While the adaptive simulation does converge on the true system parameters much more quickly than that of the naive experiment, there are very real compromises. As can be seen in fig(\ref{fig:adaptivetimes}) the time taken to perform each adaptive measurement is many orders of magnitude larger than that of simply naively choosing experiments spread out over a range of experimental parameters. The choice to use adaptive measurements becomes a balancing act. Each adaptive experiment should provide more information than the naive experiments, however if the simulation time is much larger than the time it would take to perform many naive experts, it may not be efficient to use adaptive experiment design. However, there are often ways of accelerating computation with an example explored in section (\ref{sec:gpu}), whereas normally it is quite difficult to speed up physical experiments.  
  \begin{figure}[ht!]
 \centering
 \includegraphics[scale=1.0]{Figures/adaptivetimes.eps}

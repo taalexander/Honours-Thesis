@@ -75,7 +75,7 @@ With this result the Lippmann-Schwinger equation can be reduced to
 \label{eq:lippmannSchwingerLocal}
  \Braket{\mbox{\boldmath$x$}|\Psi^{\pm}}=\Braket{\mbox{\boldmath$x$}|\Phi} -\frac{2m}{\hbar^2} \int d^3x^{'} \frac{e^{\pm ik\left|\mbox{\boldmath$x-x^{'}$}\right|}}{ 4\pi \left| \mbox{\boldmath$x-x^{'}$} \right|} \mathcal{V}(\mbox{\boldmath$x{'}$})\Braket{\mbox{\boldmath$x^{'}$}|\Psi^{\pm}}
 \end{equation}
-Given that we are concerned with studying finite range scatters and that any observations that will be made outside the range of the potential due to the macroscopic nature of neutron detectors the assumption can be made that $\left|\mbox{\boldmath$x$}\right| >>\left|\mbox{\boldmath$x^{'}$}\right|$. The finite range potential can be seen in fig(\ref{fig:finiteRangePotential}).
+Given that we are concerned with studying finite range scatters and that any observations that will be made outside the range of the potential due to the macroscopic nature of neutron detectors, the assumption can be made that $\left|\mbox{\boldmath$x$}\right| >>\left|\mbox{\boldmath$x^{'}$}\right|$. The finite range potential can be seen in fig(\ref{fig:finiteRangePotential}).
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.5]{Figures/scatteringObservation.png}
@@ -130,7 +130,7 @@ The scattering cross section is an important parameter for experimental scatteri
 \caption{The differential cross section is the relationship between incident particles travelling through area $d\sigma$ to scattered particles crossing through the solid angle $d\Omega$. \cite{sakurai}}
 \label{fig:scatteringCrossSection}
 \end{figure}
-Evidently the probability of an incident particle being within an area $d\sigma$ in time $dt$ while travelling with velocity $v$ is just \cite{griffiths}
+Evidently the probability of an incident particle being within an area $d\sigma$ in time $dt$ while travelling with velocity $v$ is \cite{griffiths}
 \begin{equation}
 dP = \left|\Psi_i\right|^2 dV  = \left(\frac{1}{2\pi}\right)^3 (vdt)d\sigma
 \label{eq:incidentCross}
@@ -181,7 +181,7 @@ $$
 \end{equation}
 Given a potential that has spherical symmetry it is now much more simple to calculate the scattering amplitude using (\ref{eq:bornAngular}).
 \subsection{Neutron-nucleus Scattering}
-Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows probing the structure of solids. 
+Generally there are two interactions that an incident neutron on a material will experience, the interaction with the nucleus of the material atoms which is referred to as nuclear scattering and the scattering due to interactions with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows probing the structure of solids. 
 
 Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\mbox{\boldmath$r$})$ between the nucleus and neutron. As this interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\mbox{\boldmath$r$}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave a wave function described by (\ref{eq:PlaneWave}) and the scattered wavefunction will take the form of (\ref{eq:scatteredEquation},\ref{eq:f}).
 
@@ -281,14 +281,16 @@ The MZ utilizes a half-mirror to split the incoming electromagnetic wave and the
 \label{mach-zehnder}
 \end{figure}
 
-As reflection results in a phase shift of $\pi$ and assuming transmission through the half-mirrors results in a phase shift of $\delta$ we easily calculate the phase differences of the two paths at the two detectors. At detector 1 and path $U$ there is a total of two reflections and a single transmission which results in a phase shift of $2\pi+\delta$. Similarly for path $D$ the phase shift is also $2\pi + \delta$. therefore at detector 1 there is constructive interference. At detector 2 path $U$ has a phase of $2\pi + 2\delta$ and path $D$ has a phase of $\pi + 2\delta$. Therefore at detector 2 there is destructive interference.\cite{dimaThesis}
+As reflection results in a phase shift of $\pi$ and assuming transmission through the half-mirrors results in a phase shift of $\delta$, we easily calculate the phase differences of the two paths at the two detectors. At detector 1 and path $U$ there is a total of two reflections and a single transmission which results in a phase shift of $2\pi+\delta$. Similarly for path $D$ the phase shift is also $2\pi + \delta$. Therefore at detector 1 there is constructive interference. At detector 2 path $U$ has a phase of $2\pi + 2\delta$ and path $D$ has a phase of $\pi + 2\delta$. Therefore at detector 2 there is destructive interference.\cite{dimaThesis}
 
 \subsection{Three Blade Perfect Crystal Neutron Interferometer}
 When inside the neutron interferometer it is useful to analyse the wavefunction as the sum of the two possible neutron paths which will be referred to as path one $\Psi_0 = \Ket{I}$ and path two $\Ket{II}$. The wavefunction inside the interferometer can be represented by\cite{dimaThesis} 
 \begin{equation*}
 \Psi = C_1e^{i\phi_1}\Ket{I} + C_2e^{i\phi_2}\Ket{II}
 \end{equation*}
-Where $\phi_i$ are the phase of each component and $C_i$ are the amplitudes of each component. Representing the amplitude of a Bragg transmitted wave as $t$ and the reflected amplitude as $r$, where $|r|^2+|t|^2 = 1$. The wavefunctions can be traced through the interferometer. Consider an initial neutron with wavefunction $\Ket{I}$ is incident on the first blade of the neutron interferometer. The resultant wavefunction is 
+Where $\phi_i$ are the phase of each component and $C_i$ are the amplitudes of each component. Representing the amplitude of a Bragg transmitted wave as $t$ and the reflected amplitude as $r$, where $|r|^2+|t|^2 = 1$. 
+
+The wavefunctions can be traced through the interferometer. Consider an initial neutron with wavefunction $\Ket{I}$ is incident on the first blade of the neutron interferometer. The resultant wavefunction is 
 $$ te^{i\phi_{1_1}}\Ket{I} + re^{i\phi_{2_1}}\Ket{II}$$
 This wavefunction is than incident on the second blade interferometer. Discarding the transmitted waves as they exit the interferometer, the resultant wavefunction is 
 $$rte^{i\phi_{1_2}}\Ket{I} + rre^{i\phi_{2_2}}\Ket{II}$$
