@@ -5,7 +5,7 @@
 \section{Bayesian Markov Chain Monte Carlo Algorithms}
 Ever since Max Born presented what would become to be known as the Born interpretation, quantum mechanics has become a science of probabilities. The Born rule states that the probability of measuring an eigenvalue $\lambda_i$  of an observable corresponding to a hermitian operator $A$  will be 
 \begin{equation}
-p(\lambda_i) = \Braket{\Psi|P_i|\Psi}
+Pr(\lambda_i) = \Braket{\Psi|P_i|\Psi}
 \label{eq:bornrule}
 \end{equation}
 This can be seen by applying the spectral theorem to $A$\cite{linear}
@@ -19,13 +19,13 @@ Where $P_i$ are the orthogonal projections of $A$ onto the eigenspace correspond
 Given this result the interpretation may be made that
 $$Braket{\Psi|A|\Psi} = \lambda_1 \Braket{\Psi|P_1|\Psi} + \lambda_2\Braket{\Psi|P_2|\Psi} + \cdots +\lambda_i\Braket{\Psi|P_i|\Psi} =$$
 \begin{equation}
-=\lambda_1 p(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
+=\lambda_1 Pr(\lambda_1) + \lambda_2p(\lambda_2) + \cdots +\lambda_ip(\lambda_i) = \bar{\lambda} 
 \label{eq:quantumExpectation}
 \end{equation}
 
 Therefore it is quite easy to see where the Born rule arises. It is therefore clear that the Born interpretation opens physics up to the world of statisticians and their probabilities. Using techniques from statistics it is possible that improvements in neutron interferometer contrast may be made. 
-\subsection{Baye's Theorem} 
-Baye's theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Baye's Theorem is 
+\subsection{Bayes' Theorem} 
+Bayes' theorem is a very interesting statistical method that is useful for predicting the accuracy of statistical models given event data. The generic form of Bayes' Theorem is 
 \begin{equation}
 P(A|B) = \frac{P(B|A)P(A)}{P(B)} 
 \label{eq:bayes}
@@ -34,7 +34,7 @@ What this says is that given an event $B$ occurring from a set of events $\mathc
 
 This is an incredibly powerful theorem as it allows a set of models to be analysed statistically to determine the correct model with an actual likelihood of correctness given event data. A broad range of models can be tested and as more data rolls in the likelihood of the correct model to describe the system will rise.
 
-There are discrete and continuous forms of Baye's theorem, however in this case only the discrete form is of interest. 
+There are discrete and continuous forms of Bayes' theorem, however in this case only the discrete form is of interest. 
 \begin{equation}
 P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum \limits_j P(B|A_j)P(A_j)}
 \label{eq:discretebayes}
@@ -81,13 +81,13 @@ The Cramer-Rao lower bound states that the variance of an unbiased estimator $\h
 var(\hat{\theta}) \geq \frac{1}{I(\theta)}
 \label{eq:cramerao}
 \end{equation}
-The Fisher Information is the expectation value of the square of the first moment of the log likelihood function for some probability density function $p(\mathbf{X};\theta)$. The log-likelihood of the probability density function is defined as $\mathcal{l}(\mathbf{X};\theta) = log(p(\mathbf{X};\theta))$
+The Fisher Information is the expectation value of the square of the first moment of the log likelihood function for some probability density function $Pr(\mathbf{X};\theta)$. The log-likelihood of the probability density function is defined as $\mathcal{l}(\mathbf{X};\theta) = log(Pr(\mathbf{X};\theta))$
 Therefore the Fisher information is 
 \begin{equation}
-I(\theta) = E\left[\left(\frac{\partial}{\partial \theta} log (p(\mathbf{X};\theta)) \right)^2 \Big| \theta \right] = -E\left[\frac{\partial^2}{\partial\theta^2} l(\mathbf{X};\theta) \Big| \theta \right]
+I(\theta) = E\left[\left(\frac{\partial}{\partial \theta} log (Pr(\mathbf{X};\theta)) \right)^2 \Big| \theta \right] = -E\left[\frac{\partial^2}{\partial\theta^2} l(\mathbf{X};\theta) \Big| \theta \right]
 \label{eq:fisherinformation}
 \end{equation}
-The Fisher Information is the variance of the statistical score of the probability density function. Geometrically it is a measure of the amount of curvature of the log-likelihood function. It is a measure of the amount of information an observable $\mathbf{X}$ carries about an unknown parameter $\theta$ of which the probability of $\mathbf{X}$ relies on according to the function $p(\mathbf{X};\theta)$. In multiple dimensions the Fisher Information matrix takes the form 
+The Fisher Information is the variance of the statistical score of the probability density function. Geometrically it is a measure of the amount of curvature of the log-likelihood function. It is a measure of the amount of information an observable $\mathbf{X}$ carries about an unknown parameter $\theta$ of which the probability of $\mathbf{X}$ relies on according to the function $Pr(\mathbf{X};\theta)$. In multiple dimensions the Fisher Information matrix takes the form 
 \begin{equation}
 \mathbf{I}(\mathbf{\theta}) = E_D[\mathbf{\nabla}_\mathbf{\theta}log(P(D|\mathbf{\theta}))\cdot \mathbf{\nabla}^T_\mathbf{\theta}log(P(D|\mathbf{\theta}))]
 \label{eq:fishermatrix}
@@ -111,7 +111,7 @@ P(d_{N+1}\big|D;c_{N+1},C) = E_{\mathbf{x}|D;C}[P(d_{N+1}\big|\mathbf{x};c_{N+1}
 \subsubsection{Bounding the Error of an Estimator}
 Given a set of future experimental controls and their potential outcome probabilities it is useful to quantify the measurements usefulness. This is just the utility function as described in section (\ref{sec:mcmcupdate}). An often used measure is that of information gain, or in other words the expectation value of the logarithm of the estimator. 
 \begin{equation}
-U(d_{N+1};c_{N+1}) = E_{\mathbf{x}|d{N+1},D;c_{N+1},C}[log P(\mathbf{x}|d_{N+1},D;c_{N+1},C)]
+U(d_{N+1};c_{N+1}) = E_{\mathbf{x}|d{N+1},D;c_{N+1},C}[log Pr(\mathbf{x}|d_{N+1},D;c_{N+1},C)]
 \label{eq:utilityfunction}
 \end{equation}
 Maximizing the utility function is equivalent to minimizing the entropy of the posterior distribution.
@@ -127,12 +127,12 @@ Where $\mathbf{Q}$ is a chosen positive definite matrix deciding the importance 
 R(\mathbf{x},\mathbf{\hat{x}};C) = E_{D|\mathbf{x};C}[L(\mathbf{x},\mathbf{\hat{x}}(D,X))]
 \label{eq:risk}
 \end{equation}
-The Bayes risk is the average risk of the risk function with respect to a prior distribution $\pi(\mathbf{x})$
+The Bayes' risk is the average risk of the risk function with respect to a prior distribution $\pi(\mathbf{x})$
 \begin{equation}
 r(\pi;C) = E_\mathbf{x}[R(\mathbf{x},\mathbf{\hat{x}};C)] = \int \pi(\mathbf{x})R(\mathbf{x},\mathbf{\hat{x}};C)d\mathbf{x}
 \label{eq:bayesrisk}
 \end{equation}
-Here $\mathbf{\hat{x}}$ is taken to be the unique Bayes estimator, which is the estimator that minimizes the total risk. The utility function is chosen as the negative Bayes risk as this corresponds to minimizing the Bayes risk for chosen set of parameters. 
+Here $\mathbf{\hat{x}}$ is taken to be the unique Bayes' estimator, which is the estimator that minimizes the total risk. The utility function is chosen as the negative Bayes' risk as this corresponds to minimizing the Bayes' risk for chosen set of parameters. 
  
 Remembering the Fisher information matrix as defined in (\ref{eq:fishermatrix}) we call the Bayesian information matrix\cite{bayesiancramer}
 \begin{equation}
@@ -147,7 +147,7 @@ r(\pi;C)\geq \frac{1}{\mathbf{J}(\pi;C)}
 
 This is used rather than the Fisher Information as in the case of an experiment giving no information about a parameter set, the Fisher Matrix $I$ is singular and therefore its inverse is undefined, this is resolved via the Bayesian Cramer-Rao Lower Bound (\ref{eq:bayeslowerbound}). 
 
-Given (\ref{eq:bayeslowerbound}) the lower bound on the Bayes risk can be iteratively monitored. 
+Given (\ref{eq:bayeslowerbound}) the lower bound on the Bayes' risk can be iteratively monitored. 
 \begin{equation}
 r(\pi;C_{N+1})\geq \frac{1}{\mathbf{J}_{N+1}(C_{N+1})}
 \end{equation}
@@ -160,13 +160,13 @@ where
 \label{sec:resampling}
 Utilizing sequential Monte Carlo methods the costly posterior distribution are approximately calculated by approximating the distribution as a set of particles or points distributed over the parameter space, each with weight $w_i$ and with the sum of all weights being $\sum \limits_i w_i = 1$. Therefore the probability distribution is 
 \begin{equation*}
-P(\mathbf{x}|D) \approx \sum \limits_{k=1}^n w_k(D)\delta(\mathbf{x}-\mathbf{x}_k)
+Pr(\mathbf{x}|D) \approx \sum \limits_{k=1}^n w_k(D)\delta(\mathbf{x}-\mathbf{x}_k)
 \end{equation*}
 with the weights being iteratively updated according to 
 \begin{equation*}
 w_k(d_{j+1} \cup D) = \sum \limits_{k=1}^n P(d_{j+1}|\mathbf{x}_k)w_k(d_j)
 \end{equation*}
-As with MCMC algorithms the accuracy can be made arbitrarily high by increasing the number of particles. The initial weights are chosen to simply be $w_k = 1/n$. Using this approximate distribution, Bayes updates can be performed and an accurate estimator approached.
+As with MCMC algorithms the accuracy can be made arbitrarily high by increasing the number of particles. The initial weights are chosen to simply be $w_k = 1/n$. Using this approximate distribution, Bayes' updates can be performed and an accurate estimator approached.
 
 Since any particle estimate will only ever approach the true parametrization, all weights will tend to zero. This can be postponed by re-sampling and updating weights at intervals. The basic idea is too select some $n$ most likely particles and choose new particles around these likely particles according to some distribution to replace unlikely particles. Re-sampling will be performed when $n_ess = 1/\sum \limits_i w_i^2>0.5$ where $0.5$ is the re-sampling threshold. After re-sampling the weights are reset. 
 
@@ -186,7 +186,7 @@ It is not just important to have an accurate estimator for the system, but also 
 
 The probability of the true model being within a region $\mathbf{\hat{X}}$ can be expressed as 
 \begin{equation}
-P(\mathbf{x_0}\in \mathbf{\hat{X}}) = E[1_{\mathbf{\hat{X}}}]
+Pr(\mathbf{x_0}\in \mathbf{\hat{X}}) = E[1_{\mathbf{\hat{X}}}]
 \end{equation}
 Where $1_{\mathbf{\hat{X}}}(x) = 1$ if $\mathbf{x}\in \mathbf{\hat{X}}$ and otherwise $1_{\mathbf{\hat{X}}}(x) = 0$. 
 The probability of a region can then be calculated from the particle weights from section (\ref{sec:resampling}). 
@@ -256,13 +256,13 @@ The phase shift due to water vapour is can be found by combining (\ref{eq:phasew
 \end{equation}
 In reality we do not have the exact values of $\Phi$ and $T$ and therefore must marginalize over the distribution of $P(T,\Phi|\hat{T},\hat{\Phi})$ conditioned on the estimator for the phase shift described by (\ref{eq:phasewaterfinal}).
 \begin{equation}
-P(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T P(\Delta\gamma|\Phi,T)P(T,\Phi|\hat{T},\hat{\Phi})dTd\Phi
+Pr(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T Pr(\Delta\gamma|\Phi,T)P(T,\Phi|\hat{T},\hat{\Phi})dTd\Phi
 \label{eq:marginalizeprop}
 \end{equation}  
 For simplicity we assume that $\hat{\Phi}\perp\hat{T}$ which reduces 
 (\ref{eq:marginalizeprop}) to 
 \begin{equation}
-P(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T P(\Delta\gamma|\Phi,T)P(T,\hat{T})P(\Phi,\hat{\Phi})dTd\Phi
+Pr(\Delta\gamma|\hat{\Phi},\hat{T})= \int \limits_\Phi \int \limits_T Pr(\Delta\gamma|\Phi,T)P(T,\hat{T})Pr(\Phi,\hat{\Phi})dTd\Phi
 \label{eq:marginalizeprop2}
 \end{equation}
 Taking account of the humidity and temperature dependence of the phase due to water vapour in the air, the updated model now takes the form 
@@ -271,11 +271,11 @@ Taking account of the humidity and temperature dependence of the phase due to wa
   P(0|A,b,\Delta\phi,C,\alpha';\delta,\hat{\Phi},\hat{T}) = \int \limits_{\Delta\gamma} P(0|A,b,\Delta\phi,C,\delta,\alpha',\hat{\Phi},\hat{T},\Delta\gamma)d\Delta\gamma =
 \end{equation*}
 \begin{equation*}
-= \int \limits_{\Delta\gamma} \int \limits_\Phi \int \limits_T P(0|A,b,\Delta\phi,C,\alpha';\delta,\Phi,T,\Delta\gamma)P(T,\hat{T})P(\Phi,\hat{\Phi})dTd\Phi d\Delta\gamma =
+= \int \limits_{\Delta\gamma} \int \limits_\Phi \int \limits_T P(0|A,b,\Delta\phi,C,\alpha';\delta,\Phi,T,\Delta\gamma)P(T,\hat{T})Pr(\Phi,\hat{\Phi})dTd\Phi d\Delta\gamma =
 \end{equation*}
 \small
 \begin{equation}
-= \int \limits_\Phi \int \limits_T \left[(\frac{1}{2}+b)+\frac{A}{2}cos\left(\Delta\phi + C\delta + \frac{\alpha' \Phi\delta}{T}\times 10^{h_A - \frac{h_B}{h_C + T}}\right)\right]P(T|\hat{T})P(\Phi|\hat{\Phi})dTd\Phi
+= \int \limits_\Phi \int \limits_T \left[(\frac{1}{2}+b)+\frac{A}{2}cos\left(\Delta\phi + C\delta + \frac{\alpha' \Phi\delta}{T}\times 10^{h_A - \frac{h_B}{h_C + T}}\right)\right]P(T|\hat{T})Pr(\Phi|\hat{\Phi})dTd\Phi
 \label{eq:finalmodel}
 \end{equation}
 \normalsize
@@ -286,7 +286,7 @@ C+\frac{\alpha'\Phi}{T}\times 10^{h_A - \frac{h_B}{h_C + T}} \geq 20
 \end{equation}
 
 \subsection{Model Analysis}
-Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithm described in sec(\ref{sec:robusthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
+Due to unforeseen departmental issues it was not possible to experimentally verify the model (\ref{eq:finalmodel}) using the algorithm described in sec(\ref{sec:robusthamiltonian}). However it was possible to simulate the model for test \textit{true} parameters and simulate both naive and adaptive experiments to determine if it should be possible to reduce the Bayes' risk to an acceptable level. A variety of \textit{true} parameter sets were chosen, to test the affects of different parameters as seen in table (\ref{tab:trueparams}). 
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{l*{6}{c}r}
@@ -324,11 +324,11 @@ A&b& $\Delta\phi$ & C & $\alpha$ \\
 \label{tab:around}
 \end{center}
 \end{table}
-From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialdistributions}).
+From these initial uniform distributions the Bayes' risk can be calculated as seen in fig(\ref{fig:initialdistributions}).
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth , height=0.8\textheight]{Figures/priors.png}
-\caption{The Bayes Risk of the initial prior distributions}
+\caption{The Bayes' Risk of the initial prior distributions}
 \label{fig:initialdistributions}
 \end{figure}
 It is clear that the initial risk is very large. This is as to be expected since the initial distributions are simply uniform distributions. It should be noted that the risk is largest around the point when the sum of the phases is $\pm\pi/2$. This is because when the total phase offset is $\pm\pi/2$, $cos(\pi/2)=0$ and there is no information about any parameters except $b$. The risks of parameter set two are singularly peaked, due to the lack of full phase control. 
@@ -367,11 +367,11 @@ Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
 \end{center}
 \end{table}
 
-While the experiment simulated above is simply a parameter sweep of as many $\delta$ values as possible, the import feature of the tested algorithm is experimental design. By simulating future experiments based on the present probability distributions it is possible to select experimental parameters such that the information gain is maximized and the Bayes risk minimized. The results of the adaptive simulations can be seen in fig(\ref{fig:adaptiverisks}). Note that the risk is very low in comparison to the naive simulation. An interesting aspect to note is that the two simulations with the most extreme system parameters, parameter sets two and five, demonstrate very jagged risk curves. This is most likely due to the inability to adequately choose experimental parameters when the ability to control the system is small such as in these two cases. 
+While the experiment simulated above is simply a parameter sweep of as many $\delta$ values as possible, the import feature of the tested algorithm is experimental design. By simulating future experiments based on the present probability distributions it is possible to select experimental parameters such that the information gain is maximized and the Bayes' risk minimized. The results of the adaptive simulations can be seen in fig(\ref{fig:adaptiverisks}). Note that the risk is very low in comparison to the naive simulation. An interesting aspect to note is that the two simulations with the most extreme system parameters, parameter sets two and five, demonstrate very jagged risk curves. This is most likely due to the inability to adequately choose experimental parameters when the ability to control the system is small such as in these two cases. 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth , height=0.8\textheight]{Figures/adaptiverisk.png}
-\caption{The Bayes Risk from an adaptive simulations, when 200 experiments were performed with experimental parameters chosen to maximize the information gain.}
+\caption{The Bayes' Risk from an adaptive simulations, when 200 experiments were performed with experimental parameters chosen to maximize the information gain.}
 \label{fig:adaptiverisks}
 \end{figure}
 
@@ -402,7 +402,7 @@ The parameters chosen for the acceptable system parameters can be seen in table 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth , height=0.8\textheight]{Figures/naive200.png}
-\caption{The Bayes Risk from a naive simulation, when 200 experiments were performed with linear space parameters from $0<\delta<\pi/10$.}
+\caption{The Bayes' Risk from a naive simulation, when 200 experiments were performed with linear space parameters from $0<\delta<\pi/10$.}
 \label{fig:naive200}
 \end{figure}
 \begin{table}[h]
