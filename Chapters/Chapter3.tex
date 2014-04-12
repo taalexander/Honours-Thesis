@@ -1,6 +1,6 @@
 \chapter{Contrast Improvement of Neutron Interferometry Measurements} % Write in your own chapter title
-\label{Chapter2}
-\lhead{Chapter 2. \emph{Contrast Improvement of Neutron Interferometry Measurements}} % Write in your own chapter title to set the page header
+\label{Chapter3}
+\lhead{Chapter 3. \emph{Contrast Improvement of Neutron Interferometry Measurements}} % Write in your own chapter title to set the page header
 
 \section{Bayesian Markov Chain Monte Carlo Algorithms}
 Ever since Max Born presented what would become to be known as the Born interpretation, quantum mechanics has become a science of probabilities. The Born rule states that the probability of measuring an eigenvalue $\lambda_i$  of an observable corresponding to a hermitian operator $A$  will be 
@@ -39,9 +39,10 @@ There are discrete and continuous forms of Baye's theorem, however in this case 
 P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum \limits_j P(B|A_j)P(A_j)}
 \label{eq:discretebayes}
 \end{equation}
+An example of applying Bayes' Theorem to modelling the probability of obtaining a heads when flipping a biased coin can be seen in fig(\ref{fig:bayes}). After obtaining ten heads in a row it can been see that the model for a biased coin has a much larger probability of being the correct model according to Bayes' theorem. 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.5]{Figures/bayes.eps}
+\includegraphics[scale=0.8]{Figures/bayes.eps}
 \caption{Example prior and posterior distribution for a set of coin flip models that samples 10 heads flips in a row}
 \label{fig:bayes}
 \end{figure}
@@ -58,7 +59,7 @@ where $x_j$ are input variables to the model and $y_j$ are model parameters, it 
 \label{mcmcupdate} 
 \end{equation}
 
-It is useful to think of the set of selected model parameters as a large number of points in space, in practice these are often referred to as points. By re-sampling model parameters as in (\ref{mcmcupdate}) it is possible to select points throughout the parameter space and ideally zero in on the optimal model. However, due to the nature of sampling normally being non-deterministic and numerical precision errors, it is crucial examine the convergence of the model to experimental data. 
+It is useful to think of the set of selected model parameters as a large number of points in space, in practice these are often referred to as points. By re-sampling model parameters as in (\ref{mcmcupdate}) it is possible to select points throughout the parameter space and ideally zero in on the optimal model. However, due to the nature of sampling normally being non-deterministic and numerical precision errors, it is crucial to examine the convergence of the model to experimental data. 
 
 \subsection{Fisher Information and the Cramer-Rao Lower Bound}
 The Cramer-Rao lower bound is hugely important in statistics as it provides a lower bound on the variance of an unbiased estimator 
@@ -326,7 +327,7 @@ A&b& $\Delta\phi$ & C & $\alpha$ \\
 From these initial uniform distributions the Bayes risk can be calculated as seen in fig(\ref{fig:initialdistributions}).
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth]{Figures/priors.png}
+\includegraphics[width=\textwidth , height=0.8\textheight]{Figures/priors.png}
 \caption{The Bayes Risk of the initial prior distributions}
 \label{fig:initialdistributions}
 \end{figure}
@@ -335,7 +336,7 @@ It is clear that the initial risk is very large. This is as to be expected since
 We next examine the algorithm behaviour for an experiment in which $2^15$ linearly spaced values for $\delta$ from $\delta=[0,\pi/10]$ are measured, with the assumption that at each interval $100$ neutrons are detected. The Monte Carlo algorithm is using $20000$ particles. Additionally the temperature is set to $293.15\pm0.5K$ and the humidity $70\pm1\%$, both are normally distributed. While this experiment is unrealistic as the number of neutrons detected would be much larger than $100$ and would be varying, it serves as a naive simulation. The results are as seen in fig(\ref{fig:naiverisks}). 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth]{Figures/naiverisk.png}
+\includegraphics[width=\textwidth , height=0.8\textheight]{Figures/naiverisk.png}
 \caption{Approximate calculated system parameters from naive experiment with $2^{15}$ linearly spaced phase flag angles $0<\delta<\pi/10$.}
 \label{fig:naiverisks}
 \end{figure}
@@ -369,7 +370,7 @@ Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
 While the experiment simulated above is simply a parameter sweep of as many $\delta$ values as possible, the import feature of the tested algorithm is experimental design. By simulating future experiments based on the present probability distributions it is possible to select experimental parameters such that the information gain is maximized and the Bayes risk minimized. The results of the adaptive simulations can be seen in fig(\ref{fig:adaptiverisks}). Note that the risk is very low in comparison to the naive simulation. An interesting aspect to note is that the two simulations with the most extreme system parameters, parameter sets two and five, demonstrate very jagged risk curves. This is most likely due to the inability to adequately choose experimental parameters when the ability to control the system is small such as in these two cases. 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth]{Figures/adaptiverisk.png}
+\includegraphics[width=\textwidth , height=0.8\textheight]{Figures/adaptiverisk.png}
 \caption{The Bayes Risk from an adaptive simulations, when 200 experiments were performed with experimental parameters chosen to maximize the information gain.}
 \label{fig:adaptiverisks}
 \end{figure}
@@ -400,7 +401,7 @@ The parameters chosen for the acceptable system parameters can be seen in table 
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth]{Figures/naive200.png}
+\includegraphics[width=\textwidth , height=0.8\textheight]{Figures/naive200.png}
 \caption{The Bayes Risk from a naive simulation, when 200 experiments were performed with linear space parameters from $0<\delta<\pi/10$.}
 \label{fig:naive200}
 \end{figure}
@@ -431,7 +432,7 @@ Parameter set & A&b& $\Delta\phi$ & C & $\alpha$ \\
 It is interesting to observe how the error in the system parameters behave as additional experiments are performed. This can be seen in fig(\ref{fig:errexp}) for the error in the phase shift of $\Delta\phi$. It can be observed that the error rapidly decreases as the first experiments are performed and the algorithm gains information about the system. The error continues to decrease with additional experiments and tends to follow the Cramer-Rao Lower Bound for the simulation quite closely. 
  \begin{figure}[ht!]
 \centering
-\includegraphics[width=0.8\textwidth]{Figures/meanerror.eps}
+\includegraphics[width=\textwidth]{Figures/meanerror.eps}
 \caption{The behaviour of the error in $\Delta\phi$ as additional experiments are performed, compared to the Cramer-Rao Lower Bound for the simulation.}
 \label{fig:errexp}
 \end{figure}

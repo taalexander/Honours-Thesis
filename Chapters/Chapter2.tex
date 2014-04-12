@@ -7,10 +7,10 @@
 
 \section{Neutrons}
 \subsection{Particle Description of Neutrons}
-The neutron is a subatomic hadron particle that is present in the nucleus of every atom except $^1H$. The neutron is composed of two down quarks and a single up quarks. This composition gives a neutral electric charge for the neutron making it an ideal candidate for sensitive experiments, however the downside is that neutrons are much more difficult to manipulate. The neutron is also therefore a fermion and by the Pauli exclusion principle only a single neutron is allowed in each quantum state. The free neutron is unstable and undergoes beta decay with a lifetime of just $881.5 \pm 1.5 s$. The neutron has a rest mass of approximately $939.56Mev$. Free neutrons are produced using either neutral fission or fusion although in practical experiments fission is almost always used. At the NIST Research Reactor free neutrons are produced from the fission of $^{235}U$.\cite{dimaThesis}
+The neutron is a subatomic hadron particle that is present in the nucleus of every atom except $^1H$. The neutron is composed of two down quarks and a single up quarks. This composition gives a neutral electric charge for the neutron making it an ideal candidate for sensitive experiments, however the downside is that neutrons are much more difficult to manipulate. The neutron is also a fermion and by the Pauli exclusion principle only a single neutron is allowed in each quantum state. The free neutron is unstable and undergoes beta decay with a lifetime of just $881.5 \pm 1.5 s$. The neutron has a rest mass of approximately $939.56Mev$. Free neutrons are produced using either neutral fission or fusion although in practical experiments fission is almost always used. At the NIST Research Reactor free neutrons are produced from the fission of $^{235}U$.\cite{dimaThesis}
 \subsection{Thermal Neutrons}
 \label{sec:thermal}
-Neutron interferometry utilizes thermal neutrons which are free neutrons that follow a Boltzmann distribution. The neutrons at NIST are found in the kinetic energy range of $4$-$20meV$ around room temperature of $T=293.15K$. This gives gives neutron velocities of $875-1956\frac{m}{s}$ which gives $v<<c$ and therefore relativistic affects do not play a role. Therefore thermal neutrons are in near thermal equilibrium with their surroundings. Neutrons are decelerated to a thermal state in the reactor by collisions with neutron moderators in the reactor. From de Broglie relations the wavelength of thermal neutrons is approximately $\lambda = \frac{h}{p}= 2.0$-$4.5\AA$. After being emitted form the NIST reactor the neutrons follow a wave-guide and using a wave splitter are sent into individual labs. As the strongest known phase space density of a neutron source is around $10^-14$ it can be safely assumed that the probability of two neutrons interacting inside the wave-guide or interferometer is sufficiently low that it can be disregarded and therefore detected neutrons have no correlation between each-other.\cite{dimaThesis}
+Neutron interferometry utilizes thermal neutrons which are free neutrons that follow a Boltzmann distribution. The neutrons at NIST are found in the kinetic energy range of $4$-$20meV$ around room temperature of $T=293.15K$. This gives neutron velocities of $875-1956\frac{m}{s}$ which gives $v<<c$ and therefore relativistic affects do not play a role. Therefore thermal neutrons are in near thermal equilibrium with their surroundings. Neutrons are decelerated to a thermal state in the reactor by collisions with neutron moderators in the reactor. From de Broglie relations the wavelength of thermal neutrons is approximately $\lambda = \frac{h}{p}= 2.0$-$4.5\AA$. After being emitted form the NIST reactor the neutrons follow a wave-guide and using a wave splitter are sent into individual labs. As the strongest known phase space density of a neutron source is around $10^{-14}$ it can be safely assumed that the probability of two neutrons interacting inside the wave-guide or interferometer is sufficiently low that it can be disregarded and therefore detected neutrons have no correlation between each-other.\cite{dimaThesis}
 
 \section{Neutron Interferometry}
 The Neutron interferometer is similar to other forms of interferometry in which an incoming wave is split and than allowed to interfere at a later point which allows the two wave paths to be compared. The modern day neutron interferometer is functionally equivalent to an optical Mach-Zender (MZ) interferometer.\cite{machzehnder}
@@ -21,7 +21,7 @@ In neutron interferometry the crystal planes of the interferometer blades act as
 \label{bragg}
 n\lambda = 2d sin(\theta_{B})
 \end{equation} 
-Where $n$ is a positive integer, $d$ is the distance between the atomic planes of the crystal lattice and $\theta_{b}$ is the angle between the incident beam and the atomic plane of the crystal. Not all of the amplitude of the neutron beam is scattered and a large portion is transmitted through the crystal with only its phase shifted. The amplitudes of the transmitted and the reflected beams are given by the coefficients $t$ (transmitted) and $r$ reflected. Under the assumption that the entire beam is either Bragg scattered or transmitted the coefficients $t$ and $r$ must have the following relationship.\cite{dimaThesis}  
+Where $n$ is a positive integer, $d$ is the distance between the atomic planes of the crystal lattice and $\theta_{B}$ is the angle between the incident beam and the atomic plane of the crystal. Not all of the amplitude of the neutron beam is scattered and a large portion is transmitted through the crystal with only its phase shifted. The amplitudes of the transmitted and the reflected beams are given by the coefficients $t$ (transmitted) and $r$ reflected. Under the assumption that the entire beam is either Bragg scattered or transmitted the coefficients $t$ and $r$ must have the following relationship.\cite{dimaThesis}  
 \begin{equation}
 |r|^2+|t|^2 = 1
 \label{eq:BraggCoefficents}
@@ -47,7 +47,7 @@ $$\mathcal{H}_0\Ket{\Phi}=E\Ket{\Phi}$$
 Therefore we are looking for solutions to the Schrödinger equation of the form \cite{sakurai}
 \begin{equation}
 \label{eq:schrodinger}
-\mathcal{H}_0+\mathcal{V}\Ket{\Psi} = E\Ket{\Psi} 
+(\mathcal{H}_0+\mathcal{V})\Ket{\Psi} = E\Ket{\Psi} 
 \end{equation} 
  A valid solution should have that $\Ket{\Psi}\rightarrow\Ket{\Phi}$ as $\mathcal{V}\rightarrow 0$. A solution that satisfies these requirements is known as the Lippmann-Schwinger equation. \cite{sakurai}
  \begin{equation}
@@ -75,7 +75,7 @@ With this result the Lippmann-Schwinger equation can be reduced to
 \label{eq:lippmannSchwingerLocal}
  \Braket{\mbox{\boldmath$x$}|\Psi^{\pm}}=\Braket{\mbox{\boldmath$x$}|\Phi} -\frac{2m}{\hbar^2} \int d^3x^{'} \frac{e^{\pm ik\left|\mbox{\boldmath$x-x^{'}$}\right|}}{ 4\pi \left| \mbox{\boldmath$x-x^{'}$} \right|} \mathcal{V}(\mbox{\boldmath$x{'}$})\Braket{\mbox{\boldmath$x^{'}$}|\Psi^{\pm}}
 \end{equation}
-Given that we are concerned with studying finite range scatters and that any observations that will be made will be made outside the range of the potential due to the macroscopic nature of neutron detectors the assumption can be made that $\left|\mbox{\boldmath$x$}\right| >>\left|\mbox{\boldmath$x^{'}$}\right|$. 
+Given that we are concerned with studying finite range scatters and that any observations that will be made outside the range of the potential due to the macroscopic nature of neutron detectors the assumption can be made that $\left|\mbox{\boldmath$x$}\right| >>\left|\mbox{\boldmath$x^{'}$}\right|$. The finite range potential can be seen in fig(\ref{fig:finiteRangePotential}).
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.5]{Figures/scatteringObservation.png}
@@ -107,7 +107,7 @@ For the distant $r$ at the observation point it is a useful approximation to say
 \begin{equation}
 \frac{1}{\left|\mbox{\boldmath$x-x^{'}$}\right|} \approx \frac{1}{r}
 \end{equation}
-Now replacing our incident generic wave with an incident plane wave $\Ket{\Phi}\rightarrow \Ket{\mbox{\boldmath$p$}}$ and using \mbox{\boldmath$k$} $\equiv \mbox{\boldmath$p_i$}/ \hbar$ To remove the $\hbar$'s from the expression.\cite{sakurai} We obtain for the first term in (\ref{eq:lippmannSchwingerLocal}) 
+Now replacing our incident generic wave with an incident plane wave $\Ket{\Phi}\rightarrow \Ket{\mbox{\boldmath$p$}}$ and using \mbox{\boldmath$k$} $\equiv \mbox{\boldmath$p_i$}/ \hbar$ to remove the $\hbar$'s from the expression.\cite{sakurai} We obtain for the first term in (\ref{eq:lippmannSchwingerLocal}) 
 \begin{equation}
 \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k$}}=\int d^3k^{'} \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k^{'}$}}\Braket{\mbox{\boldmath$k^{'}$}|\mbox{\boldmath$k$}}=\int d^3k^{'}  \Braket{\mbox{\boldmath$x$}|\mbox{\boldmath$k^{'}$}} \delta^{(3)}(\mbox{\boldmath$k^{'}-k$})=\frac{e^{i\mbox{\boldmath$k \cdot x$}}}{(2\pi)^{\frac{3}{2}}}
 \label{eq:PlaneWave}
@@ -132,7 +132,7 @@ The scattering cross section is an important parameter for experimental scatteri
 \end{figure}
 Evidently the probability of an incident particle being within an area $d\sigma$ in time $dt$ while travelling with velocity $v$ is just \cite{griffiths}
 \begin{equation}
-dP = \left|\Psi_i\right|^2 dV  = \frac{1}{2\pi}^3 (vdt)d\sigma
+dP = \left|\Psi_i\right|^2 dV  = \left(\frac{1}{2\pi}\right)^3 (vdt)d\sigma
 \label{eq:incidentCross}
 \end{equation}
 
@@ -146,7 +146,7 @@ dP = \left|\Psi_i\right|^2 dV  = \frac{1}{2\pi}^3 (vdt)d\sigma
 Relating this probability to the probability of a particle being scattered into solid angle $d\Omega$ with equal velocity $v$ per unit time $dt$. 
 \begin{equation}
 \label{eq:scatteredCross}
-dP=\left|\Psi_s\right|^2dV = \frac{1}{2\pi}^3 \frac{\left|f(\mbox{\boldmath$k^{'},k$})\right|^2}{r^2}(vdt)r^2 d\Omega
+dP=\left|\Psi_s\right|^2dV = \left(\frac{1}{2\pi}\right)^3 \frac{\left|f(\mbox{\boldmath$k^{'},k$})\right|^2}{r^2}(vdt)r^2 d\Omega
 \end{equation}
 Equations (\ref{eq:incidentCross}) and (\ref{eq:scatteredCross}) can be solved for the differential cross section 
 \begin{equation}
@@ -181,16 +181,16 @@ $$
 \end{equation}
 Given a potential that has spherical symmetry it is now much more simple to calculate the scattering amplitude using (\ref{eq:bornAngular}).
 \subsection{Neutron-nucleus Scattering}
-Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows the structure of solids to probed. 
+Generally there are two interactions that an incident neutron on a material will experience. The interaction with the nucleus of the material atoms and which is referred to as nuclear scattering and the scattering due to interaction with unpaired electrons and their magnetic moments which is known as magnetic scattering. In practice nuclear scattering is more common as it allows probing the structure of solids. 
 
-Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\mbox{\boldmath$r$})$ between the nucleus and neutron. As this is interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\mbox{\boldmath$r$}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave a wave function described by (\ref{eq:PlaneWave}) and the scattered wavefunction will take the form of (\ref{eq:scatteredEquation},\ref{eq:f}).
+Given the assumptions that an incoming neutron beam will be elastically scattered and that the nucleus is fixed, the scattering will depend on the potential $V(\mbox{\boldmath$r$})$ between the nucleus and neutron. As this interaction is due to the strong-force it is naturally occurring over a very short range, and is approximately zero at a distance of the order $\mbox{\boldmath$r$}=10^{-15}m$. As this is much shorter than the wavelength of thermal and cold neutrons which are used in almost all scattering experiments, the nucleus acts as a point scatterer. A neutron beam can be represented as a plane wave a wave function described by (\ref{eq:PlaneWave}) and the scattered wavefunction will take the form of (\ref{eq:scatteredEquation},\ref{eq:f}).
 
 Due to the magnitude of the difference between the wavelength of the incident neutrons and the effective acting distance of the strong-force neutron-nucleus interaction and its approximate spherical symmetry it is an acceptable approximation to use the Fermi pseudo-potential \cite{waveguide}
 \begin{equation}
 \label{eq:FermiPseudoPotential}
 \mathcal{V}(\mbox{\boldmath$x^{'}$}) = \frac{2\pi\hbar^2}{m}b\delta(\mbox{\boldmath$x^{'}$})
 \end{equation}
- as a scattering potential. Where $b$ is known as the neutron scattering length and his units of meters. For the case of multiple nuclei the potential takes the form
+ as a scattering potential. Where $b$ is known as the neutron scattering length and has units of meters. For the case of multiple nuclei the potential takes the form
  \begin{equation}
  \label{eq:MultipleNuclei}
  \mathcal{V}(\mbox{\boldmath$x^{'}$})  = \frac{2\pi\hbar^2}{m}\sum\limits_{j} b_j \delta(\mbox{\boldmath$x^{'}-x_j$})
@@ -212,7 +212,7 @@ Therefore it can be seen that the completed neutron scattered wave form is
 \Braket{\mbox{\boldmath$x$}|\Psi^{+}} = \frac{1}{(2\pi)^{\frac{3}{2}}}\left(e^{i\mbox{\boldmath$k \cdot x$}} - \sum\limits_{j}b_j e^{i(\mbox{\boldmath$q \cdot x_j$})}\frac{e^{ikr}}{r}\right)
 \end{equation}
 
-From this approximate solution it is evident that the only difference between individual scatterers is their neutron scattering length $b$. The value $b$ varies greatly among even neighbouring elements in the periodic table. Unfortunately the outlined theory is not strong enough to predict the scattering length and the parameters must be determined experimentally. 
+From this approximate solution it is evident that the only difference between individual scatterers is their neutron scattering length $b$. The value $b$ varies greatly among even neighbouring elements in the periodic table. Unfortunately the outlined theory is not strong enough to predict the scattering length and the parameters must be determined experimentally. Fig(\ref{fig:scatteringLength}) shows the scattering length for various elements of the periodic table.
 
 \begin{figure}[ht!]
 \centering
@@ -231,7 +231,7 @@ Inside a sufficiently large homogeneous material the Fermi pseudo-potential can 
 Where $N$ is the atom number density. 
 \subsection{Neutron Optics}
 As the neutron beam is a wavefunction many analogies from classical optics hold. The index of refraction is defined as the ratio of the speed of neutrons experiencing no potential to the speed of neutrons affected by a potential. Compared to light the form is familiar 
-$$ \frac{c}{n} = \frac{K}{k}$$
+$$ n = \frac{c}{v} = \frac{K}{k}$$
 Where from Schrödinger's equation
 $$\nabla^2\Psi(\mbox{\boldmath$x$}) + \frac{2m}{\hbar^2}(E-\mathcal{V}(\mbox{\boldmath$x$}))\Psi(\mathbf{x}) = 0 $$ 
 \begin{equation}
@@ -284,7 +284,7 @@ The MZ utilizes a half-mirror to split the incoming electromagnetic wave and the
 As reflection results in a phase shift of $\pi$ and assuming transmission through the half-mirrors results in a phase shift of $\delta$ we easily calculate the phase differences of the two paths at the two detectors. At detector 1 and path $U$ there is a total of two reflections and a single transmission which results in a phase shift of $2\pi+\delta$. Similarly for path $D$ the phase shift is also $2\pi + \delta$. therefore at detector 1 there is constructive interference. At detector 2 path $U$ has a phase of $2\pi + 2\delta$ and path $D$ has a phase of $\pi + 2\delta$. Therefore at detector 2 there is destructive interference.\cite{dimaThesis}
 
 \subsection{Three Blade Perfect Crystal Neutron Interferometer}
-When inside the neutron interferometer it is useful to analyse the wavefunction as the sum of the two possible neutron paths which will be refereed to as path one $\Psi_0 = \Ket{I}$ and path two $\Ket{II}$. The wavefunction inside the interferometer can be represented by\cite{dimaThesis} 
+When inside the neutron interferometer it is useful to analyse the wavefunction as the sum of the two possible neutron paths which will be referred to as path one $\Psi_0 = \Ket{I}$ and path two $\Ket{II}$. The wavefunction inside the interferometer can be represented by\cite{dimaThesis} 
 \begin{equation*}
 \Psi = C_1e^{i\phi_1}\Ket{I} + C_2e^{i\phi_2}\Ket{II}
 \end{equation*}
@@ -299,7 +299,7 @@ At the third and final blade, the geometry of the wave splitting superimposes pa
 \end{equation}
 This results in an intensity at the $O$ detector of\cite{dimaThesis}
 \begin{equation}
-I_O \propto P(O|\Delta\phi) = \Braket{\Psi_O | \Psi_O} = |r|^4|t|^2(1+cos(\psi_1-\psi_2) = A(1+cos(\Delta\phi))
+I_O \propto P(O|\Delta\phi) = \Braket{\Psi_O | \Psi_O} = |r|^4|t|^2(1+cos(\phi_1-\phi_2) = A(1+cos(\Delta\phi))
 \label{eq:obeamintensity}
 \end{equation} 
 Where $A=|r|^4|t|^2$ and $\Delta\phi = \phi_1-\phi_2$. The resultant intensity for the $H$ beam is therefore 
@@ -377,7 +377,7 @@ n_1sin(\theta_1) = n_2sin(\theta_2)
 \end{equation}
 Total reflection will occur when 
 $$sin(\theta_2)= \frac{n_1}{n_2}sin(\theta_1)\le 0 \,\,\,\,\, \forall 0<\theta<\pi$$
-As $max(sin(\theta_1))=1$ occur when $\theta_1=\frac{pi}{2}$, using (\ref{eq:indexofrefraction}) the condition for total reflection in air where $n_1\approx1$ is  
+As $max(sin(\theta_1))=1$ occur when $\theta_1=\frac{\pi}{2}$, using (\ref{eq:indexofrefraction}) the condition for total reflection in air where $n_1\approx1$ is  
 \begin{equation}
 V(x)> E_\perp
 \label{eq:interalreflection}
